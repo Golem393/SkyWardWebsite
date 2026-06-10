@@ -4,7 +4,7 @@ import {
   //Heart,
   //Dices,
   EyeOff,
-  Newspaper,
+  Tv,
   type LucideIcon,
 } from "lucide-react";
 
@@ -14,7 +14,7 @@ const items: { label: string; Icon: LucideIcon }[] = [
   //{ label: "Dating", Icon: Heart },
   //{ label: "Gambling", Icon: Dices },
   { label: "Adult sites", Icon: EyeOff },
-  { label: "News", Icon: Newspaper },
+  { label: "Streaming", Icon: Tv },
 ];
 
 export function BlockedCategories() {
