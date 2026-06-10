@@ -1,8 +1,8 @@
 import {
   MessageCircle,
   Gamepad2,
-  Heart,
-  Dices,
+  //Heart,
+  //Dices,
   EyeOff,
   Newspaper,
   type LucideIcon,
