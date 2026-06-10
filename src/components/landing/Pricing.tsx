@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
@@ -8,6 +9,8 @@ const features = [
 ];
 
 export function Pricing() {
+  const [isAnnual, setIsAnnual] = useState(false);
+
   return (
     <section id="pricing" className="relative aurora px-6 py-24 md:py-32 overflow-hidden">
       <div className="relative z-10 max-w-2xl mx-auto text-center">
@@ -17,10 +20,18 @@ export function Pricing() {
         </h2>
 
         <div className="mt-8 inline-flex items-center rounded-full glass p-1 text-sm">
-          <button className="rounded-full bg-primary text-primary-foreground px-5 py-1.5 font-medium">
+          <button 
+            onClick={() => setIsAnnual(false)}
+            className={`rounded-full px-5 py-1.5 font-medium transition-colors ${!isAnnual ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+          >
             Monthly
           </button>
-          <button className="rounded-full px-5 py-1.5 text-muted-foreground">Annual</button>
+          <button 
+            onClick={() => setIsAnnual(true)}
+            className={`rounded-full px-5 py-1.5 font-medium transition-colors ${isAnnual ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
+          >
+            Annual
+          </button>
         </div>
 
         <div
@@ -32,16 +43,19 @@ export function Pricing() {
             <span className="text-xs uppercase tracking-widest text-accent">Most popular</span>
           </div>
           <div className="mt-4 flex items-baseline gap-1">
-            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">$12</span>
-            <span className="text-muted-foreground">/mo</span>
+            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">${isAnnual ? "120" : "12"}</span>
+            <span className="text-muted-foreground">{isAnnual ? "/yr" : "/mo"}</span>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">Billed monthly. Cancel anytime.</p>
+          <p className="mt-2 text-sm text-muted-foreground">{isAnnual ? "Billed annually. Cancel anytime." : "Billed monthly. Cancel anytime."}</p>
 
           <Button
-            onClick={() => window.location.href = 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00'}
+            onClick={() => window.location.href = isAnnual 
+              ? 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00' // TODO: Replace with annual Stripe link
+              : 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00'  // Monthly Stripe link
+            }
             className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
           >
-            Get Monthly
+            {isAnnual ? "Get Annual" : "Get Monthly"}
           </Button>
 
           <ul className="mt-6 space-y-3">
