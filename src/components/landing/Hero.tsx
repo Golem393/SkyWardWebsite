@@ -8,13 +8,13 @@ export function Hero() {
       className="relative aurora min-h-screen flex items-center justify-center overflow-hidden px-6"
     >
       <div className="relative z-10 max-w-4xl text-center">
-        <div
+        {/*<div
           className="inline-flex items-center gap-2 rounded-full glass px-3 py-1 text-xs text-muted-foreground mb-8 animate-fade-in"
           style={{ animationDelay: "0ms", animationFillMode: "both" }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
           A distraction-free smartphone
-        </div>
+        </div>*/}
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
