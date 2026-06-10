@@ -49,9 +49,9 @@ export function Pricing() {
           <p className="mt-2 text-sm text-muted-foreground">{isAnnual ? "Billed annually. Cancel anytime." : "Billed monthly. Cancel anytime."}</p>
 
           <Button
-            onClick={() => window.location.href = isAnnual 
-              ? 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00' // TODO: Replace with annual Stripe link
-              : 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00'  // Monthly Stripe link
+            onClick={() => window.location.href = isAnnual // USING TEST URLs CURRENTLY
+              ? 'https://buy.stripe.com/test_3cIfZjgjz0zv8IY9O7eME00' // TODO: Replace with annual Stripe link
+              : 'https://buy.stripe.com/test_3cIaEZ4ARdmh3oEd0jeME01'  // Monthly Stripe link
             }
             className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
           >
