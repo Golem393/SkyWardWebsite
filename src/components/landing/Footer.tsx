@@ -1,6 +1,3 @@
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
 export function Footer() {
   return (
     <footer className="px-6 pb-12 pt-8 border-t border-border">
@@ -15,23 +12,7 @@ export function Footer() {
           </p>
         </div>
 
-        <form
-          className="flex w-full max-w-sm items-center gap-2"
-          onSubmit={(e) => e.preventDefault()}
-        >
-          <Input
-            type="email"
-            placeholder="you@email.com"
-            className="rounded-full bg-card border-border h-11 px-4"
-            aria-label="Email address"
-          />
-          <Button
-            type="submit"
-            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-11 px-5"
-          >
-            Follow
-          </Button>
-        </form>
+
       </div>
       <div className="max-w-5xl mx-auto mt-10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <p>© 2026 Skyward. All rights reserved.</p>
