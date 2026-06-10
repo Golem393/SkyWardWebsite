@@ -3,9 +3,9 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
 const features = [
-  "Block social, gaming, streaming, & adult sites",
+  "Block social, gaming, streaming, and adult apps & sites",
   "One device per subscription",
-  "Cancel anytime",
+  "Focus deeply, rest fully, & live intentionally",
 ];
 
 export function Pricing() {
