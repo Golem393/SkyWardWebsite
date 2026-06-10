@@ -8,23 +8,23 @@ import {
 const faqs = [
   {
     q: "What exactly is Skyward?",
-    a: "Skyward is a smartphone that ships with a curated OS that blocks distracting categories of apps and websites at the system level.",
+    a: "Skyward is a software that blocks distracting apps and websites at the system level.",
   },
   {
-    q: "Which devices are supported?",
-    a: "We ship a dedicated Skyward device. Your subscription is tied to one device at a time.",
+    q: "Can I choose which apps & websites to block?",
+    a: "Not quite. We handle the blocklist for you. However, we make changes to this list based on user feedback, so let us know if you have any suggestions.",
   },
   {
     q: "Can the blocks be bypassed?",
-    a: "Blocking is enforced at the OS and network layer. Unless you're an elite hacker, the answer is no.",
+    a: "Blocking is enforced at the OS (operating system) and network layer. Unless you're an elite hacker, the answer is no.",
+  },
+  {
+    q: "Which devices are supported?",
+    a: "Currently, only Samsung, Google, & Motorola phones with an Android version 11.0 and above are supported.",
   },
   {
     q: "Is there a refund policy?",
     a: "Yes — a 30-day money-back guarantee on your first month, no questions asked.",
-  },
-  {
-    q: "How long does shipping take?",
-    a: "Devices ship within 3–5 business days worldwide, with tracking.",
   },
 ];
 

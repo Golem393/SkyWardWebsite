@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
 const features = [
-  "Block social, gaming, dating, gambling & adult sites",
+  "Block social, gaming, streaming, & adult sites",
   "One device per subscription",
   "Cancel anytime",
 ];
@@ -43,13 +43,13 @@ export function Pricing() {
             <span className="text-xs uppercase tracking-widest text-accent">Most popular</span>
           </div>
           <div className="mt-4 flex items-baseline gap-1">
-            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">${isAnnual ? "120" : "12"}</span>
+            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">${isAnnual ? "59" : "7.99"}</span>
             <span className="text-muted-foreground">{isAnnual ? "/yr" : "/mo"}</span>
           </div>
           <p className="mt-2 text-sm text-muted-foreground">{isAnnual ? "Billed annually. Cancel anytime." : "Billed monthly. Cancel anytime."}</p>
 
           <Button
-            onClick={() => window.location.href = isAnnual // USING TEST URLs CURRENTLY
+            onClick={() => window.location.href = isAnnual
               ? 'https://buy.stripe.com/8x2dRbd7naa57EUgcveME02' // Annual test link: https://buy.stripe.com/test_3cIfZjgjz0zv8IY9O7eME00
               : 'https://buy.stripe.com/3cIaEZ4ARdmh3oEd0jeME01'  // Monthly test link https://buy.stripe.com/test_3cIaEZ4ARdmh3oEd0jeME01
             }
