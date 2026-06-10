@@ -37,7 +37,10 @@ export function Pricing() {
           </div>
           <p className="mt-2 text-sm text-muted-foreground">Billed monthly. Cancel anytime.</p>
 
-          <Button className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]">
+          <Button
+            onClick={() => window.location.href = 'https://buy.stripe.com/3cIfZjgjz0zv8IY9O7eME00'}
+            className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
+          >
             Get Monthly
           </Button>
 
