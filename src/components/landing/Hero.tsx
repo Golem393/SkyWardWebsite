@@ -25,7 +25,7 @@ export function Hero() {
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward removes most social media, games, dating apps, and porn from your device.
+          Skyward removes most social media, games, streaming apps, and porn from your device.
           It&apos;s the blocker you can&apos;t bypass.
         </p>
         <div
