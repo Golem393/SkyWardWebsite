@@ -11,8 +11,8 @@ import {
 const items: { label: string; Icon: LucideIcon }[] = [
   { label: "Social media", Icon: MessageCircle },
   { label: "Gaming", Icon: Gamepad2 },
-  { label: "Dating", Icon: Heart },
-  { label: "Gambling", Icon: Dices },
+  //{ label: "Dating", Icon: Heart },
+  //{ label: "Gambling", Icon: Dices },
   { label: "Adult sites", Icon: EyeOff },
   { label: "News", Icon: Newspaper },
 ];
