@@ -16,7 +16,7 @@ const faqs = [
   },
   {
     q: "Can the blocks be bypassed?",
-    a: "Blocking is enforced at the OS (operating system) and network layer. Unless you're an elite hacker, the answer is no.",
+    a: "Blocking is enforced at the OS (operating system) and network layer. Unless you're an elite hacker, you cannot bypass our software.",
   },
   {
     q: "Which devices are supported?",
