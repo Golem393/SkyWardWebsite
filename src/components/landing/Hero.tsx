@@ -19,14 +19,14 @@ export function Hero() {
           className="text-5xl sm:text-6xl md:text-7xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
-          Your smartphone, without time-wasting apps.
+          Use your smartphone without time-wasting apps.
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
           Skyward removes most social media, games, dating apps, and porn from your device.
-          You can&apos;t access it unless you&apos;re an elite hacker.
+          It&apos;s the blocker you can&apos;t bypass.
         </p>
         <div
           className="mt-10 flex items-center justify-center gap-3 animate-fade-in"
