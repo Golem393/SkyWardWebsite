@@ -16,7 +16,7 @@ export function Hero() {
           A distraction-free smartphone
         </div>
         <h1
-          className="text-5xl sm:text-6xl md:text-7xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
+          className="text-4xl sm:text-5xl md:text-6xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
           Use your smartphone without time-wasting apps.
