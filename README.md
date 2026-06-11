@@ -26,6 +26,10 @@ bun run dev
 ```
 *(or `npm run dev`)*
 
+nvm install 22
+nvm use 22
+npm run dev
+
 The server will start (typically at `http://localhost:5173` or similar). Open the provided URL in your browser to view the application.
 
 ## Building for Production
