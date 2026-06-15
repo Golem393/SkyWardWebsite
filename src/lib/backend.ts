@@ -37,10 +37,10 @@ async function authedPost<T>(path: string, body: unknown): Promise<T> {
 
 /** Start a Stripe Checkout session for the given plan; returns the hosted URL. */
 export function createCheckoutSession(plan: "monthly" | "yearly") {
-  return authedPost<{ url: string }>("/checkout", { plan });
+  return authedPost<{ url: string }>("/api/stripe/checkout", { plan });
 }
 
 /** Open the Stripe billing portal (manage / cancel subscription); returns the hosted URL. */
 export function createPortalSession() {
-  return authedPost<{ url: string }>("/portal", {});
+  return authedPost<{ url: string }>("/api/stripe/portal", {});
 }
