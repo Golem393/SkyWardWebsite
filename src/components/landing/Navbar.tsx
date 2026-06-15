@@ -1,14 +1,36 @@
 import { useEffect, useState } from "react";
+import { Link, useNavigate } from "@tanstack/react-router";
+import { User } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { useAuth } from "@/hooks/useAuth";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const { user, signOut } = useAuth();
+  const navigate = useNavigate();
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  const handleSignOut = async () => {
+    await signOut();
+    navigate({ to: "/" });
+  };
+
+  const initial = (user?.email ?? "?").charAt(0).toUpperCase();
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
@@ -24,12 +46,54 @@ export function Navbar() {
           <span className="inline-block h-7 w-7 rounded-full bg-gradient-to-br from-primary to-accent shadow-inner" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
         </a>
-        <Button
-          asChild
-          className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
-        >
-          <a href="#pricing">Get Skyward</a>
-        </Button>
+        <div className="flex gap-2 items-center">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="flex items-center rounded-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+                  aria-label="Account menu"
+                >
+                  <Avatar className="h-9 w-9 border border-border">
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      {initial === "?" ? <User className="h-4 w-4" /> : initial}
+                    </AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className="truncate font-normal text-muted-foreground">
+                  {user.email}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/account">Account</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild>
+                  <Link to="/account">Manage subscription</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <Button
+              asChild
+              variant="ghost"
+              className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
+            >
+              <Link to="/auth">Login</Link>
+            </Button>
+          )}
+          <Button
+            asChild
+            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
+          >
+            <a href="#pricing">Get Skyward</a>
+          </Button>
+        </div>
       </div>
     </header>
   );

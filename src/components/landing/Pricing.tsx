@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
@@ -10,6 +11,13 @@ const features = [
 
 export function Pricing() {
   const [isAnnual, setIsAnnual] = useState(false);
+  const navigate = useNavigate();
+
+  // Always enter the funnel: /onboarding requires auth and redirects to /auth
+  // if needed, carrying the chosen plan through to checkout.
+  const handleGetSkyward = () => {
+    navigate({ to: "/onboarding", search: { plan: isAnnual ? "yearly" : "monthly" } });
+  };
 
   return (
     <section id="pricing" className="relative aurora px-6 py-24 md:py-32 overflow-hidden">
@@ -20,13 +28,13 @@ export function Pricing() {
         </h2>
 
         <div className="mt-8 inline-flex items-center rounded-full glass p-1 text-sm">
-          <button 
+          <button
             onClick={() => setIsAnnual(false)}
             className={`rounded-full px-5 py-1.5 font-medium transition-colors ${!isAnnual ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
           >
             Monthly
           </button>
-          <button 
+          <button
             onClick={() => setIsAnnual(true)}
             className={`rounded-full px-5 py-1.5 font-medium transition-colors ${isAnnual ? "bg-primary text-primary-foreground" : "text-muted-foreground hover:text-foreground"}`}
           >
@@ -43,16 +51,17 @@ export function Pricing() {
             <span className="text-xs uppercase tracking-widest text-accent">Most popular</span>
           </div>
           <div className="mt-4 flex items-baseline gap-1">
-            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">${isAnnual ? "59" : "7.99"}</span>
+            <span className="text-6xl font-semibold -tracking-[0.02em] text-foreground">
+              ${isAnnual ? "59" : "7.99"}
+            </span>
             <span className="text-muted-foreground">{isAnnual ? "/yr" : "/mo"}</span>
           </div>
-          <p className="mt-2 text-sm text-muted-foreground">{isAnnual ? "Billed annually. Cancel anytime." : "Billed monthly. Cancel anytime."}</p>
+          <p className="mt-2 text-sm text-muted-foreground">
+            {isAnnual ? "Billed annually. Cancel anytime." : "Billed monthly. Cancel anytime."}
+          </p>
 
           <Button
-            onClick={() => window.location.href = isAnnual
-              ? 'https://buy.stripe.com/8x2dRbd7naa57EUgcveME02' // Annual test link: https://buy.stripe.com/test_3cIfZjgjz0zv8IY9O7eME00
-              : 'https://buy.stripe.com/3cIaEZ4ARdmh3oEd0jeME01'  // Monthly test link https://buy.stripe.com/test_3cIaEZ4ARdmh3oEd0jeME01
-            }
+            onClick={handleGetSkyward}
             className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
           >
             {isAnnual ? "Get Annual" : "Get Monthly"}

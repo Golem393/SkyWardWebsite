@@ -11,15 +11,19 @@ export function Footer() {
             Turn your smartphone into a distraction-free device.
           </p>
         </div>
-
-
       </div>
       <div className="max-w-5xl mx-auto mt-10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <p>© 2026 Skyward. All rights reserved.</p>
         <div className="flex items-center gap-5">
-          <a href="#" className="hover:text-foreground transition-colors">Privacy</a>
-          <a href="#" className="hover:text-foreground transition-colors">Terms</a>
-          <a href="mailto:hello@skywardos.com" className="hover:text-foreground transition-colors">Contact</a>
+          <a href="#" className="hover:text-foreground transition-colors">
+            Privacy
+          </a>
+          <a href="#" className="hover:text-foreground transition-colors">
+            Terms
+          </a>
+          <a href="mailto:hello@skywardos.com" className="hover:text-foreground transition-colors">
+            Contact
+          </a>
         </div>
       </div>
     </footer>

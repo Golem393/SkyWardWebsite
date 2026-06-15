@@ -27,9 +27,7 @@ export function AllowedCategories() {
   return (
     <section className="px-6 pb-24 md:pb-32">
       <div className="max-w-5xl mx-auto text-center">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">
-          What we allow
-        </p>
+        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground">What we allow</p>
         <h2 className="mt-4 text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-balance">
           Essential tools for life.
         </h2>
