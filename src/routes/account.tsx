@@ -87,6 +87,11 @@ function AccountPage() {
   return (
     <div className="min-h-screen bg-background px-4 py-16">
       <div className="mx-auto w-full max-w-2xl space-y-6">
+        <div className="-ml-4">
+          <Button variant="ghost" asChild className="text-muted-foreground">
+            <Link to="/">← Back</Link>
+          </Button>
+        </div>
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-foreground">Your account</h1>
