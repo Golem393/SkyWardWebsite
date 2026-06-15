@@ -12,11 +12,16 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { useAuth } from "@/hooks/useAuth";
+import { createPortalSession } from "@/lib/backend";
+import { toast } from "sonner";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
-  const { user, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
+
+  const status = profile?.subscription_status ?? "inactive";
+  const hasSubscription = status === "active" || status === "past_due";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -69,9 +74,25 @@ export function Navbar() {
                 <DropdownMenuItem asChild>
                   <Link to="/account">Account</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem asChild>
-                  <Link to="/account">Manage subscription</Link>
-                </DropdownMenuItem>
+                {hasSubscription ? (
+                  <DropdownMenuItem
+                    onSelect={async (e) => {
+                      e.preventDefault();
+                      try {
+                        const { url } = await createPortalSession();
+                        window.location.href = url;
+                      } catch (err) {
+                        toast.error(err instanceof Error ? err.message : "Couldn't open the billing portal.");
+                      }
+                    }}
+                  >
+                    Manage subscription
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem asChild>
+                    <Link to="/onboarding">Start a subscription</Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
                   Sign out
