@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const Route = createFileRoute("/success")({
+  ssr: false,
   beforeLoad: ({ location }) => requireAuth({ href: location.pathname }),
   component: SuccessPage,
 });

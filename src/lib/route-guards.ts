@@ -9,11 +9,6 @@ import { supabase } from "@/lib/supabase";
  * search params (e.g. the chosen `plan`) are carried through untouched.
  */
 export async function requireAuth(opts: { href: string; search?: Record<string, unknown> }) {
-  // If running on the server, bypass the redirect since we can't read localStorage.
-  // The client will hydrate and handle the auth state.
-  if (typeof window === "undefined") {
-    return { session: null };
-  }
 
   const {
     data: { session },
@@ -33,9 +28,6 @@ export async function requireAuth(opts: { href: string; search?: Record<string, 
  * Redirect already authenticated users away from the auth page.
  */
 export async function redirectIfAuth(opts: { search?: Record<string, unknown> }) {
-  if (typeof window === "undefined") {
-    return;
-  }
 
   const {
     data: { session },

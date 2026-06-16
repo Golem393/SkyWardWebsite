@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
 export const Route = createFileRoute("/account")({
+  ssr: false,
   beforeLoad: ({ location }) => requireAuth({ href: location.pathname }),
   component: AccountPage,
 });

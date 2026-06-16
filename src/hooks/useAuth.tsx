@@ -36,21 +36,13 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, []);
 
   useEffect(() => {
-    // Check active session on mount.
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      setUser(session?.user ?? null);
-      loadProfile(session?.user?.id).finally(() => setIsLoading(false));
-    });
-
     // Listen for auth changes.
     const {
       data: { subscription },
     } = supabase.auth.onAuthStateChange((_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
-      loadProfile(session?.user?.id);
-      setIsLoading(false);
+      loadProfile(session?.user?.id).finally(() => setIsLoading(false));
     });
 
     return () => subscription.unsubscribe();

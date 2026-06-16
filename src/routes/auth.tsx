@@ -17,6 +17,7 @@ const searchSchema = z.object({
 });
 
 export const Route = createFileRoute("/auth")({
+  ssr: false,
   validateSearch: searchSchema,
   beforeLoad: ({ search }) => redirectIfAuth({ search }),
   component: AuthPage,

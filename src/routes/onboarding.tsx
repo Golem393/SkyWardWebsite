@@ -17,6 +17,7 @@ const searchSchema = z.object({
 });
 
 export const Route = createFileRoute("/onboarding")({
+  ssr: false,
   validateSearch: searchSchema,
   beforeLoad: ({ location, search }) => requireAuth({ href: location.pathname, search }),
   component: OnboardingPage,
