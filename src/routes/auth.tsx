@@ -10,6 +10,7 @@ import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Mail } from "lucide-react";
 
 const searchSchema = z.object({
   redirect: z.string().optional(),
@@ -30,6 +31,8 @@ function AuthPage() {
   const [password, setPassword] = useState("");
   const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [registeredEmail, setRegisteredEmail] = useState<string | null>(null);
+  const [resending, setResending] = useState(false);
 
   const { redirect, plan } = Route.useSearch();
   const navigate = useNavigate();
@@ -77,17 +80,68 @@ function AuthPage() {
       return;
     }
 
-    // Email verification check commented out for now
-    // if (data.session) {
-    //   goNext();
-    // } else {
-    //   // Email confirmation is required by the project's Supabase settings.
-    //   toast.success("Check your email to confirm your account, then sign in.");
-    // }
-    
-    // Proceed directly to the next page
-    goNext();
+    if (data.session) {
+      goNext();
+    } else {
+      setRegisteredEmail(email);
+      toast.success("Verification email sent! Please check your inbox.");
+    }
   };
+
+  const handleResend = async () => {
+    if (!registeredEmail) return;
+    setResending(true);
+    const { error } = await supabase.auth.resend({
+      type: "signup",
+      email: registeredEmail,
+    });
+    setResending(false);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Verification email resent!");
+    }
+  };
+
+  if (registeredEmail) {
+    return (
+      <div className="flex min-h-screen items-center justify-center bg-background px-4">
+        <Card className="w-full max-w-md">
+          <CardHeader className="text-center">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary/10 text-primary">
+              <Mail className="h-6 w-6" />
+            </div>
+            <CardTitle className="text-2xl font-bold">Verify your email</CardTitle>
+            <CardDescription className="mt-2 text-sm text-muted-foreground">
+              We've sent a verification link to <span className="font-semibold text-foreground">{registeredEmail}</span>.
+            </CardDescription>
+          </CardHeader>
+          <CardContent className="space-y-6 text-center">
+            <p className="text-sm text-muted-foreground">
+              Please click the link in the email to confirm your account. Once verified, you can sign in.
+            </p>
+            <div className="flex flex-col gap-2">
+              <Button
+                variant="outline"
+                className="w-full"
+                onClick={handleResend}
+                disabled={resending}
+              >
+                {resending ? "Resending…" : "Resend email"}
+              </Button>
+              <Button
+                variant="ghost"
+                className="w-full"
+                onClick={() => setRegisteredEmail(null)}
+              >
+                Back to login
+              </Button>
+            </div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
