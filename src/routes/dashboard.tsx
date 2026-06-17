@@ -73,32 +73,32 @@ function DashboardPage() {
     Samsung: {
       title: "Reset through Settings",
       steps: [
-        "Open Settings",
-        "Tap General Management",
-        "Tap Reset",
-        "Tap Factory data reset",
+        "Open your phone's Settings app",
+        "Tap General management > Reset > Factory data reset",
         "Tap Reset",
         "Tap Delete all",
+        "Let your device restart",
+        "On the first screen, tap your phone 6 times to open the QR code scanner",
       ],
     },
     Google: {
       title: "Reset through Settings",
       steps: [
-        "Open Settings",
-        "Tap System",
-        "Tap Reset options",
-        "Tap Erase all data (factory reset)",
+        "Open your phone's Settings app",
+        "Tap System > Reset options > Erase all data (factory reset)",
         "Tap Erase all data",
+        "Let your device restart",
+        "On the first screen, tap your phone 6 times to open the QR code scanner",
       ],
     },
     Motorola: {
       title: "Reset through Settings",
       steps: [
-        "Open Settings",
-        "Tap System",
-        "Tap Reset options",
-        "Tap Erase all data (factory reset)",
+        "Open your phone's Settings app",
+        "Tap System > Reset options > Erase all data (factory reset)",
         "Tap Erase all data",
+        "Let your device restart",
+        "On the first screen, tap your phone 6 times to open the QR code scanner",
       ],
     },
   };
@@ -154,8 +154,7 @@ function DashboardPage() {
                   className="mt-0.5 shrink-0"
                 />
                 <span className="text-sm text-foreground leading-snug">
-                  I understand that a factory reset will permanently erase data
-                  that has not been backed up.
+                  I have completed backing up all my important data.
                 </span>
               </label>
             </CardContent>
@@ -212,9 +211,6 @@ function DashboardPage() {
                         </li>
                       ))}
                     </ol>
-                    <p className="text-sm text-muted-foreground pt-1">
-                      After completing the factory reset, return here and continue.
-                    </p>
                   </div>
                 )}
 

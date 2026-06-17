@@ -77,11 +77,11 @@ function BackupGuidePage() {
       <div className="mx-auto w-full max-w-2xl space-y-10">
 
         {/* Back link */}
-        <div className="-ml-1">
+        {/*<div className="-ml-1">
           <Button variant="ghost" asChild className="text-muted-foreground rounded-full">
             <Link to="/success">← Back</Link>
           </Button>
-        </div>
+        </div>*/}
 
         {/* Page header */}
         <div className="space-y-3">
@@ -145,7 +145,7 @@ function BackupGuidePage() {
             <div className="flex items-center gap-3">
               <ShieldAlert className="h-5 w-5 text-accent" />
               <CardTitle className="text-base">
-                Important: Verify Your Authenticator Apps
+                IMPORTANT: Verify Your Authenticator Apps
               </CardTitle>
             </div>
           </CardHeader>
@@ -274,7 +274,7 @@ function BackupGuidePage() {
         {/* CTA */}
         <div className="flex justify-end pb-4">
           <Button asChild className="rounded-full">
-            <Link to="/account">
+            <Link to="/dashboard">
               Continue to Setup <ArrowRight className="ml-1 h-4 w-4" />
             </Link>
           </Button>
