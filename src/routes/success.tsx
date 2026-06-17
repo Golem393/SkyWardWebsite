@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 
@@ -10,6 +11,7 @@ export const Route = createFileRoute("/success")({
 function SuccessPage() {
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
+      <Navbar />
       <Card className="w-full max-w-md text-center">
         <CardHeader className="items-center">
           <CardTitle className="mt-2 text-2xl">Thank you for your purchase.</CardTitle>
