@@ -6,6 +6,7 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
+import { requireAuth } from "@/lib/route-guards";
 
 const QR_VALUE = JSON.stringify({
   "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION":
@@ -29,6 +30,7 @@ const QR_VALUE = JSON.stringify({
 
 export const Route = createFileRoute("/dashboard")({
   ssr: false,
+  beforeLoad: ({ location }) => requireAuth({ href: location.pathname }),
   component: DashboardPage,
 });
 
