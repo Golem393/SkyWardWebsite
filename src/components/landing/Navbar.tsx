@@ -47,10 +47,10 @@ export function Navbar() {
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
       >
-        <a href="#top" className="flex items-center gap-2">
-          <span className="inline-block h-7 w-7 rounded-full bg-gradient-to-br from-primary to-accent shadow-inner" />
+        <Link to={user ? "/dashboard" : "/"} className="flex items-center gap-2">
+          <img src="/logo.png" alt="Skyward" className="h-7 w-7 object-contain" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
-        </a>
+        </Link>
         <div className="flex gap-2 items-center">
           {user ? (
             <DropdownMenu>
