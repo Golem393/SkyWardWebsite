@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SuccessRouteImport } from './routes/success'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as BackupRouteImport } from './routes/backup'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AccountRouteImport } from './routes/account'
 import { Route as IndexRouteImport } from './routes/index'
@@ -23,6 +24,11 @@ const SuccessRoute = SuccessRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const BackupRoute = BackupRouteImport.update({
+  id: '/backup',
+  path: '/backup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthRoute = AuthRouteImport.update({
@@ -45,6 +51,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/backup': typeof BackupRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
@@ -52,6 +59,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/backup': typeof BackupRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
@@ -60,21 +68,30 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
+  '/backup': typeof BackupRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/auth' | '/onboarding' | '/success'
+  fullPaths: '/' | '/account' | '/auth' | '/backup' | '/onboarding' | '/success'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/auth' | '/onboarding' | '/success'
-  id: '__root__' | '/' | '/account' | '/auth' | '/onboarding' | '/success'
+  to: '/' | '/account' | '/auth' | '/backup' | '/onboarding' | '/success'
+  id:
+    | '__root__'
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/backup'
+    | '/onboarding'
+    | '/success'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
+  BackupRoute: typeof BackupRoute
   OnboardingRoute: typeof OnboardingRoute
   SuccessRoute: typeof SuccessRoute
 }
@@ -93,6 +110,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/backup': {
+      id: '/backup'
+      path: '/backup'
+      fullPath: '/backup'
+      preLoaderRoute: typeof BackupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth': {
@@ -123,6 +147,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
+  BackupRoute: BackupRoute,
   OnboardingRoute: OnboardingRoute,
   SuccessRoute: SuccessRoute,
 }

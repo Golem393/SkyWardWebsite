@@ -18,7 +18,7 @@ function SuccessPage() {
         <CardContent className="space-y-4">
           <p className="text-sm text-foreground">Next step: Prepare your phone for Skyward.</p>
           <Button asChild className="rounded-full">
-            <Link to="/onboarding">Continue Setup</Link>
+            <Link to="/backup">Continue Setup</Link>
           </Button>
         </CardContent>
       </Card>
