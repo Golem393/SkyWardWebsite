@@ -5,7 +5,6 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
-import { EnrollmentQr } from "@/components/EnrollmentQr";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -152,17 +151,6 @@ function AccountPage() {
                 </Button>
               </div>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Enrollment QR */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Enrollment QR</CardTitle>
-            <CardDescription>Scan this during device setup to install Skyward.</CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-center">
-            <EnrollmentQr imei={profile?.imei} />
           </CardContent>
         </Card>
       </div>
