@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { BookOpen, RotateCcw, Smartphone, ExternalLink, CheckCircle2 } from "lucide-react";
+import { BookOpen, RotateCcw, Smartphone, CheckCircle2 } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
@@ -67,6 +67,41 @@ function StepHeader({
 function DashboardPage() {
   const [step1Checked, setStep1Checked] = useState(false);
   const [step2Checked, setStep2Checked] = useState(false);
+  const [deviceType, setDeviceType] = useState<"Samsung" | "Google" | "Motorola" | null>(null);
+
+  const DEVICE_STEPS: Record<"Samsung" | "Google" | "Motorola", { title: string; steps: string[] }> = {
+    Samsung: {
+      title: "Reset through Settings",
+      steps: [
+        "Open Settings",
+        "Tap General Management",
+        "Tap Reset",
+        "Tap Factory data reset",
+        "Tap Reset",
+        "Tap Delete all",
+      ],
+    },
+    Google: {
+      title: "Reset through Settings",
+      steps: [
+        "Open Settings",
+        "Tap System",
+        "Tap Reset options",
+        "Tap Erase all data (factory reset)",
+        "Tap Erase all data",
+      ],
+    },
+    Motorola: {
+      title: "Reset through Settings",
+      steps: [
+        "Open Settings",
+        "Tap System",
+        "Tap Reset options",
+        "Tap Erase all data (factory reset)",
+        "Tap Erase all data",
+      ],
+    },
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -95,7 +130,6 @@ function DashboardPage() {
                 number={1}
                 icon={BookOpen}
                 title="Back Up Your Data"
-                locked={false}
                 done={step1Checked}
               />
             </CardHeader>
@@ -109,7 +143,6 @@ function DashboardPage() {
                 <Link to="/backup">
                   <BookOpen className="h-4 w-4" />
                   Open Backup Guide
-                  <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
                 </Link>
               </Button>
 
@@ -141,45 +174,49 @@ function DashboardPage() {
               </CardHeader>
               <CardContent className="space-y-5">
                 <CardDescription>
-                  Choose your device manufacturer and follow the instructions.
+                  Choose your device type and follow the instructions.
                 </CardDescription>
 
+                {/* Device picker */}
                 <div className="flex flex-wrap gap-2">
-                  <Button variant="outline" className="rounded-full gap-2" asChild>
-                    <a
-                      href="https://www.samsung.com/us/support/answer/ANS00078634/"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  {(["Samsung", "Google", "Motorola"] as const).map((d) => (
+                    <button
+                      key={d}
+                      type="button"
+                      onClick={() => setDeviceType(d)}
+                      className={[
+                        "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                        deviceType === d
+                          ? "border-primary bg-primary/5 text-primary"
+                          : "border-border text-foreground hover:border-primary/40",
+                      ].join(" ")}
                     >
-                      Samsung Instructions
-                      <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" className="rounded-full gap-2" asChild>
-                    <a
-                      href="https://support.google.com/pixelphone/answer/2819522"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Google Instructions
-                      <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
-                    </a>
-                  </Button>
-                  <Button variant="outline" className="rounded-full gap-2" asChild>
-                    <a
-                      href="https://www.motorola.com/us/hard-reset-motorola-phone/p"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Motorola Instructions
-                      <ExternalLink className="h-3.5 w-3.5 text-muted-foreground" />
-                    </a>
-                  </Button>
+                      {d}
+                    </button>
+                  ))}
                 </div>
 
-                <p className="text-sm text-muted-foreground">
-                  After completing the factory reset, return here and continue.
-                </p>
+                {/* Step-by-step instructions */}
+                {deviceType && (
+                  <div className="animate-in fade-in slide-in-from-top-1 duration-200 space-y-3">
+                    <p className="text-sm font-medium text-foreground">
+                      {DEVICE_STEPS[deviceType].title}
+                    </p>
+                    <ol className="space-y-2">
+                      {DEVICE_STEPS[deviceType].steps.map((step, i) => (
+                        <li key={i} className="flex items-center gap-3 text-sm text-foreground">
+                          <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                            {i + 1}
+                          </span>
+                          {step}
+                        </li>
+                      ))}
+                    </ol>
+                    <p className="text-sm text-muted-foreground pt-1">
+                      After completing the factory reset, return here and continue.
+                    </p>
+                  </div>
+                )}
 
                 <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 transition-colors hover:bg-muted/50">
                   <Checkbox
