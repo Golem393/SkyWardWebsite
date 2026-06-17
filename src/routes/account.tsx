@@ -56,10 +56,7 @@ function AccountPage() {
     }
     if (!user) return;
     setSavingImei(true);
-    const { error } = await supabase
-      .from("profiles")
-      .update({ imei })
-      .eq("id", user.id);
+    const { error } = await supabase.from("profiles").update({ imei }).eq("id", user.id);
     setSavingImei(false);
     if (error) {
       toast.error(`Couldn't save: ${error.message}`);

@@ -8,28 +8,29 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Checkbox } from "@/components/ui/checkbox";
 
 const QR_VALUE = JSON.stringify({
-  "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION": "https://play.google.com/managed/downloadManagingApp?identifier=memdm",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION":
+    "https://play.google.com/managed/downloadManagingApp?identifier=memdm",
   "android.app.extra.PROVISIONING_SKIP_ENCRYPTION": true,
   "android.app.extra.PROVISIONING_ADMIN_EXTRAS_BUNDLE": {
-    "DPM": 1,
-    "TV": "wSsVR60j/EH3C60smzP+ce8xmlxdAFL0QUx7ilPy73b+H6/AoMc+kUbKUwDzFPIZQjZrHGQSou8hnx8IgDYM2t0ozFgGWyiF9mqRe1U4J3x197K/xTOdV2k=",
-    "Fqdn": "mdm.manageengine.com",
-    "CI": true,
-    "Port": "443",
-    "Token": "c9373a277f3b8639ea61871290ad5cfd",
-    "TN": "encapiKey"
+    DPM: 1,
+    TV: "wSsVR60j/EH3C60smzP+ce8xmlxdAFL0QUx7ilPy73b+H6/AoMc+kUbKUwDzFPIZQjZrHGQSou8hnx8IgDYM2t0ozFgGWyiF9mqRe1U4J3x197K/xTOdV2k=",
+    Fqdn: "mdm.manageengine.com",
+    CI: true,
+    Port: "443",
+    Token: "c9373a277f3b8639ea61871290ad5cfd",
+    TN: "encapiKey",
   },
-  "android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM": "qdbQoq_bFYSbjNMdUf5zuOGxcLqlcML48qP4ZSgpy70=",
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_SIGNATURE_CHECKSUM":
+    "qdbQoq_bFYSbjNMdUf5zuOGxcLqlcML48qP4ZSgpy70=",
   "android.app.extra.PROVISIONING_LEAVE_ALL_SYSTEM_APPS_ENABLED": true,
-  "android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME": "com.manageengine.mdm.android/com.manageengine.mdm.framework.deviceadmin.DeviceAdminMonitor"
+  "android.app.extra.PROVISIONING_DEVICE_ADMIN_COMPONENT_NAME":
+    "com.manageengine.mdm.android/com.manageengine.mdm.framework.deviceadmin.DeviceAdminMonitor",
 });
 
 export const Route = createFileRoute("/dashboard")({
   ssr: false,
   component: DashboardPage,
 });
-
-
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
 
@@ -69,7 +70,10 @@ function DashboardPage() {
   const [step2Checked, setStep2Checked] = useState(false);
   const [deviceType, setDeviceType] = useState<"Samsung" | "Google" | "Motorola" | null>(null);
 
-  const DEVICE_STEPS: Record<"Samsung" | "Google" | "Motorola", { title: string; steps: string[] }> = {
+  const DEVICE_STEPS: Record<
+    "Samsung" | "Google" | "Motorola",
+    { title: string; steps: string[] }
+  > = {
     Samsung: {
       title: "Reset through Settings",
       steps: [
@@ -122,7 +126,6 @@ function DashboardPage() {
         </div>
 
         <div className="space-y-5">
-
           {/* ── Step 1: Back Up Your Data ── */}
           <Card>
             <CardHeader>
@@ -135,8 +138,8 @@ function DashboardPage() {
             </CardHeader>
             <CardContent className="space-y-5">
               <CardDescription>
-                Factory resetting your phone permanently erases any data that
-                has not been backed up.
+                Factory resetting your phone permanently erases any data that has not been backed
+                up.
               </CardDescription>
 
               <Button asChild variant="outline" className="rounded-full gap-2">
@@ -233,17 +236,11 @@ function DashboardPage() {
           {step2Checked && (
             <Card className="animate-in fade-in slide-in-from-top-2 duration-300">
               <CardHeader>
-                <StepHeader
-                  number={3}
-                  icon={Smartphone}
-                  title="Install Skyward"
-                  done={false}
-                />
+                <StepHeader number={3} icon={Smartphone} title="Install Skyward" done={false} />
               </CardHeader>
               <CardContent className="space-y-5">
                 <CardDescription>
-                  Install Skyward using the QR code below. You must be connected
-                  to the internet.
+                  Install Skyward using the QR code below. You must be connected to the internet.
                 </CardDescription>
 
                 <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-muted/30 p-8">
@@ -255,7 +252,6 @@ function DashboardPage() {
               </CardContent>
             </Card>
           )}
-
         </div>
       </main>
     </div>

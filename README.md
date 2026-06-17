@@ -4,18 +4,20 @@ This is a web project built with React, Vite, and TanStack Start.
 
 ## Prerequisites
 
-Make sure you have [Bun](https://bun.sh/) installed on your system. 
-*(You can also use Node.js and npm/yarn/pnpm, but the project has a `bun.lock` file, meaning Bun is the recommended package manager).*
+Make sure you have [Bun](https://bun.sh/) installed on your system.
+_(You can also use Node.js and npm/yarn/pnpm, but the project has a `bun.lock` file, meaning Bun is the recommended package manager)._
 
 ## Installation
 
 1. Clone the repository and navigate to the project directory.
 
 2. Install the dependencies:
+
 ```bash
 bun install
 ```
-*(or `npm install`)*
+
+_(or `npm install`)_
 
 ## Running the Development Server
 
@@ -24,7 +26,8 @@ To launch the website locally for development, run:
 ```bash
 bun run dev
 ```
-*(or `npm run dev`)*
+
+_(or `npm run dev`)_
 
 nvm install 22
 nvm use 22

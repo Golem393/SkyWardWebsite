@@ -55,10 +55,7 @@ function OnboardingPage() {
     setSubmitting(true);
 
     // Persist the IMEI to the user's profile row (RLS: own row only).
-    const { error } = await supabase
-      .from("profiles")
-      .update({ imei })
-      .eq("id", user.id);
+    const { error } = await supabase.from("profiles").update({ imei }).eq("id", user.id);
     if (error) {
       setSubmitting(false);
       toast.error(`Couldn't save your IMEI: ${error.message}`);

@@ -82,7 +82,9 @@ export function Navbar() {
                         const { url } = await createPortalSession();
                         window.location.href = url;
                       } catch (err) {
-                        toast.error(err instanceof Error ? err.message : "Couldn't open the billing portal.");
+                        toast.error(
+                          err instanceof Error ? err.message : "Couldn't open the billing portal.",
+                        );
                       }
                     }}
                   >
