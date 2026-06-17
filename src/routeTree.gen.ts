@@ -11,6 +11,7 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SuccessRouteImport } from './routes/success'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as DashboardRouteImport } from './routes/dashboard'
 import { Route as BackupRouteImport } from './routes/backup'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AccountRouteImport } from './routes/account'
@@ -24,6 +25,11 @@ const SuccessRoute = SuccessRouteImport.update({
 const OnboardingRoute = OnboardingRouteImport.update({
   id: '/onboarding',
   path: '/onboarding',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DashboardRoute = DashboardRouteImport.update({
+  id: '/dashboard',
+  path: '/dashboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BackupRoute = BackupRouteImport.update({
@@ -52,6 +58,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
@@ -60,6 +67,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
@@ -69,20 +77,36 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/dashboard': typeof DashboardRoute
   '/onboarding': typeof OnboardingRoute
   '/success': typeof SuccessRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/account' | '/auth' | '/backup' | '/onboarding' | '/success'
+  fullPaths:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/backup'
+    | '/dashboard'
+    | '/onboarding'
+    | '/success'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/account' | '/auth' | '/backup' | '/onboarding' | '/success'
+  to:
+    | '/'
+    | '/account'
+    | '/auth'
+    | '/backup'
+    | '/dashboard'
+    | '/onboarding'
+    | '/success'
   id:
     | '__root__'
     | '/'
     | '/account'
     | '/auth'
     | '/backup'
+    | '/dashboard'
     | '/onboarding'
     | '/success'
   fileRoutesById: FileRoutesById
@@ -92,6 +116,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   BackupRoute: typeof BackupRoute
+  DashboardRoute: typeof DashboardRoute
   OnboardingRoute: typeof OnboardingRoute
   SuccessRoute: typeof SuccessRoute
 }
@@ -110,6 +135,13 @@ declare module '@tanstack/react-router' {
       path: '/onboarding'
       fullPath: '/onboarding'
       preLoaderRoute: typeof OnboardingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/dashboard': {
+      id: '/dashboard'
+      path: '/dashboard'
+      fullPath: '/dashboard'
+      preLoaderRoute: typeof DashboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/backup': {
@@ -148,6 +180,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   BackupRoute: BackupRoute,
+  DashboardRoute: DashboardRoute,
   OnboardingRoute: OnboardingRoute,
   SuccessRoute: SuccessRoute,
 }
