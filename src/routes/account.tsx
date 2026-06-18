@@ -39,6 +39,7 @@ function AccountPage() {
   const [imei, setImei] = useState("");
   const [savingImei, setSavingImei] = useState(false);
   const [openingPortal, setOpeningPortal] = useState(false);
+  const [resettingPassword, setResettingPassword] = useState(false);
 
   useEffect(() => {
     setImei(profile?.imei ?? "");
@@ -80,6 +81,21 @@ function AccountPage() {
   const handleSignOut = async () => {
     await signOut();
     navigate({ to: "/" });
+  };
+
+  const handleSendResetEmail = async () => {
+    const email = profile?.email ?? user?.email;
+    if (!email) return;
+    setResettingPassword(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/update-password`,
+    });
+    setResettingPassword(false);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Password reset email sent! Please check your inbox.");
+    }
   };
 
   return (
@@ -153,6 +169,26 @@ function AccountPage() {
                 </Button>
               </div>
             </div>
+          </CardContent>
+        </Card>
+        {/* Security */}
+        <Card>
+          <CardHeader>
+            <CardTitle>Security</CardTitle>
+            <CardDescription>Change your account password.</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              We'll send a secure link to your email to set a new password.
+            </p>
+            <Button
+              variant="outline"
+              className="rounded-full"
+              onClick={handleSendResetEmail}
+              disabled={resettingPassword}
+            >
+              {resettingPassword ? "Sending email…" : "Reset password"}
+            </Button>
           </CardContent>
         </Card>
       </main>
