@@ -23,7 +23,7 @@ const steps = [
 
 export function HowItWorks() {
   return (
-    <section className="px-6 py-24 md:py-32 bg-background relative overflow-hidden">
+    <section className="px-6 py-16 md:py-20 bg-muted/30 dark:bg-muted/10 border-y border-border/50 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground text-center">
           Setup Process
