@@ -3,7 +3,6 @@ import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { BlockedCategories } from "@/components/landing/BlockedCategories";
 import { AllowedCategories } from "@/components/landing/AllowedCategories";
-import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Pricing } from "@/components/landing/Pricing";
 import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
@@ -33,7 +32,6 @@ function Index() {
       <Hero />
       <BlockedCategories />
       <AllowedCategories />
-      <HowItWorks />
       <Pricing />
       <Faq />
       <Footer />
