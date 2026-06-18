@@ -47,7 +47,7 @@ export function Navbar() {
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
       >
-        <Link to={user ? "/dashboard" : "/"} className="flex items-center gap-2">
+        <Link to={user ? "/setup" : "/"} className="flex items-center gap-2">
           <img src="/logo.png" alt="Skyward" className="h-7 w-7 object-contain" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
         </Link>
@@ -120,6 +120,6 @@ export function Navbar() {
           )}
         </div>
       </div>
-    </header>
+    </header >
   );
 }

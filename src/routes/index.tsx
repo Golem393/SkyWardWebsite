@@ -32,7 +32,7 @@ function Index() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (user) navigate({ to: "/dashboard" });
+    if (user) navigate({ to: "/setup" });
   }, [user, navigate]);
 
   return (

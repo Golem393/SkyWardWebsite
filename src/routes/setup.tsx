@@ -28,10 +28,10 @@ const QR_VALUE = JSON.stringify({
     "com.manageengine.mdm.android/com.manageengine.mdm.framework.deviceadmin.DeviceAdminMonitor",
 });
 
-export const Route = createFileRoute("/dashboard")({
+export const Route = createFileRoute("/setup")({
   ssr: false,
   beforeLoad: ({ location }) => requireAuth({ href: location.pathname }),
-  component: DashboardPage,
+  component: SetupPage,
 });
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -67,7 +67,7 @@ function StepHeader({
 
 // ─── Main page ────────────────────────────────────────────────────────────────
 
-function DashboardPage() {
+function SetupPage() {
   const [step1Checked, setStep1Checked] = useState(false);
   const [step2Checked, setStep2Checked] = useState(false);
   const [deviceType, setDeviceType] = useState<"Samsung" | "Google" | "Motorola" | null>(null);

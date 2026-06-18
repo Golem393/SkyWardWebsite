@@ -86,7 +86,7 @@ function BackupGuidePage() {
             asChild
             className="text-muted-foreground rounded-full hover:bg-muted/80"
           >
-            <Link to="/dashboard">
+            <Link to="/setup">
               <ArrowLeft className="mr-2 h-4 w-4" /> Back to Setup
             </Link>
           </Button>
@@ -245,11 +245,10 @@ function BackupGuidePage() {
               {checklistItems.map((item) => (
                 <label
                   key={item.id}
-                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${
-                    checked[item.id]
+                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${checked[item.id]
                       ? "border-primary/40 bg-primary/5 shadow-sm"
                       : "border-border bg-card/50 hover:bg-muted/40"
-                  }`}
+                    }`}
                 >
                   <Checkbox
                     id={`checkbox-${item.id}`}
@@ -258,9 +257,8 @@ function BackupGuidePage() {
                     className="shrink-0"
                   />
                   <span
-                    className={`text-sm font-medium transition-colors ${
-                      checked[item.id] ? "text-foreground" : "text-muted-foreground"
-                    }`}
+                    className={`text-sm font-medium transition-colors ${checked[item.id] ? "text-foreground" : "text-muted-foreground"
+                      }`}
                   >
                     {item.label}
                   </span>
@@ -279,15 +277,14 @@ function BackupGuidePage() {
           <Button
             onClick={() => {
               if (isAllChecked) {
-                navigate({ to: "/dashboard" });
+                navigate({ to: "/setup" });
               }
             }}
             disabled={!isAllChecked}
-            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${
-              isAllChecked
+            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${isAllChecked
                 ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] cursor-pointer"
                 : "bg-muted text-muted-foreground opacity-60 cursor-not-allowed"
-            }`}
+              }`}
           >
             Continue to Setup <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
