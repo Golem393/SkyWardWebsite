@@ -95,6 +95,9 @@ export function Navbar() {
                     <Link to="/onboarding">Start a subscription</Link>
                   </DropdownMenuItem>
                 )}
+                <DropdownMenuItem asChild>
+                  <Link to="/setup">Setup guide</Link>
+                </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
                   Sign out
