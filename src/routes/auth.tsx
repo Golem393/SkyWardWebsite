@@ -188,8 +188,8 @@ function AuthPage() {
                 <div className="space-y-2">
                   <div className="flex items-center justify-between">
                     <Label htmlFor="login-password">Password</Label>
-                    <Button 
-                      variant="link" 
+                    <Button
+                      variant="link"
                       type="button"
                       className="px-0 font-normal text-xs text-muted-foreground h-auto"
                       onClick={handleResetPassword}

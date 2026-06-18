@@ -19,7 +19,9 @@ export const Route = createFileRoute("/update-password")({
       }
     }
 
-    const { data: { session } } = await supabase.auth.getSession();
+    const {
+      data: { session },
+    } = await supabase.auth.getSession();
     if (!session) {
       throw new Error("Not authenticated");
     }
@@ -37,7 +39,10 @@ export const Route = createFileRoute("/update-password")({
             </CardDescription>
           </CardHeader>
           <CardContent>
-            <a href="/auth" className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 w-full">
+            <a
+              href="/auth"
+              className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 w-full"
+            >
               Back to login
             </a>
           </CardContent>
@@ -100,9 +105,7 @@ function UpdatePasswordPage() {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <p className="text-xs text-muted-foreground">
-                At least {MIN_PASSWORD} characters.
-              </p>
+              <p className="text-xs text-muted-foreground">At least {MIN_PASSWORD} characters.</p>
             </div>
             <div className="space-y-2">
               <Label htmlFor="confirm-password">Confirm password</Label>
