@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { BookOpen, RotateCcw, Smartphone, CheckCircle2 } from "lucide-react";
+import { BookOpen, RotateCcw, Smartphone, CheckCircle2, Brush, BrushCleaning } from "lucide-react";
 import { QRCodeSVG } from "qrcode.react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
@@ -173,7 +173,7 @@ function SetupPage() {
               <CardHeader>
                 <StepHeader
                   number={2}
-                  icon={RotateCcw}
+                  icon={BrushCleaning}
                   title="Factory Reset Your Phone"
                   done={step2Checked}
                 />
@@ -240,11 +240,11 @@ function SetupPage() {
           {step2Checked && (
             <Card className="animate-in fade-in slide-in-from-top-2 duration-300">
               <CardHeader>
-                <StepHeader number={3} icon={Smartphone} title="Install Skyward" done={false} />
+                <StepHeader number={3} icon={Smartphone} title="Scan QR" done={false} />
               </CardHeader>
               <CardContent className="space-y-5">
                 <CardDescription>
-                  Install Skyward using the QR code below. You must be connected to the internet.
+                  Scan the QR code below. You must be connected to the internet.
                 </CardDescription>
 
                 <div className="flex flex-col items-center gap-4 rounded-2xl border border-border bg-muted/30 p-8">
