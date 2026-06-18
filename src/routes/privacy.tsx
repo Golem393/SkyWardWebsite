@@ -72,7 +72,7 @@ function PrivacyPage() {
               <div className="space-y-2 pt-2">
                 <h3 className="text-sm font-semibold text-foreground">Payment Information</h3>
                 <p className="text-sm text-muted-foreground">
-                  Payments are processed by third-party payment processors. We do not store complete
+                  Payments are processed by third-party payment processors such as Stripe. We do not store complete
                   payment card information on our servers. We may receive limited billing
                   information such as:
                 </p>
@@ -139,21 +139,13 @@ function PrivacyPage() {
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                4. Content and Activity Monitoring
+                4. Content Monitoring
               </h2>
               <p className="text-sm text-muted-foreground">
-                Skyward is not designed to monitor the contents of personal communications. We do
-                not intentionally collect the content of:
+                Skyward is not designed to access, monitor, collect, or store the contents of personal communications, photos, videos, documents, or other personal files stored on your device.
               </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Text messages</li>
-                <li>Emails</li>
-                <li>Phone calls</li>
-                <li>Chat conversations</li>
-              </ul>
               <p className="text-sm text-muted-foreground pt-1">
-                However, certain device-management or diagnostic information may be collected as
-                necessary to provide the Service.
+                We collect only the device, account, subscription, and technical information reasonably necessary to provide the Service.
               </p>
             </section>
 
@@ -234,6 +226,9 @@ function PrivacyPage() {
               <p className="text-sm text-muted-foreground pt-1">
                 When information is no longer required, we may delete or anonymize it.
               </p>
+              <p className="text-sm text-muted-foreground pt-1">
+                If you delete your account or terminate your subscription, we may retain certain information as required for legal, accounting, fraud-prevention, security, or business purposes.
+              </p>
             </section>
 
             <section className="space-y-3">
@@ -276,6 +271,9 @@ function PrivacyPage() {
               </ul>
               <p className="text-sm text-muted-foreground pt-1">
                 To exercise applicable rights, contact us using the information below.
+              </p>
+              <p className="text-sm text-muted-foreground pt-1">
+                Users may also request deletion of their account and associated personal information, subject to legal and operational retention requirements.
               </p>
             </section>
 
