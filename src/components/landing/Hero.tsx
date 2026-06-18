@@ -25,7 +25,8 @@ export function Hero() {
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward transforms your Android phone into a distraction-free device by removing social media, games, entertainment, and porn.
+          Skyward transforms your Android phone into a distraction-free device by removing social
+          media, games, entertainment, and porn.
         </p>
         <div
           className="mt-10 flex items-center justify-center gap-3 animate-fade-in"

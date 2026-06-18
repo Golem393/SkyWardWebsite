@@ -104,7 +104,8 @@ function TermsPage() {
                 settings, and other data stored on the device.
               </p>
               <p className="text-sm text-muted-foreground">
-                You acknowledge that the decision to factory reset your device is made by you and not by Skyward.
+                You acknowledge that the decision to factory reset your device is made by you and
+                not by Skyward.
               </p>
               <p className="text-sm text-muted-foreground">You acknowledge and agree that:</p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
@@ -263,13 +264,20 @@ function TermsPage() {
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">13. No Emergency Use</h2>
               <p className="text-sm text-muted-foreground">
-                The Service is not designed, intended, or certified for emergency communications, emergency response, medical monitoring, safety-critical functions, or life-support purposes.
+                The Service is not designed, intended, or certified for emergency communications,
+                emergency response, medical monitoring, safety-critical functions, or life-support
+                purposes.
               </p>
               <p className="text-sm text-muted-foreground">
-                You are responsible for ensuring that your use of the Service does not interfere with your ability to access emergency services, emergency contacts, healthcare providers, or other critical communications.
+                You are responsible for ensuring that your use of the Service does not interfere
+                with your ability to access emergency services, emergency contacts, healthcare
+                providers, or other critical communications.
               </p>
               <p className="text-sm text-muted-foreground">
-                Skyward shall not be responsible for any loss, damage, injury, or harm arising from the use of the Service in connection with emergency, medical, safety-critical, or life-support situations.              </p>
+                Skyward shall not be responsible for any loss, damage, injury, or harm arising from
+                the use of the Service in connection with emergency, medical, safety-critical, or
+                life-support situations.{" "}
+              </p>
             </section>
 
             <section className="space-y-3">
@@ -293,7 +301,10 @@ function TermsPage() {
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">15. Force Majeure</h2>
               <p className="text-sm text-muted-foreground">
-                Skyward shall not be liable for delays, interruptions, or failures resulting from causes beyond its reasonable control, including internet outages, telecommunications failures, cyberattacks, governmental actions, labor disputes, natural disasters, acts of war, or failures of third-party service providers.
+                Skyward shall not be liable for delays, interruptions, or failures resulting from
+                causes beyond its reasonable control, including internet outages, telecommunications
+                failures, cyberattacks, governmental actions, labor disputes, natural disasters,
+                acts of war, or failures of third-party service providers.
               </p>
             </section>
 
