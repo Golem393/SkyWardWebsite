@@ -103,10 +103,10 @@ function BackupGuidePage() {
           <p className="text-muted-foreground text-sm leading-relaxed">
             Before setting up Skyward, you'll need to factory reset your Android device.
           </p>
-          <div className="flex gap-3 rounded-xl border border-border bg-muted/40 px-4 py-3">
-            <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-accent" />
+          <div className="flex gap-3 rounded-xl border border-amber-200 dark:border-amber-950 bg-amber-500/5 dark:bg-amber-500/10 px-4 py-3">
+            <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-500 dark:text-amber-400" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              A factory reset permanently removes apps, accounts, photos, messages, and other data
+              A factory reset permanently removes apps, accounts, contacts, photos, messages, and other data
               stored on the device. Skyward cannot recover any data that is erased during this
               process.
             </p>
@@ -114,10 +114,10 @@ function BackupGuidePage() {
         </div>
 
         {/* ── Step 1: Create a Full Device Backup ── */}
-        <Card className="glass shadow-sm hover:shadow-md transition-all duration-300">
+        <Card className="glass border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <Smartphone className="h-5 w-5 text-accent" />
+              <Smartphone className="h-5 w-5 text-primary" />
               <CardTitle className="text-base font-semibold">
                 Step 1: Create a Full Device Backup
               </CardTitle>
@@ -131,12 +131,12 @@ function BackupGuidePage() {
               {DEVICES.map((d) => (
                 <div
                   key={d.name}
-                  className="rounded-xl border border-border bg-card/50 px-4 py-3 space-y-1"
+                  className="rounded-xl border border-slate-200 dark:border-slate-800 bg-card/50 px-4 py-3 space-y-1"
                 >
                   <p className="text-sm font-medium text-foreground">{d.name}</p>
                   <p className="text-sm text-muted-foreground">{d.instruction}</p>
                   {d.path && (
-                    <p className="text-xs font-mono text-muted-foreground bg-muted/60 rounded px-2 py-0.5 inline-block">
+                    <p className="text-xs font-mono text-muted-foreground bg-muted/80 border border-slate-200 dark:border-slate-800/80 rounded px-2 py-0.5 inline-block">
                       {d.path}
                     </p>
                   )}
@@ -150,10 +150,10 @@ function BackupGuidePage() {
         </Card>
 
         {/* ── Step 2: Verify Your Authenticator Apps ── */}
-        <Card className="glass shadow-sm hover:shadow-md transition-all duration-300">
+        <Card className="glass border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <ShieldAlert className="h-5 w-5 text-accent" />
+              <ShieldAlert className="h-5 w-5 text-amber-500 dark:text-amber-400" />
               <CardTitle className="text-base font-semibold">
                 Step 2: Verify Your Authenticator Apps
               </CardTitle>
@@ -175,8 +175,8 @@ function BackupGuidePage() {
                 </li>
               ))}
             </ul>
-            <div className="flex gap-3 rounded-xl border border-border bg-muted/40 px-4 py-3">
-              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-accent" />
+            <div className="flex gap-3 rounded-xl border border-amber-200 dark:border-amber-950 bg-amber-500/5 dark:bg-amber-500/10 px-4 py-3">
+              <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-500 dark:text-amber-400" />
               <p className="text-sm text-muted-foreground leading-relaxed">
                 Many users lose access to important accounts because they skip this step.
               </p>
@@ -185,10 +185,10 @@ function BackupGuidePage() {
         </Card>
 
         {/* ── Step 3: Verify Your Google Account ── */}
-        <Card className="glass shadow-sm hover:shadow-md transition-all duration-300">
+        <Card className="glass border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <KeyRound className="h-5 w-5 text-accent" />
+              <KeyRound className="h-5 w-5 text-primary" />
               <CardTitle className="text-base font-semibold">
                 Step 3: Verify Your Google Account
               </CardTitle>
@@ -205,7 +205,7 @@ function BackupGuidePage() {
             <ul className="space-y-2.5">
               {GOOGLE_ACCOUNT_CHECKS.map((item) => (
                 <li key={item} className="flex items-start gap-2 text-sm text-foreground">
-                  <CheckCircle2 className="h-4 w-4 shrink-0 text-accent mt-0.5" />
+                  <CheckCircle2 className="h-4 w-4 shrink-0 text-emerald-500 mt-0.5" />
                   <span>{item}</span>
                 </li>
               ))}
@@ -214,10 +214,10 @@ function BackupGuidePage() {
         </Card>
 
         {/* ── Step 4: eSIM Users ── */}
-        <Card className="glass shadow-sm hover:shadow-md transition-all duration-300">
+        <Card className="glass border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition-all duration-300">
           <CardHeader>
             <div className="flex items-center gap-3">
-              <Wifi className="h-5 w-5 text-accent" />
+              <Wifi className="h-5 w-5 text-primary" />
               <CardTitle className="text-base font-semibold">Step 4: eSIM Users</CardTitle>
             </div>
           </CardHeader>
@@ -233,7 +233,7 @@ function BackupGuidePage() {
         </Card>
 
         {/* ── Before You Continue ── */}
-        <Card className="glass border-primary/20 shadow-md transition-all duration-300">
+        <Card className="glass border-primary/30 dark:border-primary/50 shadow-md transition-all duration-300">
           <CardHeader>
             <CardTitle className="text-xl font-semibold text-foreground">
               Before You Continue
@@ -245,11 +245,10 @@ function BackupGuidePage() {
               {checklistItems.map((item) => (
                 <label
                   key={item.id}
-                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${
-                    checked[item.id]
-                      ? "border-primary/40 bg-primary/5 shadow-sm"
-                      : "border-border bg-card/50 hover:bg-muted/40"
-                  }`}
+                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${checked[item.id]
+                      ? "border-primary bg-primary/5 shadow-sm"
+                      : "border-slate-200 bg-card hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900"
+                    }`}
                 >
                   <Checkbox
                     id={`checkbox-${item.id}`}
@@ -258,9 +257,8 @@ function BackupGuidePage() {
                     className="shrink-0"
                   />
                   <span
-                    className={`text-sm font-medium transition-colors ${
-                      checked[item.id] ? "text-foreground" : "text-muted-foreground"
-                    }`}
+                    className={`text-sm font-medium transition-colors ${checked[item.id] ? "text-foreground" : "text-muted-foreground"
+                      }`}
                   >
                     {item.label}
                   </span>
@@ -283,11 +281,10 @@ function BackupGuidePage() {
               }
             }}
             disabled={!isAllChecked}
-            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${
-              isAllChecked
+            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${isAllChecked
                 ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] cursor-pointer"
                 : "bg-muted text-muted-foreground opacity-60 cursor-not-allowed"
-            }`}
+              }`}
           >
             Continue to Setup <ArrowRight className="ml-2 h-4 w-4" />
           </Button>
