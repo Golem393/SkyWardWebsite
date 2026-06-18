@@ -39,7 +39,7 @@ Reuse existing `animate-fade-in` keyframe; add staggered delays inline. Add a `s
 ## Technical notes
 
 - No new dependencies; everything ships with the template.
-- Update `head()` in `src/routes/index.tsx`: title "Skyward OS — A distraction-free smartphone", matching description, og tags. Single `<h1>`.
+- Update `head()` in `src/routes/index.tsx`: title "Skyward — The app blocker that can't be easily bypassed", matching description, og tags. Single `<h1>`.
 - Inter loaded via Google Fonts `<link>` in `__root.tsx` head `links` array (filesystem `@import` would break Lightning CSS).
 - All colors via semantic tokens — no hardcoded `text-white`/`bg-[#...]` in components except as noted in shadow values.
 
