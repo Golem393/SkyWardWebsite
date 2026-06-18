@@ -106,9 +106,9 @@ function BackupGuidePage() {
           <div className="flex gap-3 rounded-xl border border-amber-200 dark:border-amber-950 bg-amber-500/5 dark:bg-amber-500/10 px-4 py-3">
             <AlertTriangle className="h-4 w-4 shrink-0 mt-0.5 text-amber-500 dark:text-amber-400" />
             <p className="text-sm text-muted-foreground leading-relaxed">
-              A factory reset permanently removes apps, accounts, contacts, photos, messages, and other data
-              stored on the device. Skyward cannot recover any data that is erased during this
-              process.
+              A factory reset permanently removes apps, accounts, contacts, photos, messages, and
+              other data stored on the device. Skyward cannot recover any data that is erased during
+              this process.
             </p>
           </div>
         </div>
@@ -245,10 +245,11 @@ function BackupGuidePage() {
               {checklistItems.map((item) => (
                 <label
                   key={item.id}
-                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${checked[item.id]
+                  className={`flex cursor-pointer items-center gap-3 rounded-xl border p-4 transition-all duration-200 ${
+                    checked[item.id]
                       ? "border-primary bg-primary/5 shadow-sm"
                       : "border-slate-200 bg-card hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900"
-                    }`}
+                  }`}
                 >
                   <Checkbox
                     id={`checkbox-${item.id}`}
@@ -257,8 +258,9 @@ function BackupGuidePage() {
                     className="shrink-0"
                   />
                   <span
-                    className={`text-sm font-medium transition-colors ${checked[item.id] ? "text-foreground" : "text-muted-foreground"
-                      }`}
+                    className={`text-sm font-medium transition-colors ${
+                      checked[item.id] ? "text-foreground" : "text-muted-foreground"
+                    }`}
                   >
                     {item.label}
                   </span>
@@ -281,10 +283,11 @@ function BackupGuidePage() {
               }
             }}
             disabled={!isAllChecked}
-            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${isAllChecked
+            className={`rounded-full px-6 py-5 h-auto transition-all duration-300 shadow-md font-semibold text-sm ${
+              isAllChecked
                 ? "bg-primary text-primary-foreground hover:bg-primary/90 hover:scale-105 active:scale-95 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] cursor-pointer"
                 : "bg-muted text-muted-foreground opacity-60 cursor-not-allowed"
-              }`}
+            }`}
           >
             Continue to Setup <ArrowRight className="ml-2 h-4 w-4" />
           </Button>

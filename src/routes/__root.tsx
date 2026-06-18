@@ -4,6 +4,7 @@ import {
   Link,
   createRootRouteWithContext,
   useRouter,
+  useLocation,
   HeadContent,
   Scripts,
 } from "@tanstack/react-router";
@@ -106,6 +107,14 @@ function RootShell({ children }: { children: ReactNode }) {
     <html lang="en">
       <head>
         <HeadContent />
+        {/* Reddit Pixel */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `!function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?p.sendEvent.apply(p,arguments):p.callQueue.push(arguments)};p.callQueue=[];var t=d.createElement("script");t.src="https://www.redditstatic.com/ads/pixel.js?pixel_id=a2_j6e3owzcc0g6",t.async=!0;var s=d.getElementsByTagName("script")[0];s.parentNode.insertBefore(t,s)}}(window,document);rdt('init','a2_j6e3owzcc0g6');`,
+          }}
+        />
+        {/* DO NOT MODIFY UNLESS TO REPLACE A USER IDENTIFIER */}
+        {/* End Reddit Pixel */}
       </head>
       <body>
         {children}
@@ -118,8 +127,23 @@ function RootShell({ children }: { children: ReactNode }) {
 import { AuthProvider } from "../hooks/useAuth";
 import { Toaster } from "../components/ui/sonner";
 
+interface RedditWindow extends Window {
+  rdt?: (action: string, event: string) => void;
+}
+
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
+  const location = useLocation();
+
+  useEffect(() => {
+    // Track page views on route transitions
+    if (typeof window !== "undefined") {
+      const rdt = (window as unknown as RedditWindow).rdt;
+      if (rdt) {
+        rdt("track", "PageVisit");
+      }
+    }
+  }, [location.pathname]);
 
   return (
     <AuthProvider>

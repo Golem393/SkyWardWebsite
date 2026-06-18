@@ -1,4 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useEffect } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -8,7 +9,26 @@ export const Route = createFileRoute("/success")({
   component: SuccessPage,
 });
 
+interface RedditWindow extends Window {
+  rdt?: (action: string, event: string) => void;
+}
+
 function SuccessPage() {
+  useEffect(() => {
+    // Fire the Purchase event to the Reddit Pixel when the success page mounts
+    if (typeof window !== "undefined") {
+      const alreadyTracked = sessionStorage.getItem("reddit_pixel_purchase_tracked");
+
+      if (!alreadyTracked) {
+        const rdt = (window as unknown as RedditWindow).rdt;
+        if (rdt) {
+          rdt("track", "Purchase");
+          sessionStorage.setItem("reddit_pixel_purchase_tracked", "true");
+        }
+      }
+    }
+  }, []);
+
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
       <Navbar />
