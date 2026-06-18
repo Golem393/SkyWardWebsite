@@ -123,6 +123,6 @@ export function Navbar() {
           )}
         </div>
       </div>
-    </header >
+    </header>
   );
 }

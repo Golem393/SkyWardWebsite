@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -252,7 +252,16 @@ function AuthPage() {
                     htmlFor="consent"
                     className="text-sm font-normal leading-snug text-muted-foreground"
                   >
-                    I agree to the Terms and consent to receiving account-related emails.
+                    I agree to the{" "}
+                    <Link
+                      to="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Terms & Conditions
+                    </Link>
                   </Label>
                 </div>
                 <Button type="submit" className="w-full" disabled={loading || !consent}>

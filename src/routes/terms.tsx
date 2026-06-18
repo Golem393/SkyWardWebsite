@@ -103,6 +103,10 @@ function TermsPage() {
                 A factory reset permanently removes applications, accounts, messages, photos, files,
                 settings, and other data stored on the device.
               </p>
+              <p className="text-sm text-muted-foreground">
+                You acknowledge that the decision to factory reset your device is made by you and
+                not by Skyward.
+              </p>
               <p className="text-sm text-muted-foreground">You acknowledge and agree that:</p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
                 <li>
@@ -178,7 +182,7 @@ function TermsPage() {
               <h2 className="text-lg font-semibold text-foreground">8. Refund Policy</h2>
               <p className="text-sm text-muted-foreground">
                 First-time customers may request a refund within thirty (30) days of their initial
-                purchase.
+                purchase, subject to these Terms.
               </p>
               <p className="text-sm text-muted-foreground">
                 Refund requests submitted after the applicable refund period may be denied.
@@ -258,7 +262,26 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">13. Service Availability</h2>
+              <h2 className="text-lg font-semibold text-foreground">13. No Emergency Use</h2>
+              <p className="text-sm text-muted-foreground">
+                The Service is not designed, intended, or certified for emergency communications,
+                emergency response, medical monitoring, safety-critical functions, or life-support
+                purposes.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                You are responsible for ensuring that your use of the Service does not interfere
+                with your ability to access emergency services, emergency contacts, healthcare
+                providers, or other critical communications.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Skyward shall not be responsible for any loss, damage, injury, or harm arising from
+                the use of the Service in connection with emergency, medical, safety-critical, or
+                life-support situations.{" "}
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground">14. Service Availability</h2>
               <p className="text-sm text-muted-foreground">
                 We strive to maintain reliable operation but do not guarantee uninterrupted
                 availability.
@@ -276,8 +299,18 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground">15. Force Majeure</h2>
+              <p className="text-sm text-muted-foreground">
+                Skyward shall not be liable for delays, interruptions, or failures resulting from
+                causes beyond its reasonable control, including internet outages, telecommunications
+                failures, cyberattacks, governmental actions, labor disputes, natural disasters,
+                acts of war, or failures of third-party service providers.
+              </p>
+            </section>
+
+            <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                14. Disclaimer of Warranties
+                16. Disclaimer of Warranties
               </h2>
               <p className="text-sm text-muted-foreground font-semibold uppercase">
                 THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE."
@@ -300,7 +333,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">15. Limitation of Liability</h2>
+              <h2 className="text-lg font-semibold text-foreground">17. Limitation of Liability</h2>
               <p className="text-sm text-muted-foreground font-semibold uppercase">
                 TO THE MAXIMUM EXTENT PERMITTED BY LAW, SKYWARD OS LLC, ITS MEMBERS, MANAGERS,
                 EMPLOYEES, CONTRACTORS, AFFILIATES, AND SUPPLIERS SHALL NOT BE LIABLE FOR:
@@ -313,7 +346,7 @@ function TermsPage() {
                 <li>LOSS OF DATA</li>
                 <li>LOSS OF PROFITS</li>
                 <li>LOSS OF BUSINESS</li>
-                <li>DEVICE MALFUNCTION</li>
+                <li>LOSS OF DEVICE FUNCTIONALITY</li>
                 <li>SERVICE INTERRUPTION</li>
               </ul>
               <p className="text-sm text-muted-foreground pt-1">
@@ -329,7 +362,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">16. Indemnification</h2>
+              <h2 className="text-lg font-semibold text-foreground">18. Indemnification</h2>
               <p className="text-sm text-muted-foreground">
                 You agree to defend, indemnify, and hold harmless Skyward OS LLC and its affiliates
                 from any claims, damages, liabilities, losses, and expenses arising from:
@@ -344,7 +377,7 @@ function TermsPage() {
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                17. Suspension and Termination
+                19. Suspension and Termination
               </h2>
               <p className="text-sm text-muted-foreground">
                 We may suspend or terminate your access to the Service at any time if:
@@ -360,7 +393,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">18. Intellectual Property</h2>
+              <h2 className="text-lg font-semibold text-foreground">20. Intellectual Property</h2>
               <p className="text-sm text-muted-foreground">
                 All content, software, trademarks, logos, designs, and materials associated with
                 Skyward are owned by Skyward OS LLC or its licensors.
@@ -371,7 +404,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">19. Changes to the Service</h2>
+              <h2 className="text-lg font-semibold text-foreground">21. Changes to the Service</h2>
               <p className="text-sm text-muted-foreground">
                 We reserve the right to modify, suspend, discontinue, or replace any portion of the
                 Service at any time.
@@ -382,7 +415,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">20. Changes to These Terms</h2>
+              <h2 className="text-lg font-semibold text-foreground">22. Changes to These Terms</h2>
               <p className="text-sm text-muted-foreground">
                 We may update these Terms from time to time.
               </p>
@@ -396,7 +429,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">21. Governing Law</h2>
+              <h2 className="text-lg font-semibold text-foreground">23. Governing Law</h2>
               <p className="text-sm text-muted-foreground">
                 These Terms shall be governed by and construed in accordance with the laws of the
                 State of Wyoming, United States, without regard to conflict of law principles.
@@ -404,7 +437,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">22. Dispute Resolution</h2>
+              <h2 className="text-lg font-semibold text-foreground">24. Dispute Resolution</h2>
               <p className="text-sm text-muted-foreground">
                 Any dispute arising from or relating to these Terms or the Service shall be resolved
                 exclusively in the state or federal courts located in Wyoming, and you consent to
@@ -413,7 +446,7 @@ function TermsPage() {
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">23. Contact Information</h2>
+              <h2 className="text-lg font-semibold text-foreground">25. Contact Information</h2>
               <p className="text-sm text-muted-foreground font-medium">Skyward OS LLC</p>
               <p className="text-sm text-muted-foreground">Email: hello@skywardos.com</p>
               <p className="text-sm text-muted-foreground">Website: skywardos.com</p>
