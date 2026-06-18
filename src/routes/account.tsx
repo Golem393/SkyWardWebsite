@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
-import { EnrollmentQr } from "@/components/EnrollmentQr";
+import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -56,10 +56,7 @@ function AccountPage() {
     }
     if (!user) return;
     setSavingImei(true);
-    const { error } = await supabase
-      .from("profiles")
-      .update({ imei })
-      .eq("id", user.id);
+    const { error } = await supabase.from("profiles").update({ imei }).eq("id", user.id);
     setSavingImei(false);
     if (error) {
       toast.error(`Couldn't save: ${error.message}`);
@@ -86,10 +83,11 @@ function AccountPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background px-4 py-16">
-      <div className="mx-auto w-full max-w-2xl space-y-6">
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="mx-auto w-full max-w-2xl px-4 pb-24 pt-32 space-y-6">
         <div className="-ml-4">
-          <Button variant="ghost" asChild className="text-muted-foreground">
+          <Button variant="ghost" asChild className="text-muted-foreground rounded-full">
             <Link to="/">← Back</Link>
           </Button>
         </div>
@@ -157,18 +155,7 @@ function AccountPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Enrollment QR */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Enrollment QR</CardTitle>
-            <CardDescription>Scan this during device setup to install Skyward.</CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-center">
-            <EnrollmentQr imei={profile?.imei} />
-          </CardContent>
-        </Card>
-      </div>
+      </main>
     </div>
   );
 }
