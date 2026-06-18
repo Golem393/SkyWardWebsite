@@ -7,24 +7,24 @@ import {
 
 const faqs = [
   {
-    q: "What exactly is Skyward?",
-    a: "Skyward is a software that blocks distracting apps and websites at the system level.",
-  },
-  {
-    q: "Can I choose which apps & websites to block?",
-    a: "Not quite. We handle the blocklist for you. However, we make changes to this list based on user feedback, so let us know if you have any suggestions.",
-  },
-  {
-    q: "Can the blocks be bypassed?",
-    a: "Blocking is enforced at the OS (operating system) and network layer. Unless you're an elite hacker, you cannot bypass our software.",
+    q: "How is Skyward different from other app blockers?",
+    a: "Traditional app blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and a specialized setup process so that distracting apps and websites stay blocked without your willpower."
   },
   {
     q: "Which devices are supported?",
-    a: "Currently, only Samsung, Google, & Motorola phones with an Android version 11.0 and above are supported.",
+    a: "Currently, Skyward supports Samsung, Google, and Motorola phones running Android 11 or higher."
   },
   {
-    q: "Is there a refund policy?",
-    a: "Yes — a 30-day money-back guarantee on your first month, no questions asked.",
+    q: "Which apps can I still use?",
+    a: "Skyward is designed to block distractions, not useful tools. Messaging, navigation, banking, productivity, travel, music, and many other apps remain available."
+  },
+  {
+    q: "Why is a factory reset required?",
+    a: "Skyward needs special control over the device that normal apps don't have. This is what allows the blocked apps to stay gone."
+  },
+  {
+    q: "What if Skyward isn't right for me?",
+    a: "Your first month is covered by a 30-day money-back guarantee. Upon cancelation, you will get access to all blocked apps and sites. If you want to purchase Skyward again in the future, you will have to factory reset your phone once more."
   },
 ];
 
