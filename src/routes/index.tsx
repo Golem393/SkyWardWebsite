@@ -7,7 +7,7 @@ import { Pricing } from "@/components/landing/Pricing";
 import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
 
-const TITLE = "Skyward OS — A distraction-free smartphone";
+const TITLE = "Skyward — The app blocker that can't be easily bypassed";
 const DESCRIPTION =
   "Skyward removes social media, games, dating apps, and porn from your phone so you can focus on what matters.";
 
