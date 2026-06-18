@@ -52,13 +52,15 @@ function StepHeader({
       <div
         className={[
           "flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-sm font-semibold transition-colors",
-          done ? "bg-accent/20 text-accent" : "bg-primary/10 text-primary",
+          done
+            ? "bg-emerald-500/10 text-emerald-600 dark:bg-emerald-500/20 dark:text-emerald-400"
+            : "bg-primary/10 text-primary",
         ].join(" ")}
       >
         {done ? <CheckCircle2 className="h-5 w-5" /> : number}
       </div>
       <div className="flex items-center gap-2">
-        <Icon className="h-5 w-5 text-accent" />
+        <Icon className="h-5 w-5 text-primary" />
         <CardTitle className="text-base text-foreground">{title}</CardTitle>
       </div>
     </div>
@@ -151,7 +153,7 @@ function SetupPage() {
                 </Link>
               </Button>
 
-              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 transition-colors hover:bg-muted/50">
+              <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-muted/30 px-4 py-3 transition-colors hover:bg-muted/50">
                 <Checkbox
                   id="step1-check"
                   checked={step1Checked}
@@ -189,10 +191,10 @@ function SetupPage() {
                       type="button"
                       onClick={() => setDeviceType(d)}
                       className={[
-                        "rounded-full border px-4 py-1.5 text-sm font-medium transition-colors",
+                        "rounded-full border px-4 py-1.5 text-sm font-medium transition-all shadow-sm",
                         deviceType === d
-                          ? "border-primary bg-primary/5 text-primary"
-                          : "border-border text-foreground hover:border-primary/40",
+                          ? "border-primary bg-primary text-primary-foreground font-semibold"
+                          : "border-slate-200 bg-card text-foreground hover:bg-slate-50 hover:border-slate-300 dark:border-slate-800 dark:hover:bg-slate-900",
                       ].join(" ")}
                     >
                       {d}
@@ -219,7 +221,7 @@ function SetupPage() {
                   </div>
                 )}
 
-                <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-muted/30 px-4 py-3 transition-colors hover:bg-muted/50">
+                <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-slate-200 dark:border-slate-800 bg-muted/30 px-4 py-3 transition-colors hover:bg-muted/50">
                   <Checkbox
                     id="step2-check"
                     checked={step2Checked}
