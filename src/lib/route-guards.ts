@@ -9,7 +9,6 @@ import { supabase } from "@/lib/supabase";
  * search params (e.g. the chosen `plan`) are carried through untouched.
  */
 export async function requireAuth(opts: { href: string; search?: Record<string, unknown> }) {
-
   const {
     data: { session },
   } = await supabase.auth.getSession();
@@ -28,7 +27,6 @@ export async function requireAuth(opts: { href: string; search?: Record<string, 
  * Redirect already authenticated users away from the auth page.
  */
 export async function redirectIfAuth(opts: { search?: Record<string, unknown> }) {
-
   const {
     data: { session },
   } = await supabase.auth.getSession();

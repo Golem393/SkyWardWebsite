@@ -19,13 +19,14 @@ export function Hero() {
           className="text-4xl sm:text-5xl md:text-6xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
-          Use your smartphone without addictive apps.
+          The app blocker you can't easily bypass.
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward transforms your Android phone into a distraction-free device by removing social media, games, entertainment, and porn.
+          Skyward transforms your Android phone into a distraction-free device by blocking social
+          media, games, porn, and other addictive apps.
         </p>
         <div
           className="mt-10 flex items-center justify-center gap-3 animate-fade-in"

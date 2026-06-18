@@ -113,12 +113,14 @@ function AuthPage() {
             </div>
             <CardTitle className="text-2xl font-bold">Verify your email</CardTitle>
             <CardDescription className="mt-2 text-sm text-muted-foreground">
-              We've sent a verification link to <span className="font-semibold text-foreground">{registeredEmail}</span>.
+              We've sent a verification link to{" "}
+              <span className="font-semibold text-foreground">{registeredEmail}</span>.
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-6 text-center">
             <p className="text-sm text-muted-foreground">
-              Please click the link in the email to confirm your account. Once verified, you can sign in.
+              Please click the link in the email to confirm your account. Once verified, you can
+              sign in.
             </p>
             <div className="flex flex-col gap-2">
               <Button
@@ -129,11 +131,7 @@ function AuthPage() {
               >
                 {resending ? "Resending…" : "Resend email"}
               </Button>
-              <Button
-                variant="ghost"
-                className="w-full"
-                onClick={() => setRegisteredEmail(null)}
-              >
+              <Button variant="ghost" className="w-full" onClick={() => setRegisteredEmail(null)}>
                 Back to login
               </Button>
             </div>
