@@ -5,7 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
-import { EnrollmentQr } from "@/components/EnrollmentQr";
+import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -39,6 +39,7 @@ function AccountPage() {
   const [imei, setImei] = useState("");
   const [savingImei, setSavingImei] = useState(false);
   const [openingPortal, setOpeningPortal] = useState(false);
+  const [resettingPassword, setResettingPassword] = useState(false);
 
   useEffect(() => {
     setImei(profile?.imei ?? "");
@@ -82,11 +83,27 @@ function AccountPage() {
     navigate({ to: "/" });
   };
 
+  const handleSendResetEmail = async () => {
+    const email = profile?.email ?? user?.email;
+    if (!email) return;
+    setResettingPassword(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/update-password`,
+    });
+    setResettingPassword(false);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Password reset email sent! Please check your inbox.");
+    }
+  };
+
   return (
-    <div className="min-h-screen bg-background px-4 py-16">
-      <div className="mx-auto w-full max-w-2xl space-y-6">
+    <div className="min-h-screen bg-background">
+      <Navbar />
+      <main className="mx-auto w-full max-w-2xl px-4 pb-24 pt-32 space-y-6">
         <div className="-ml-4">
-          <Button variant="ghost" asChild className="text-muted-foreground">
+          <Button variant="ghost" asChild className="text-muted-foreground rounded-full">
             <Link to="/">← Back</Link>
           </Button>
         </div>
@@ -154,18 +171,27 @@ function AccountPage() {
             </div>
           </CardContent>
         </Card>
-
-        {/* Enrollment QR */}
+        {/* Security */}
         <Card>
           <CardHeader>
-            <CardTitle>Enrollment QR</CardTitle>
-            <CardDescription>Scan this during device setup to install Skyward.</CardDescription>
+            <CardTitle>Security</CardTitle>
+            <CardDescription>Change your account password.</CardDescription>
           </CardHeader>
-          <CardContent className="flex justify-center">
-            <EnrollmentQr imei={profile?.imei} />
+          <CardContent>
+            <p className="text-sm text-muted-foreground mb-4">
+              We'll send a secure link to your email to set a new password.
+            </p>
+            <Button
+              variant="outline"
+              className="rounded-full"
+              onClick={handleSendResetEmail}
+              disabled={resettingPassword}
+            >
+              {resettingPassword ? "Sending email…" : "Reset password"}
+            </Button>
           </CardContent>
         </Card>
-      </div>
+      </main>
     </div>
   );
 }

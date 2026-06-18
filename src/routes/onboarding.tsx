@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { ArrowRight } from "lucide-react";
+import { Navbar } from "@/components/landing/Navbar";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createCheckoutSession } from "@/lib/backend";
@@ -75,6 +76,7 @@ function OnboardingPage() {
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">
+      <Navbar />
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Link your device</CardTitle>

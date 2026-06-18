@@ -30,7 +30,8 @@ function Index() {
     <main className="bg-background text-foreground">
       <Navbar />
       <Hero />
-      <AppPolicySection />
+      <BlockedCategories />
+      <AllowedCategories />
       <HowItWorks />
       <Pricing />
       <Faq />

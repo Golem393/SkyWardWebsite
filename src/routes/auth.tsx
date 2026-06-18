@@ -1,4 +1,4 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -103,6 +103,23 @@ function AuthPage() {
     }
   };
 
+  const handleResetPassword = async () => {
+    if (!email) {
+      toast.error("Please enter your email to reset your password.");
+      return;
+    }
+    setLoading(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/update-password`,
+    });
+    setLoading(false);
+    if (error) {
+      toast.error(error.message);
+    } else {
+      toast.success("Password reset email sent! Check your inbox.");
+    }
+  };
+
   if (registeredEmail) {
     return (
       <div className="flex min-h-screen items-center justify-center bg-background px-4">
@@ -169,7 +186,18 @@ function AuthPage() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="login-password">Password</Label>
+                  <div className="flex items-center justify-between">
+                    <Label htmlFor="login-password">Password</Label>
+                    <Button 
+                      variant="link" 
+                      type="button"
+                      className="px-0 font-normal text-xs text-muted-foreground h-auto"
+                      onClick={handleResetPassword}
+                      disabled={loading}
+                    >
+                      Forgot password?
+                    </Button>
+                  </div>
                   <Input
                     id="login-password"
                     type="password"
@@ -224,7 +252,16 @@ function AuthPage() {
                     htmlFor="consent"
                     className="text-sm font-normal leading-snug text-muted-foreground"
                   >
-                    I agree to the Terms and consent to receiving account-related emails.
+                    I agree to the{" "}
+                    <Link
+                      to="/terms"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-primary hover:underline transition-colors"
+                      onClick={(e) => e.stopPropagation()}
+                    >
+                      Terms & Conditions
+                    </Link>
                   </Label>
                 </div>
                 <Button type="submit" className="w-full" disabled={loading || !consent}>
