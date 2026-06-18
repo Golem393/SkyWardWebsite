@@ -13,7 +13,7 @@ export function Hero() {
           style={{ animationDelay: "0ms", animationFillMode: "both" }}
         >
           <span className="h-1.5 w-1.5 rounded-full bg-accent" />
-          A distraction-free smartphone
+          The app blocker that can't be easily bypassed
         </div>*/}
         <h1
           className="text-4xl sm:text-5xl md:text-6xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
