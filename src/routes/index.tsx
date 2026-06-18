@@ -7,9 +7,9 @@ import { Pricing } from "@/components/landing/Pricing";
 import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
 
-const TITLE = "Skyward — The app blocker that can't be easily bypassed";
+const TITLE = "Skyward";
 const DESCRIPTION =
-  "Skyward removes social media, games, dating apps, and porn from your phone so you can focus on what matters.";
+  "Skyward removes social media, games, entertainment, and porn from your phone so you can focus on what matters.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
