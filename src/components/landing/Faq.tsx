@@ -7,8 +7,8 @@ import {
 
 const faqs = [
   {
-    q: "How is Skyward different from other app blockers?",
-    a: "Traditional app blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and a specialized setup process so that distracting apps and websites stay blocked without your willpower.",
+    q: "How is Skyward different from app blockers?",
+    a: "App blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and stronger restrictions that you cannot easily change.",
   },
   {
     q: "Which devices are supported?",
