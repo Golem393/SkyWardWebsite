@@ -83,7 +83,7 @@ export function ComparisonSection() {
                 <ShieldAlert className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold">App blockers</h3>
+                <h3 className="text-xl font-semibold">Smartphones</h3>
                 <p className="text-xs text-red-500 font-medium">Easy to bypass</p>
               </div>
             </div>
@@ -91,11 +91,11 @@ export function ComparisonSection() {
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Easy to disable when cravings hit</span>
+                <span>Uninstalling apps doesn't work</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Willpower doesn't work for apps designed to addict you</span>
+                <span>Easy to disable app blockers when cravings hit</span>
               </li>
             </ul>
           </div>
