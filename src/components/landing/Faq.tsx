@@ -7,16 +7,12 @@ import {
 
 const faqs = [
   {
-    q: "Which devices are supported?",
-    a: "Currently, Skyward supports Samsung, Google, and Motorola phones running Android 11 or higher.",
-  },
-  {
     q: "Why is a factory reset required?",
     a: "Skyward needs special control over the device that normal apps don't have. This is what allows the blocked apps to stay gone.",
   },
   {
     q: "What if Skyward isn't right for me?",
-    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, apps & websites will be blocked until the subscription end date. If you want to purchase Skyward again in the future, you will have to factory reset your phone once more.",
+    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, apps & websites will be blocked until the subscription end date or you email us to remove Skyward. If you want to purchase Skyward again in the future, you will have to factory reset your phone once more.",
   },
   {
     q: "How do I contact your support team?",
