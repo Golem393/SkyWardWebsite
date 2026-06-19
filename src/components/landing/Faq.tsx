@@ -12,7 +12,7 @@ const faqs = [
   },
   {
     q: "What if Skyward isn't right for me?",
-    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, apps & websites will be blocked until the subscription end date or you email us to remove Skyward. If you want to purchase Skyward again in the future, you will have to factory reset your phone once more.",
+    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, apps & websites will be blocked until the subscription end date. If you need them removed earlier, email us at hello@skywardos.com. If you want to purchase Skyward again in the future, you will have to factory reset your phone once more.",
   },
   {
     q: "How do I contact your support team?",
