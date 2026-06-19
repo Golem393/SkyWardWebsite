@@ -60,7 +60,7 @@ export function ComparisonSection() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-foreground">Skyward</h3>
-                <p className="text-xs text-primary font-semibold">Perfect balance</p>
+                <p className="text-xs text-primary font-semibold">A better balance</p>
               </div>
             </div>
 
