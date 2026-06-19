@@ -7,16 +7,8 @@ import {
 
 const faqs = [
   {
-    q: "How is Skyward different from app blockers?",
-    a: "App blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and stronger restrictions that you cannot easily change. You will not be able to 'accidentally' find yourself scrolling on Instagram.",
-  },
-  {
     q: "Which devices are supported?",
     a: "Currently, Skyward supports Samsung, Google, and Motorola phones running Android 11 or higher.",
-  },
-  {
-    q: "Which apps can I still use?",
-    a: "Skyward is designed to block distractions, not useful tools. Messaging, navigation, banking, productivity, travel, music, and many other apps remain available.",
   },
   {
     q: "Why is a factory reset required?",

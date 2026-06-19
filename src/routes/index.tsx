@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
+import { ComparisonSection } from "@/components/landing/ComparisonSection";
 import { AppPolicySection } from "@/components/landing/AppPolicySection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { Pricing } from "@/components/landing/Pricing";
@@ -30,6 +31,7 @@ function Index() {
     <main className="bg-background text-foreground">
       <Navbar />
       <Hero />
+      <ComparisonSection />
       <AppPolicySection />
       <HowItWorks />
       <Pricing />
