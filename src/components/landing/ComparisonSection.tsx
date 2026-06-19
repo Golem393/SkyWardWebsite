@@ -91,7 +91,7 @@ export function ComparisonSection() {
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Uninstalling apps doesn't work</span>
+                <span>Uninstalled apps can be downloaded again</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
