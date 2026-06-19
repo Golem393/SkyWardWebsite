@@ -56,11 +56,11 @@ export function Navbar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
-                  className="flex items-center rounded-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring"
+                  className="flex items-center rounded-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring border-2 border-primary/30 hover:border-primary/85 p-0.5 transition-colors duration-200"
                   aria-label="Account menu"
                 >
-                  <Avatar className="h-9 w-9 border border-border">
-                    <AvatarFallback className="bg-primary/10 text-primary">
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
                       {initial === "?" ? <User className="h-4 w-4" /> : initial}
                     </AvatarFallback>
                   </Avatar>
@@ -118,17 +118,7 @@ export function Navbar() {
               asChild
               className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
             >
-              <a
-                href="#pricing"
-                onClick={(e) => {
-                  if (window.location.pathname === "/") {
-                    e.preventDefault();
-                    document.getElementById("pricing")?.scrollIntoView({ behavior: "smooth" });
-                  }
-                }}
-              >
-                Get Skyward
-              </a>
+              <a href="#pricing">Get Skyward</a>
             </Button>
           )}
         </div>

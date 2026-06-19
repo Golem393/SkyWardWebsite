@@ -4,9 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 
 const features = [
-  "Block social, gaming, streaming, and adult apps & sites",
+  "Works on Samsung, Google, or Motorola phones Android 11+",
   "One device per subscription",
-  "Focus deeply, rest fully, & live intentionally",
 ];
 
 export function Pricing() {
@@ -70,7 +69,7 @@ export function Pricing() {
           <ul className="mt-6 space-y-3">
             {features.map((f) => (
               <li key={f} className="flex items-start gap-3 text-sm text-foreground">
-                <Check className="h-5 w-5 text-accent shrink-0 mt-0.5" />
+                <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span>{f}</span>
               </li>
             ))}
