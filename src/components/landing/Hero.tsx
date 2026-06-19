@@ -16,10 +16,10 @@ export function Hero() {
           The app blocker that can't be easily bypassed
         </div>*/}
         <h1
-          className="text-4xl sm:text-5xl md:text-6xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
+          className="text-3xl sm:text-4xl md:text-5xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
-          Tried a dumbphone? This is what actually works.
+          The middle ground between a smartphone and a dumbphone
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
