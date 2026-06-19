@@ -34,8 +34,8 @@ function Index() {
       <Hero />
       <ComparisonSection />
       <AppPolicySection />
-      <HowItWorks />
       <CompatibilitySection />
+      <HowItWorks />
       <Pricing />
       <Faq />
       <Footer />
