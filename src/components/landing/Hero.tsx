@@ -28,26 +28,6 @@ export function Hero() {
           Skyward transforms your Android phone into a distraction-free device by blocking social
           media, games, porn, and other addictive apps.
         </p>
-        <div
-          className="mt-10 flex items-center justify-center gap-3 animate-fade-in"
-          style={{ animationDelay: "400ms", animationFillMode: "both" }}
-        >
-          <Button
-            asChild
-            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 px-6 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
-          >
-            <a href="#pricing">
-              Get Skyward <ArrowRight className="ml-1 h-4 w-4" />
-            </a>
-          </Button>
-          <Button
-            asChild
-            variant="ghost"
-            className="rounded-full h-12 px-6 text-foreground hover:bg-white/60"
-          >
-            <a href="#faq">Learn more</a>
-          </Button>
-        </div>
       </div>
     </section>
   );
