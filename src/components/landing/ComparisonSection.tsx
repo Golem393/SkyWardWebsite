@@ -71,7 +71,7 @@ export function ComparisonSection() {
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>Complete lock down of your device</span>
+                <span>Hard device-level restrictions that prevent you from easily changing rules</span>
               </li>
             </ul>
           </div>
