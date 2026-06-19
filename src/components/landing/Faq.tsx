@@ -8,7 +8,7 @@ import {
 const faqs = [
   {
     q: "How is Skyward different from app blockers?",
-    a: "App blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and stronger restrictions that you cannot easily change.",
+    a: "App blockers let you choose what to block and give you the ability to remove those restrictions at any time. Skyward uses a curated blocklist and stronger restrictions that you cannot easily change. You will not be able to 'accidentally' find yourself scrolling on Instagram.",
   },
   {
     q: "Which devices are supported?",
