@@ -13,7 +13,7 @@ export function ComparisonSection() {
             The Alternative
           </span>
           <h2 className="mt-4 text-3xl md:text-5xl font-semibold -tracking-[0.02em] text-foreground leading-tight">
-            How we're different.
+            How we are different.
           </h2>
           <div className="mt-6 space-y-4 max-w-2xl mx-auto">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
@@ -33,18 +33,18 @@ export function ComparisonSection() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold">Dumbphones</h3>
-                <p className="text-xs text-red-500 font-medium">Too restrictive</p>
+                <p className="text-xs text-red-500 font-medium">Not enough apps</p>
               </div>
             </div>
 
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Too restrictive for real life</span>
+                <span>Missing many apps that you need</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>You end up needing your smartphone anyway</span>
+                <span>You end up needing a smartphone to access those apps anyway</span>
               </li>
             </ul>
           </div>
@@ -61,19 +61,19 @@ export function ComparisonSection() {
               </div>
               <div>
                 <h3 className="text-xl font-semibold text-foreground">Skyward</h3>
-                <p className="text-xs text-primary font-semibold">A better balance</p>
+                <p className="text-xs text-primary font-semibold">Keep what matters</p>
               </div>
             </div>
 
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>Keeps essential apps working, addictive apps blocked</span>
+                <span>Keeps essential apps</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span>
-                  Hard device-level restrictions that prevent you from easily changing rules
+                  Addictive apps do not exist on your phone
                 </span>
               </li>
             </ul>
@@ -86,7 +86,7 @@ export function ComparisonSection() {
                 <ShieldAlert className="h-5 w-5" />
               </div>
               <div>
-                <h3 className="text-xl font-semibold">Smartphones</h3>
+                <h3 className="text-xl font-semibold">App blockers</h3>
                 <p className="text-xs text-red-500 font-medium">Easy to bypass</p>
               </div>
             </div>
@@ -94,11 +94,11 @@ export function ComparisonSection() {
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Uninstalled apps can be downloaded again</span>
+                <span>All the addictive apps are still on your phone</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
                 <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
-                <span>Easy to disable app blockers when cravings hit</span>
+                <span>Easy to disable at any time & heavily relies on willpower</span>
               </li>
             </ul>
           </div>
