@@ -73,7 +73,7 @@ export function ComparisonSection() {
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span>
-                  Addictive apps do not exist on your phone
+                  The most addictive apps do not exist on your phone
                 </span>
               </li>
             </ul>
