@@ -1,11 +1,11 @@
-import { CreditCard, ClipboardList, Smartphone } from "lucide-react";
+import { CreditCard, ClipboardList, Smartphone, User } from "lucide-react";
 
 const steps = [
   {
     number: 1,
-    Icon: CreditCard,
-    title: "Purchase Skyward",
-    description: "Choose a monthly or annual plan and make an account.",
+    Icon: User,
+    title: "Get Skyward",
+    description: "Make an account and purchase a monthly or annual plan.",
   },
   {
     number: 2,
