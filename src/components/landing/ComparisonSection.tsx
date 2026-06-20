@@ -17,7 +17,7 @@ export function ComparisonSection() {
           </h2>
           <div className="mt-6 space-y-4 max-w-2xl mx-auto">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Most people try dumbphones or simple app blockers until they realize that neither
+              Most people try dumbphones or app blockers until they realize that neither
               works for them.
             </p>
           </div>
