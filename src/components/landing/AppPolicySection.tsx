@@ -38,7 +38,7 @@ const blockedCategories: Category[] = [
       "Pinterest",
       "Threads",
       "LinkedIn",
-      "Discord",
+      "Discord & more",
     ],
   },
   {
@@ -56,7 +56,7 @@ const blockedCategories: Category[] = [
       "Subway Surfers",
       "Minecraft",
       "Monopoly Go",
-      "Brawl Stars",
+      "Brawl Stars & more",
     ],
   },
   {
@@ -81,7 +81,7 @@ const blockedCategories: Category[] = [
       "Twitch",
       "Peacock",
       "YouTube TV",
-      "Paramount+",
+      "Paramount+ & more",
     ],
   },
 ];
