@@ -118,7 +118,9 @@ export function Navbar() {
               asChild
               className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
             >
-              <a href="#pricing">Get Skyward</a>
+              <Link to="/auth" search={{ mode: "register" }}>
+                Get started
+              </Link>
             </Button>
           )}
         </div>

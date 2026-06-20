@@ -5,7 +5,6 @@ import { ComparisonSection } from "@/components/landing/ComparisonSection";
 import { AppPolicySection } from "@/components/landing/AppPolicySection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { CompatibilitySection } from "@/components/landing/CompatibilitySection";
-import { Pricing } from "@/components/landing/Pricing";
 import { Faq } from "@/components/landing/Faq";
 import { Footer } from "@/components/landing/Footer";
 
@@ -36,7 +35,6 @@ function Index() {
       <AppPolicySection />
       <CompatibilitySection />
       <HowItWorks />
-      <Pricing />
       <Faq />
       <Footer />
     </main>

@@ -82,7 +82,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { name: "description", content: "Skyward — the app blocker that can't be easily bypassed." },
       { name: "author", content: "Skyward" },
       { property: "og:title", content: "Skyward" },
-      { property: "og:description", content: "Skyward — the app blocker that can't be easily bypassed." },
+      {
+        property: "og:description",
+        content: "Skyward — the app blocker that can't be easily bypassed.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

@@ -17,7 +17,8 @@ export function ComparisonSection() {
           </h2>
           <div className="mt-6 space-y-4 max-w-2xl mx-auto">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Most people try dumbphones or simple app blockers until they realize that neither works for them.
+              Most people try dumbphones or simple app blockers until they realize that neither
+              works for them.
             </p>
           </div>
         </div>
@@ -71,7 +72,9 @@ export function ComparisonSection() {
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>Hard device-level restrictions that prevent you from easily changing rules</span>
+                <span>
+                  Hard device-level restrictions that prevent you from easily changing rules
+                </span>
               </li>
             </ul>
           </div>

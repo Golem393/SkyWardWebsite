@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function Hero() {
   return (
@@ -25,8 +26,24 @@ export function Hero() {
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward turns your Android phone into a focused device by removing addictive apps and making it harder to fall back into scrolling.
+          Skyward turns your Android phone into a focused device by removing addictive apps and
+          making it harder to fall back into scrolling.
         </p>
+        <div
+          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
+          style={{ animationDelay: "400ms", animationFillMode: "both" }}
+        >
+          <Button
+            asChild
+            size="lg"
+            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base font-medium shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)] group"
+          >
+            <Link to="/auth" search={{ mode: "register" }}>
+              Get started
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          </Button>
+        </div>
       </div>
     </section>
   );

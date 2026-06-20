@@ -15,6 +15,7 @@ import { Mail } from "lucide-react";
 const searchSchema = z.object({
   redirect: z.string().optional(),
   plan: z.enum(["monthly", "yearly"]).optional(),
+  mode: z.enum(["login", "register"]).optional(),
 });
 
 export const Route = createFileRoute("/auth")({
@@ -34,8 +35,12 @@ function AuthPage() {
   const [registeredEmail, setRegisteredEmail] = useState<string | null>(null);
   const [resending, setResending] = useState(false);
 
-  const { redirect, plan } = Route.useSearch();
+  const { redirect, plan, mode } = Route.useSearch();
   const navigate = useNavigate();
+
+  const [activeTab, setActiveTab] = useState<"login" | "register">(
+    mode === "register" ? "register" : "login",
+  );
 
   // After auth: continue where the user was headed (default the account area),
   // carrying the chosen plan through the funnel.
@@ -166,7 +171,11 @@ function AuthPage() {
           <CardDescription>Log in or create an account to continue.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs defaultValue="login" className="w-full">
+          <Tabs
+            value={activeTab}
+            onValueChange={(v) => setActiveTab(v as "login" | "register")}
+            className="w-full"
+          >
             <TabsList className="grid w-full grid-cols-2 mb-4">
               <TabsTrigger value="login">Login</TabsTrigger>
               <TabsTrigger value="register">Register</TabsTrigger>

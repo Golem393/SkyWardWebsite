@@ -17,7 +17,8 @@ export function CompatibilitySection() {
             Ready for your device.
           </h2>
           <p className="mt-3 text-base text-muted-foreground">
-            Skyward is built on native Android enterprise features to deliver robust, bypass-proof restrictions.
+            Skyward is built on native Android enterprise features to deliver robust, bypass-proof
+            restrictions.
           </p>
         </div>
 
