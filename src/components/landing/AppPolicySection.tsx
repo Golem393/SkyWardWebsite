@@ -92,14 +92,14 @@ const allowedCategories: Category[] = [
     label: "Messaging",
     description: "The necessary communication tools.",
     Icon: Bot,
-    apps: ["WhatsApp", "TextNow", "Telegram", "Signal", "Google Voice"],
+    apps: ["WhatsApp", "TextNow", "Telegram", "Signal", "Google Voice & more"],
   },
   {
     id: "travel",
     label: "Travel & Transportation",
     description: "Essential tools for navigation and travel.",
     Icon: Map,
-    apps: ["Google Maps", "Uber", "Lyft", "Waze", "Airbnb", "Booking.com", "Expedia", "Trip.com"],
+    apps: ["Google Maps", "Uber", "Lyft", "Waze", "Airbnb", "Booking.com", "Expedia", "Trip.com, & more"],
   },
   {
     id: "work",
@@ -114,7 +114,7 @@ const allowedCategories: Category[] = [
       "Slack",
       "Microsoft Teams",
       "Zoom",
-      "Notion",
+      "Notion & more",
     ],
   },
   {
@@ -132,7 +132,7 @@ const allowedCategories: Category[] = [
       "Cash App",
       "Google Wallet",
       "Robinhood",
-      "Coinbase",
+      "Coinbase & more",
     ],
   },
   {
@@ -140,7 +140,7 @@ const allowedCategories: Category[] = [
     label: "Everyday Essentials",
     description: "What you need in your day to day life",
     Icon: ShoppingCart,
-    apps: ["Amazon", "Walmart", "Spotify", "Duolingo", "DoorDash", "Instacart"],
+    apps: ["Amazon", "Walmart", "Spotify", "Duolingo", "DoorDash", "Instacart & more"],
   },
 ];
 
