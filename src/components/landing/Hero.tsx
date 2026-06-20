@@ -20,13 +20,13 @@ export function Hero() {
           className="text-3xl sm:text-4xl md:text-5xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
-          Like a dumbphone, but with the apps you still need
+          Like a dumbphone, but with apps you still need
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward removes social media, games, porn, & other addictive apps from your Android phone.
+          Skyward removes social media, games, porn, & other addictive apps from your Android phone - not just blocks them.
         </p>
         <div
           className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
