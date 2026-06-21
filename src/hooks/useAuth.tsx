@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState, ReactNode, useCallback } from "react";
 import { Session, User } from "@supabase/supabase-js";
 import { supabase, type Profile } from "@/lib/supabase";
+import { usePostHog } from "@posthog/react";
 
 interface AuthContextType {
   session: Session | null;
@@ -21,6 +22,7 @@ const AuthContext = createContext<AuthContextType>({
 });
 
 export function AuthProvider({ children }: { children: ReactNode }) {
+  const posthog = usePostHog();
   const [session, setSession] = useState<Session | null>(null);
   const [user, setUser] = useState<User | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
@@ -39,14 +41,21 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     // Listen for auth changes.
     const {
       data: { subscription },
-    } = supabase.auth.onAuthStateChange((_event, session) => {
+    } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       loadProfile(session?.user?.id).finally(() => setIsLoading(false));
+
+      if (event === "SIGNED_IN" && session?.user) {
+        posthog.identify(session.user.id, { email: session.user.email });
+      }
+      if (event === "SIGNED_OUT") {
+        posthog.reset();
+      }
     });
 
     return () => subscription.unsubscribe();
-  }, [loadProfile]);
+  }, [loadProfile, posthog]);
 
   const signOut = async () => {
     await supabase.auth.signOut();

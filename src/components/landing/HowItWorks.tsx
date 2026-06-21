@@ -10,14 +10,14 @@ const steps = [
   {
     number: 2,
     Icon: ClipboardList,
-    title: "Follow the Setup Guide",
-    description: "We'll walk you through backing up and resetting your device.",
+    title: "Reset your phone (or get a 2nd device)",
+    description: "Back up your data and factory reset your current Android phone or get a compatible spare phone.",
   },
   {
     number: 3,
     Icon: Smartphone,
-    title: "Enjoy a Distraction-Free Phone",
-    description: "Social media, games, and other distractions stay blocked.",
+    title: "Scan a QR Code",
+    description: "Skyward will transform your phone into a distraction-free device.",
   },
 ];
 
@@ -29,7 +29,7 @@ export function HowItWorks() {
           Setup Process
         </p>
         <h2 className="mt-4 text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center text-balance">
-          Installing Skyward
+          How Skyward Works
         </h2>
 
         <ol className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">

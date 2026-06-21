@@ -9,6 +9,7 @@ import {
   Scripts,
 } from "@tanstack/react-router";
 import { useEffect, type ReactNode } from "react";
+import { PostHogProvider } from "@posthog/react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
@@ -120,7 +121,18 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* End Reddit Pixel */}
       </head>
       <body>
-        {children}
+        <PostHogProvider
+          apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN!}
+          options={{
+            api_host: "/ingest",
+            ui_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://us.posthog.com",
+            defaults: "2025-05-24",
+            capture_exceptions: true,
+            debug: import.meta.env.DEV,
+          }}
+        >
+          {children}
+        </PostHogProvider>
         <Scripts />
       </body>
     </html>

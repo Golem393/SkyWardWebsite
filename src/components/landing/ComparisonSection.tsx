@@ -68,7 +68,7 @@ export function ComparisonSection() {
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>Keeps essential apps</span>
+                <span>Keeps apps that are tools, not distractions</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />

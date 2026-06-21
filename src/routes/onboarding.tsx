@@ -8,6 +8,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createCheckoutSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
+import { usePostHog } from "@posthog/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -34,6 +35,7 @@ function isValidImei(value: string) {
 }
 
 function OnboardingPage() {
+  const posthog = usePostHog();
   const { profile, user, refreshProfile } = useAuth();
   const { plan: planFromSearch } = Route.useSearch();
 
@@ -67,6 +69,7 @@ function OnboardingPage() {
     // Hand off to Stripe Checkout for the chosen plan.
     try {
       const { url } = await createCheckoutSession(plan);
+      posthog.capture("checkout_started", { plan, user_id: user?.id });
       window.location.href = url;
     } catch (err) {
       setSubmitting(false);

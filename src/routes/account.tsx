@@ -5,6 +5,7 @@ import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
 import { createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
+import { usePostHog } from "@posthog/react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -33,6 +34,7 @@ function isValidImei(value: string) {
 }
 
 function AccountPage() {
+  const posthog = usePostHog();
   const { user, profile, refreshProfile, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -64,11 +66,13 @@ function AccountPage() {
       return;
     }
     await refreshProfile();
+    posthog.capture("device_imei_saved", { user_id: user.id });
     toast.success("Device IMEI updated.");
   };
 
   const handleManageSubscription = async () => {
     setOpeningPortal(true);
+    posthog.capture("subscription_management_opened", { plan: profile?.plan ?? null });
     try {
       const { url } = await createPortalSession();
       window.location.href = url;
@@ -79,6 +83,7 @@ function AccountPage() {
   };
 
   const handleSignOut = async () => {
+    posthog.capture("user_signed_out");
     await signOut();
     navigate({ to: "/" });
   };

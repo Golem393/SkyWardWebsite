@@ -4,6 +4,7 @@ import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { redirectIfAuth } from "@/lib/route-guards";
+import { usePostHog } from "@posthog/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -28,6 +29,7 @@ export const Route = createFileRoute("/auth")({
 const MIN_PASSWORD = 8;
 
 function AuthPage() {
+  const posthog = usePostHog();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [consent, setConsent] = useState(false);
@@ -62,6 +64,7 @@ function AuthPage() {
       toast.error(error.message);
       return;
     }
+    posthog.capture("user_logged_in", { plan: plan ?? null });
     goNext();
   };
 
@@ -86,8 +89,10 @@ function AuthPage() {
     }
 
     if (data.session) {
+      posthog.capture("user_signed_up", { plan: plan ?? null });
       goNext();
     } else {
+      posthog.capture("user_signed_up", { plan: plan ?? null, email_verification_required: true });
       setRegisteredEmail(email);
       toast.success("Verification email sent! Please check your inbox.");
     }
@@ -121,6 +126,7 @@ function AuthPage() {
     if (error) {
       toast.error(error.message);
     } else {
+      posthog.capture("password_reset_requested");
       toast.success("Password reset email sent! Check your inbox.");
     }
   };

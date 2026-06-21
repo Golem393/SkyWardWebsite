@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { usePostHog } from "@posthog/react";
 
 export const Route = createFileRoute("/success")({
   ssr: false,
@@ -14,6 +15,8 @@ interface RedditWindow extends Window {
 }
 
 function SuccessPage() {
+  const posthog = usePostHog();
+
   useEffect(() => {
     // Fire the Purchase event to the Reddit Pixel when the success page mounts
     if (typeof window !== "undefined") {
@@ -23,11 +26,12 @@ function SuccessPage() {
         const rdt = (window as unknown as RedditWindow).rdt;
         if (rdt) {
           rdt("track", "Purchase");
-          sessionStorage.setItem("reddit_pixel_purchase_tracked", "true");
         }
+        posthog.capture("subscription_purchased");
+        sessionStorage.setItem("reddit_pixel_purchase_tracked", "true");
       }
     }
-  }, []);
+  }, [posthog]);
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4 py-16">

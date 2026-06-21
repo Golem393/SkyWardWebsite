@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { BookOpen, RotateCcw, Smartphone, CheckCircle2, Brush, BrushCleaning } from "lucide-react";
+import { usePostHog } from "@posthog/react";
 import { QRCodeSVG } from "qrcode.react";
 import { Navbar } from "@/components/landing/Navbar";
 import { Button } from "@/components/ui/button";
@@ -70,6 +71,7 @@ function StepHeader({
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 function SetupPage() {
+  const posthog = usePostHog();
   const [step1Checked, setStep1Checked] = useState(false);
   const [step2Checked, setStep2Checked] = useState(false);
   const [deviceType, setDeviceType] = useState<"Samsung" | "Google" | "Motorola" | null>(null);
@@ -157,7 +159,11 @@ function SetupPage() {
                 <Checkbox
                   id="step1-check"
                   checked={step1Checked}
-                  onCheckedChange={(v) => setStep1Checked(Boolean(v))}
+                  onCheckedChange={(v) => {
+                    const checked = Boolean(v);
+                    setStep1Checked(checked);
+                    if (checked) posthog.capture("setup_step_completed", { step: "backup" });
+                  }}
                   className="mt-0.5 shrink-0"
                 />
                 <span className="text-sm text-foreground leading-snug">
@@ -225,7 +231,15 @@ function SetupPage() {
                   <Checkbox
                     id="step2-check"
                     checked={step2Checked}
-                    onCheckedChange={(v) => setStep2Checked(Boolean(v))}
+                    onCheckedChange={(v) => {
+                      const checked = Boolean(v);
+                      setStep2Checked(checked);
+                      if (checked)
+                        posthog.capture("setup_step_completed", {
+                          step: "factory_reset",
+                          device_type: deviceType,
+                        });
+                    }}
                     className="mt-0.5 shrink-0"
                   />
                   <span className="text-sm text-foreground leading-snug">
