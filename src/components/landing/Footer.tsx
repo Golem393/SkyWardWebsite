@@ -10,7 +10,7 @@ export function Footer() {
             <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
           </div>
           <p className="mt-3 text-sm text-muted-foreground">
-            Turn your smartphone into a distraction-free device.
+            Turn your smartphone into an addiction-free device.
           </p>
         </div>
       </div>
