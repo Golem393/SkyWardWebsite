@@ -23,7 +23,7 @@ export function Hero() {
           className="text-3xl sm:text-4xl md:text-5xl font-semibold -tracking-[0.02em] leading-[1.05] text-balance text-foreground animate-fade-in"
           style={{ animationDelay: "120ms", animationFillMode: "both" }}
         >
-          Like a dumbphone, but with apps you still need
+          The middle ground between a smartphone and a dumbphone
         </h1>
         <p
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
