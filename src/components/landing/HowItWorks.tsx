@@ -16,8 +16,8 @@ const steps = [
   {
     number: 3,
     Icon: ShieldOff,
-    title: "Enjoy a distraction-free phone",
-    description: "Addictive apps are removed while essential apps remain available.",
+    title: "Enjoy an addiction-free phone",
+    description: "Time-wasting apps are removed while essential apps remain available.",
   },
 ];
 
