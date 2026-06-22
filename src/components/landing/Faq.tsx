@@ -23,11 +23,8 @@ export function Faq() {
   return (
     <section id="faq" className="px-6 py-24 md:py-32">
       <div className="max-w-2xl mx-auto">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground text-center">
-          Questions
-        </p>
         <h2 className="mt-4 text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center">
-          Frequently asked.
+          Additional info.
         </h2>
         <Accordion
           type="single"

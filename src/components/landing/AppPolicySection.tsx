@@ -153,10 +153,7 @@ export function AppPolicySection() {
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <div className="text-center max-w-3xl mx-auto mb-16">
-          <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-xs font-medium bg-primary/10 text-primary border border-primary/20">
-            App Policies & Rules
-          </span>
-          <h2 className="mt-4 text-3xl md:text-5xl font-semibold -tracking-[0.02em] text-foreground leading-tight">
+          <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground leading-tight">
             What goes. What stays.
           </h2>
           <p className="mt-4 text-base md:text-lg text-muted-foreground">
