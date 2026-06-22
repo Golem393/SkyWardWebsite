@@ -1,23 +1,23 @@
-import { CreditCard, ClipboardList, Smartphone, User } from "lucide-react";
+import { Smartphone, Settings, ShieldOff } from "lucide-react";
 
 const steps = [
   {
     number: 1,
-    Icon: User,
-    title: "Get Skyward",
-    description: "Make an account and purchase a monthly or annual plan.",
+    Icon: Smartphone,
+    title: "Choose an Android phone",
+    description: "Use your current phone or a separate Android device.",
   },
   {
     number: 2,
-    Icon: ClipboardList,
-    title: "Reset your phone (or get a 2nd device)",
-    description: "Back up your data and factory reset your current Android phone or get a compatible spare phone.",
+    Icon: Settings,
+    title: "Set up Skyward",
+    description: "Follow the setup guide.",
   },
   {
     number: 3,
-    Icon: Smartphone,
-    title: "Scan a QR Code",
-    description: "Skyward will transform your phone into a distraction-free device.",
+    Icon: ShieldOff,
+    title: "Enjoy a distraction-free phone",
+    description: "Addictive apps are removed while essential apps remain available.",
   },
 ];
 
@@ -25,11 +25,8 @@ export function HowItWorks() {
   return (
     <section className="px-6 py-16 md:py-20 bg-muted/30 dark:bg-muted/10 border-y border-border/50 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
-        <p className="text-xs uppercase tracking-[0.2em] text-muted-foreground text-center">
-          Setup Process
-        </p>
-        <h2 className="mt-4 text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center text-balance">
-          How Skyward Works
+        <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center text-balance">
+          How it works
         </h2>
 
         <ol className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -62,3 +59,4 @@ export function HowItWorks() {
     </section>
   );
 }
+

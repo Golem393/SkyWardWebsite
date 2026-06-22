@@ -31,10 +31,10 @@ function Index() {
     <main className="bg-background text-foreground">
       <Navbar />
       <Hero />
+      <HowItWorks />
       <ComparisonSection />
       <AppPolicySection />
       <CompatibilitySection />
-      <HowItWorks />
       <Faq />
       <Footer />
     </main>
