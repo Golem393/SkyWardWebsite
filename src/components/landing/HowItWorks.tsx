@@ -26,7 +26,7 @@ export function HowItWorks() {
     <section className="px-6 py-16 md:py-20 bg-muted/30 dark:bg-muted/10 border-y border-border/50 relative overflow-hidden">
       <div className="max-w-5xl mx-auto">
         <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center text-balance">
-          Turn your phone into a distraction-free device
+          Turn your phone into an addiction-free device
         </h2>
 
         <ol className="mt-12 grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
