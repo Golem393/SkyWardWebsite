@@ -9,7 +9,7 @@ import { usePostHog } from "@posthog/react";
 const faqs = [
   {
     q: "Do you have a refund policy?",
-    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, removed apps will stay gone until the subscription end date. If you need them added back earlier, email us at hello@skywardos.com.",
+    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, removed apps will stay gone until the subscription end date or you can email us at hello@skywardos.com to restore your device earlier.",
   },
   {
     q: "How do I contact your support team?",
