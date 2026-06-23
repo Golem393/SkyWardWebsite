@@ -125,7 +125,7 @@ function RootShell({ children }: { children: ReactNode }) {
           apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN!}
           options={{
             api_host: "https://us.i.posthog.com",
-            ui_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://us.posthog.com",
+            ui_host: "https://us.posthog.com",
             defaults: "2025-05-24",
             capture_exceptions: true,
             debug: import.meta.env.DEV,
