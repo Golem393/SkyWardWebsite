@@ -30,9 +30,10 @@ const blockedCategories: Category[] = [
     Icon: MessageCircle,
     apps: [
       "Instagram",
+      "Youtube",
       "TikTok",
       "Facebook",
-      "X / Twitter",
+      "X",
       "Snapchat",
       "Reddit",
       "Pinterest",
@@ -67,12 +68,11 @@ const blockedCategories: Category[] = [
     apps: ["All explicit and pornographic websites"],
   },
   {
-    id: "streaming",
-    label: "Streaming & Video",
+    id: "entertainment",
+    label: "Entertainment",
     description: "Short-form and long-form video feeds with endless autoplay.",
     Icon: Tv,
     apps: [
-      "YouTube",
       "Netflix",
       "Disney+",
       "Prime Video",
@@ -240,6 +240,22 @@ export function AppPolicySection() {
               ))}
             </div>
           </div>
+        </div>
+
+        {/* App availability callout */}
+        <div className="mt-10 rounded-2xl border border-border bg-card/60 px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+          <div>
+            <p className="font-medium text-foreground">Don't see a specific app listed?</p>
+            <p className="mt-0.5 text-sm text-muted-foreground">
+              If it doesn't have anything to do with the blocked categories, it's probably allowed. To be sure, you can email us at hello@skywardos.com.
+            </p>
+          </div>
+          <a
+            href="mailto:hello@skywardos.com?subject=App availability question"
+            className="shrink-0 inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium px-5 py-2 hover:bg-primary/90 transition-colors shadow-[0_8px_24px_-8px_rgba(125,167,217,0.5)]"
+          >
+            Ask about an app
+          </a>
         </div>
       </div>
     </section>
