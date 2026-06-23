@@ -121,8 +121,6 @@ function RootShell({ children }: { children: ReactNode }) {
         {/* End Reddit Pixel */}
       </head>
       <body>
-        console.log("PH token:", import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN)
-        console.log("PH host:", import.meta.env.VITE_PUBLIC_POSTHOG_HOST)
         <PostHogProvider
           apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN!}
           options={{
