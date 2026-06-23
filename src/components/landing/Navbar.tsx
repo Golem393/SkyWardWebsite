@@ -52,6 +52,15 @@ export function Navbar() {
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
         </Link>
         <div className="flex gap-2 items-center">
+          {!user && (
+            <Button
+              asChild
+              variant="ghost"
+              className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
+            >
+              <Link to="/pricing">Pricing</Link>
+            </Button>
+          )}
           {user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
