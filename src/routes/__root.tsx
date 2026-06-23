@@ -124,7 +124,7 @@ function RootShell({ children }: { children: ReactNode }) {
         <PostHogProvider
           apiKey={import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN!}
           options={{
-            api_host: "/ingest",
+            api_host: "https://us.i.posthog.com",
             ui_host: import.meta.env.VITE_PUBLIC_POSTHOG_HOST || "https://us.posthog.com",
             defaults: "2025-05-24",
             capture_exceptions: true,
