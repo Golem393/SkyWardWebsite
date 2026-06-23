@@ -170,7 +170,7 @@ export function AppPolicySection() {
                 <span className="text-xs uppercase tracking-widest font-semibold text-red-500">
                   Strictly Restricted
                 </span>
-                <h3 className="text-2xl font-semibold mt-1">Blocked on Skyward</h3>
+                <h3 className="text-2xl font-semibold mt-1">Removed by Skyward</h3>
               </div>
               <div className="h-10 w-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                 <ShieldAlert className="h-5 w-5" />
@@ -209,7 +209,7 @@ export function AppPolicySection() {
                 <span className="text-xs uppercase tracking-widest font-semibold text-emerald-500">
                   Fully Accessible
                 </span>
-                <h3 className="text-2xl font-semibold mt-1">Allowed on Skyward</h3>
+                <h3 className="text-2xl font-semibold mt-1">Allowed by Skyward</h3>
               </div>
               <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                 <ShieldCheck className="h-5 w-5" />
@@ -245,9 +245,9 @@ export function AppPolicySection() {
         {/* App availability callout */}
         <div className="mt-10 rounded-2xl border border-border bg-card/60 px-6 py-5 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
-            <p className="font-medium text-foreground">Don't see a specific app listed?</p>
+            <p className="font-medium text-foreground">Want to know if an app is available?</p>
             <p className="mt-0.5 text-sm text-muted-foreground">
-              If the app is not related to the blocked categories, it's probably allowed. To be sure, you can email us at hello@skywardos.com.
+              If the app is not related to the removed categories, it is probably available. To be sure, you can email us at hello@skywardos.com.
             </p>
           </div>
           <a
