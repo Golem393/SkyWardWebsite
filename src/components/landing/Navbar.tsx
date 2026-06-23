@@ -47,8 +47,8 @@ export function Navbar() {
       {/* Desktop / scrolled pill */}
       <div
         className={[
-          "pointer-events-auto mt-4 flex items-center justify-between transition-all duration-500 ease-out",
-          scrolled
+          "relative z-10 pointer-events-auto mt-4 flex items-center justify-between transition-all duration-500 ease-out",
+          scrolled && !mobileOpen
             ? "glass mx-4 w-[min(720px,calc(100%-2rem))] rounded-full px-4 py-2 shadow-[0_10px_40px_-20px_rgba(30,41,59,0.18)]"
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
@@ -210,29 +210,29 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile dropdown panel — logged-out only */}
+      {/* Mobile full-viewport overlay — logged-out only, sits behind the pill (z-10) */}
       {!user && mobileOpen && (
-        <div className="pointer-events-auto sm:hidden absolute top-[4.5rem] inset-x-4 rounded-2xl glass shadow-[0_16px_48px_-12px_rgba(30,41,59,0.18)] py-3 px-2 flex flex-col gap-1">
+        <div className="pointer-events-auto sm:hidden fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col pl-10 pr-6 pt-20 gap-1">
           <Link
             to="/pricing"
             onClick={closeMobile}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-primary/8 transition-colors"
+            className="py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
           >
             Pricing
           </Link>
           <Link
             to="/auth"
             onClick={closeMobile}
-            className="px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-primary/8 transition-colors"
+            className="py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
           >
             Login
           </Link>
-          <div className="px-2 pt-1">
+          <div className="mt-4">
             <Link
               to="/auth"
               search={{ mode: "register" }}
               onClick={closeMobile}
-              className="block w-full text-center rounded-full bg-primary text-primary-foreground text-sm font-medium py-2.5 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] hover:bg-primary/90 transition-colors"
+              className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium px-6 py-2.5 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] hover:bg-primary/90 transition-colors"
             >
               Get started
             </Link>
