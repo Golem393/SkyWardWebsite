@@ -151,6 +151,8 @@ function RootComponent() {
   const location = useLocation();
 
   useEffect(() => {
+    console.log("PH token:", import.meta.env.VITE_PUBLIC_POSTHOG_PROJECT_TOKEN);
+    console.log("PH host:", import.meta.env.VITE_PUBLIC_POSTHOG_HOST);
     // Track page views on route transitions
     if (typeof window !== "undefined") {
       const rdt = (window as unknown as RedditWindow).rdt;
