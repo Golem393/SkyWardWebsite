@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "@tanstack/react-router";
-import { User } from "lucide-react";
+import { User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
 import {
@@ -17,6 +17,7 @@ import { toast } from "sonner";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
   const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
 
@@ -30,7 +31,11 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
+  // Close mobile menu on navigation
+  const closeMobile = () => setMobileOpen(false);
+
   const handleSignOut = async () => {
+    closeMobile();
     await signOut();
     navigate({ to: "/" });
   };
@@ -39,6 +44,7 @@ export function Navbar() {
 
   return (
     <header className="fixed top-0 inset-x-0 z-50 flex justify-center pointer-events-none">
+      {/* Desktop / scrolled pill */}
       <div
         className={[
           "pointer-events-auto mt-4 flex items-center justify-between transition-all duration-500 ease-out",
@@ -47,11 +53,14 @@ export function Navbar() {
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
       >
+        {/* Logo */}
         <Link to={user ? "/setup" : "/"} className="flex items-center gap-2">
           <img src="/logo.png" alt="Skyward" className="h-7 w-7 object-contain" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
         </Link>
-        <div className="flex gap-2 items-center">
+
+        {/* Desktop nav */}
+        <div className="hidden sm:flex gap-2 items-center">
           {!user && (
             <Button
               asChild
@@ -133,7 +142,103 @@ export function Navbar() {
             </Button>
           )}
         </div>
+
+        {/* Mobile: logged-in user shows avatar, logged-out shows hamburger */}
+        <div className="flex sm:hidden items-center gap-2">
+          {user ? (
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className="flex items-center rounded-full outline-none ring-offset-background focus-visible:ring-2 focus-visible:ring-ring border-2 border-primary/30 hover:border-primary/85 p-0.5 transition-colors duration-200"
+                  aria-label="Account menu"
+                >
+                  <Avatar className="h-8 w-8">
+                    <AvatarFallback className="bg-primary/10 text-primary font-semibold">
+                      {initial === "?" ? <User className="h-4 w-4" /> : initial}
+                    </AvatarFallback>
+                  </Avatar>
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-56">
+                <DropdownMenuLabel className="truncate font-normal text-muted-foreground">
+                  {user.email}
+                </DropdownMenuLabel>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem asChild>
+                  <Link to="/account">Account</Link>
+                </DropdownMenuItem>
+                {hasSubscription ? (
+                  <DropdownMenuItem
+                    onSelect={async (e) => {
+                      e.preventDefault();
+                      try {
+                        const { url } = await createPortalSession();
+                        window.location.href = url;
+                      } catch (err) {
+                        toast.error(
+                          err instanceof Error ? err.message : "Couldn't open the billing portal.",
+                        );
+                      }
+                    }}
+                  >
+                    Manage subscription
+                  </DropdownMenuItem>
+                ) : (
+                  <DropdownMenuItem asChild>
+                    <Link to="/onboarding">Start a subscription</Link>
+                  </DropdownMenuItem>
+                )}
+                <DropdownMenuItem asChild>
+                  <Link to="/setup">Setup guide</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator />
+                <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
+                  Sign out
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          ) : (
+            <button
+              id="mobile-menu-toggle"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              className="pointer-events-auto p-2 rounded-full text-foreground hover:text-primary transition-colors"
+            >
+              {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            </button>
+          )}
+        </div>
       </div>
+
+      {/* Mobile dropdown panel — logged-out only */}
+      {!user && mobileOpen && (
+        <div className="pointer-events-auto sm:hidden absolute top-[4.5rem] inset-x-4 rounded-2xl glass shadow-[0_16px_48px_-12px_rgba(30,41,59,0.18)] py-3 px-2 flex flex-col gap-1">
+          <Link
+            to="/pricing"
+            onClick={closeMobile}
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-primary/8 transition-colors"
+          >
+            Pricing
+          </Link>
+          <Link
+            to="/auth"
+            onClick={closeMobile}
+            className="px-4 py-2.5 rounded-xl text-sm font-medium text-foreground hover:bg-primary/8 transition-colors"
+          >
+            Login
+          </Link>
+          <div className="px-2 pt-1">
+            <Link
+              to="/auth"
+              search={{ mode: "register" }}
+              onClick={closeMobile}
+              className="block w-full text-center rounded-full bg-primary text-primary-foreground text-sm font-medium py-2.5 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] hover:bg-primary/90 transition-colors"
+            >
+              Get started
+            </Link>
+          </div>
+        </div>
+      )}
     </header>
   );
 }
