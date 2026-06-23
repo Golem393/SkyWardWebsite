@@ -247,7 +247,7 @@ export function AppPolicySection() {
           <div>
             <p className="font-medium text-foreground">Don't see a specific app listed?</p>
             <p className="mt-0.5 text-sm text-muted-foreground">
-              If it doesn't have anything to do with the blocked categories, it's probably allowed. To be sure, you can email us at hello@skywardos.com.
+              If the app is not related to the blocked categories, it's probably allowed. To be sure, you can email us at hello@skywardos.com.
             </p>
           </div>
           <a
