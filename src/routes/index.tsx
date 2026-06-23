@@ -4,8 +4,10 @@ import { Hero } from "@/components/landing/Hero";
 import { ComparisonSection } from "@/components/landing/ComparisonSection";
 import { AppPolicySection } from "@/components/landing/AppPolicySection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
+import { DemoVideo } from "@/components/landing/DemoVideo";
 import { CompatibilitySection } from "@/components/landing/CompatibilitySection";
 import { Faq } from "@/components/landing/Faq";
+import { CtaSection } from "@/components/landing/CtaSection";
 import { Footer } from "@/components/landing/Footer";
 
 const TITLE = "Skyward";
@@ -31,11 +33,13 @@ function Index() {
     <main className="bg-background text-foreground">
       <Navbar />
       <Hero />
+      <DemoVideo />
       <HowItWorks />
       <ComparisonSection />
       <AppPolicySection />
       <CompatibilitySection />
       <Faq />
+      {/*<CtaSection />*/}
       <Footer />
     </main>
   );
