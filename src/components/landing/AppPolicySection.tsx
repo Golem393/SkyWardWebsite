@@ -247,7 +247,7 @@ export function AppPolicySection() {
           <div>
             <p className="font-medium text-foreground">Want to know if an app is available?</p>
             <p className="mt-0.5 text-sm text-muted-foreground">
-              If the app is not related to the removed categories, it is probably available. To be sure, you can email us at hello@skywardos.com.
+              If the app is not related to the removed categories, it is available. To be sure, you can email us at hello@skywardos.com.
             </p>
           </div>
           <a
