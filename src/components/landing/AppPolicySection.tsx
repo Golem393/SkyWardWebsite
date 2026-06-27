@@ -162,7 +162,7 @@ interface SearchResult {
 const BACKEND_URL = import.meta.env.VITE_BACKEND_URL as string;
 
 async function searchAppPolicy(query: string): Promise<SearchResult> {
-  const url = new URL(`${BACKEND_URL}/blocked-app-search`);
+  const url = new URL(`${BACKEND_URL}/api/blocked-app-search`);
   url.searchParams.set("app_name", query);
 
   const res = await fetch(url.toString());
@@ -353,24 +353,18 @@ export function AppPolicySection() {
                     <div className="h-10 w-10 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-500 shrink-0">
                       <ShieldCheck className="h-5 w-5" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-emerald-600 dark:text-emerald-400">
-                        {result.appName ?? query} — Allowed
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">Category: {result.category}</p>
-                    </div>
+                    <p className="font-semibold text-emerald-600 dark:text-emerald-400">
+                      {result.appName ?? query} — Allowed
+                    </p>
                   </div>
                 ) : (
                   <div className="flex items-center gap-4 rounded-2xl border border-red-200/60 dark:border-red-900/60 bg-red-500/5 px-5 py-4 shadow-[0_6px_20px_-8px_rgba(239,68,68,0.15)]">
                     <div className="h-10 w-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                       <ShieldX className="h-5 w-5" />
                     </div>
-                    <div>
-                      <p className="font-semibold text-red-500 dark:text-red-400">
-                        {result?.appName ?? query} — Blocked
-                      </p>
-                      <p className="text-xs text-muted-foreground mt-0.5">Category: {result?.category}</p>
-                    </div>
+                    <p className="font-semibold text-red-500 dark:text-red-400">
+                      {result?.appName ?? query} — Blocked
+                    </p>
                   </div>
                 )}
               </div>
