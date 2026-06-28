@@ -1,8 +1,10 @@
 import { useState } from "react";
-import { useNavigate } from "@tanstack/react-router";
 import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { usePostHog } from "@posthog/react";
+
+const STRIPE_MONTHLY_URL = import.meta.env.VITE_STRIPE_MONTHLY_URL as string;
+const STRIPE_YEARLY_URL = import.meta.env.VITE_STRIPE_YEARLY_URL as string;
 
 const features = [
   "Works on Samsung, Google, or Motorola phones Android 11+",
@@ -12,13 +14,11 @@ const features = [
 export function Pricing() {
   const posthog = usePostHog();
   const [isAnnual, setIsAnnual] = useState(false);
-  const navigate = useNavigate();
 
-  // Always enter the funnel: /onboarding requires auth and redirects to /auth
-  // if needed, carrying the chosen plan through to checkout.
   const handleGetSkyward = () => {
-    posthog.capture("pricing_plan_selected", { plan: isAnnual ? "yearly" : "monthly" });
-    navigate({ to: "/onboarding", search: { plan: isAnnual ? "yearly" : "monthly" } });
+    const plan = isAnnual ? "yearly" : "monthly";
+    posthog.capture("pricing_plan_selected", { plan });
+    window.location.href = isAnnual ? STRIPE_YEARLY_URL : STRIPE_MONTHLY_URL;
   };
 
   return (

@@ -7,6 +7,7 @@ import { HowItWorks } from "@/components/landing/HowItWorks";
 import { DemoVideo } from "@/components/landing/DemoVideo";
 import { CompatibilitySection } from "@/components/landing/CompatibilitySection";
 import { Faq } from "@/components/landing/Faq";
+import { Pricing } from "@/components/landing/Pricing";
 import { CtaSection } from "@/components/landing/CtaSection";
 import { Footer } from "@/components/landing/Footer";
 
@@ -34,11 +35,12 @@ function Index() {
       <Navbar />
       <Hero />
       <HowItWorks />
-      <DemoVideo />
+      {/*<DemoVideo />*/}
       <ComparisonSection />
       <AppPolicySection />
       <CompatibilitySection />
       <Faq />
+      <Pricing />
       {/*<CtaSection />*/}
       <Footer />
     </main>

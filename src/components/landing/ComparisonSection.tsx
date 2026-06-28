@@ -14,8 +14,8 @@ export function ComparisonSection() {
           </h2>
           <div className="mt-6 space-y-4 max-w-2xl mx-auto">
             <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
-              Most people try dumbphones or app blockers until they realize that neither
-              works for them.
+              Most people try dumbphones or app blockers until they realize that neither works for
+              them.
             </p>
           </div>
         </div>
@@ -69,9 +69,7 @@ export function ComparisonSection() {
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
-                <span>
-                  The most addictive apps do not exist on your phone
-                </span>
+                <span>The most addictive apps do not exist on your phone</span>
               </li>
             </ul>
           </div>

@@ -3,20 +3,20 @@
 
 The wizard completed a PostHog analytics integration for the Skyward website. The project already had `@posthog/react` installed, `PostHogProvider` configured in `__root.tsx`, a reverse proxy for `/ingest` in `vite.config.ts`, and user identification wired up in `useAuth.tsx`. The wizard confirmed environment variables, supplemented the event plan with two missing events (`faq_item_opened` and `user_signed_out`), and created a dashboard with five insights covering the full conversion funnel, signups, purchases, and churn signals.
 
-| Event | Description | File |
-|---|---|---|
-| `get_started_clicked` | User clicks the primary CTA button in the hero section. | `src/components/landing/Hero.tsx` |
-| `pricing_plan_selected` | User clicks the pricing CTA to start a subscription funnel with a chosen plan. | `src/components/landing/Pricing.tsx` |
-| `faq_item_opened` | User opens a FAQ accordion item on the landing page. | `src/components/landing/Faq.tsx` |
-| `user_signed_up` | User successfully creates a new account. | `src/routes/auth.tsx` |
-| `user_logged_in` | User successfully logs in to their existing account. | `src/routes/auth.tsx` |
-| `password_reset_requested` | User requests a password reset email. | `src/routes/auth.tsx` |
-| `checkout_started` | User submits the onboarding form and is redirected to Stripe Checkout. | `src/routes/onboarding.tsx` |
-| `subscription_purchased` | User lands on the success page after completing a Stripe Checkout. | `src/routes/success.tsx` |
-| `device_imei_saved` | User saves or updates the IMEI of their linked device from the account page. | `src/routes/account.tsx` |
-| `subscription_management_opened` | User opens the Stripe billing portal to manage or cancel their subscription. | `src/routes/account.tsx` |
-| `user_signed_out` | User clicks the sign-out button from the account page. | `src/routes/account.tsx` |
-| `setup_step_completed` | User checks off a step in the device setup flow (backup or factory reset). | `src/routes/setup.tsx` |
+| Event                            | Description                                                                    | File                                 |
+| -------------------------------- | ------------------------------------------------------------------------------ | ------------------------------------ |
+| `get_started_clicked`            | User clicks the primary CTA button in the hero section.                        | `src/components/landing/Hero.tsx`    |
+| `pricing_plan_selected`          | User clicks the pricing CTA to start a subscription funnel with a chosen plan. | `src/components/landing/Pricing.tsx` |
+| `faq_item_opened`                | User opens a FAQ accordion item on the landing page.                           | `src/components/landing/Faq.tsx`     |
+| `user_signed_up`                 | User successfully creates a new account.                                       | `src/routes/auth.tsx`                |
+| `user_logged_in`                 | User successfully logs in to their existing account.                           | `src/routes/auth.tsx`                |
+| `password_reset_requested`       | User requests a password reset email.                                          | `src/routes/auth.tsx`                |
+| `checkout_started`               | User submits the onboarding form and is redirected to Stripe Checkout.         | `src/routes/onboarding.tsx`          |
+| `subscription_purchased`         | User lands on the success page after completing a Stripe Checkout.             | `src/routes/success.tsx`             |
+| `device_imei_saved`              | User saves or updates the IMEI of their linked device from the account page.   | `src/routes/account.tsx`             |
+| `subscription_management_opened` | User opens the Stripe billing portal to manage or cancel their subscription.   | `src/routes/account.tsx`             |
+| `user_signed_out`                | User clicks the sign-out button from the account page.                         | `src/routes/account.tsx`             |
+| `setup_step_completed`           | User checks off a step in the device setup flow (backup or factory reset).     | `src/routes/setup.tsx`               |
 
 ## Next steps
 

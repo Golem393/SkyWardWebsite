@@ -17,9 +17,7 @@ export function CtaSection() {
             asChild
             size="lg"
             className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base font-medium shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)] group"
-            onClick={() =>
-              posthog.capture("get_started_clicked", { source: "cta_section" })
-            }
+            onClick={() => posthog.capture("get_started_clicked", { source: "cta_section" })}
           >
             <Link to="/auth" search={{ mode: "register" }}>
               Get started

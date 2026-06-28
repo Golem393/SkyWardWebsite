@@ -35,7 +35,11 @@ export const Route = createFileRoute("/update-password")({
           <CardHeader>
             <CardTitle>Link expired</CardTitle>
             <CardDescription>
-              This password reset link has expired or is invalid. Please request a new one.
+              This link has expired or is invalid. Please contact{" "}
+              <a href="mailto:hello@skywardos.com" className="text-primary hover:underline">
+                hello@skywardos.com
+              </a>{" "}
+              and we'll send you a new one.
             </CardDescription>
           </CardHeader>
           <CardContent>
@@ -43,7 +47,7 @@ export const Route = createFileRoute("/update-password")({
               href="/auth"
               className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90 w-full"
             >
-              Back to login
+              Go to login
             </a>
           </CardContent>
         </Card>
@@ -80,8 +84,8 @@ function UpdatePasswordPage() {
     if (error) {
       toast.error(error.message);
     } else {
-      toast.success("Password updated successfully.");
-      navigate({ to: "/account" });
+      toast.success("Password created! Taking you to setup…");
+      navigate({ to: "/setup" });
     }
   };
 
@@ -89,8 +93,8 @@ function UpdatePasswordPage() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Set a new password</CardTitle>
-          <CardDescription>Choose a strong password for your account.</CardDescription>
+          <CardTitle>Create your password</CardTitle>
+          <CardDescription>Choose a strong password for your Skyward account.</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
@@ -120,7 +124,7 @@ function UpdatePasswordPage() {
               />
             </div>
             <Button type="submit" className="w-full" disabled={saving}>
-              {saving ? "Updating…" : "Update password"}
+              {saving ? "Creating…" : "Create password"}
             </Button>
           </form>
         </CardContent>

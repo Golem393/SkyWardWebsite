@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
@@ -8,8 +8,8 @@ import { usePostHog } from "@posthog/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+// import { Checkbox } from "@/components/ui/checkbox";
+// import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail } from "lucide-react";
 
@@ -26,23 +26,23 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-const MIN_PASSWORD = 8;
+// const MIN_PASSWORD = 8;
 
 function AuthPage() {
   const posthog = usePostHog();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [consent, setConsent] = useState(false);
+  // const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState<string | null>(null);
   const [resending, setResending] = useState(false);
 
-  const { redirect, plan, mode } = Route.useSearch();
+  const { redirect, plan } = Route.useSearch();
   const navigate = useNavigate();
 
-  const [activeTab, setActiveTab] = useState<"login" | "register">(
-    mode === "register" ? "register" : "login",
-  );
+  // const [activeTab, setActiveTab] = useState<"login" | "register">(
+  //   mode === "register" ? "register" : "login",
+  // );
 
   // After auth: continue where the user was headed (default the account area),
   // carrying the chosen plan through the funnel.
@@ -68,6 +68,7 @@ function AuthPage() {
     goNext();
   };
 
+  /*
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password.length < MIN_PASSWORD) {
@@ -97,6 +98,7 @@ function AuthPage() {
       toast.success("Verification email sent! Please check your inbox.");
     }
   };
+  */
 
   const handleResend = async () => {
     if (!registeredEmail) return;
@@ -174,117 +176,47 @@ function AuthPage() {
       <Card className="w-full max-w-md">
         <CardHeader>
           <CardTitle>Welcome to Skyward</CardTitle>
-          <CardDescription>Log in or create an account to continue.</CardDescription>
+          <CardDescription>Log in to continue.</CardDescription>
         </CardHeader>
         <CardContent>
-          <Tabs
-            value={activeTab}
-            onValueChange={(v) => setActiveTab(v as "login" | "register")}
-            className="w-full"
-          >
-            <TabsList className="grid w-full grid-cols-2 mb-4">
-              <TabsTrigger value="login">Login</TabsTrigger>
-              <TabsTrigger value="register">Register</TabsTrigger>
-            </TabsList>
-
-            <TabsContent value="login">
-              <form onSubmit={handleLogin} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="login-email">Email</Label>
-                  <Input
-                    id="login-email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <div className="flex items-center justify-between">
-                    <Label htmlFor="login-password">Password</Label>
-                    <Button
-                      variant="link"
-                      type="button"
-                      className="px-0 font-normal text-xs text-muted-foreground h-auto"
-                      onClick={handleResetPassword}
-                      disabled={loading}
-                    >
-                      Forgot password?
-                    </Button>
-                  </div>
-                  <Input
-                    id="login-password"
-                    type="password"
-                    autoComplete="current-password"
-                    required
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                </div>
-                <Button type="submit" className="w-full" disabled={loading}>
-                  {loading ? "Loading…" : "Login"}
+          <form onSubmit={handleLogin} className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="login-email">Email</Label>
+              <Input
+                id="login-email"
+                type="email"
+                autoComplete="email"
+                required
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </div>
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label htmlFor="login-password">Password</Label>
+                <Button
+                  variant="link"
+                  type="button"
+                  className="px-0 font-normal text-xs text-muted-foreground h-auto"
+                  onClick={handleResetPassword}
+                  disabled={loading}
+                >
+                  Forgot password?
                 </Button>
-              </form>
-            </TabsContent>
-
-            <TabsContent value="register">
-              <form onSubmit={handleRegister} className="space-y-4">
-                <div className="space-y-2">
-                  <Label htmlFor="register-email">Email</Label>
-                  <Input
-                    id="register-email"
-                    type="email"
-                    autoComplete="email"
-                    required
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                  />
-                </div>
-                <div className="space-y-2">
-                  <Label htmlFor="register-password">Password</Label>
-                  <Input
-                    id="register-password"
-                    type="password"
-                    autoComplete="new-password"
-                    required
-                    minLength={MIN_PASSWORD}
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                  />
-                  <p className="text-xs text-muted-foreground">
-                    At least {MIN_PASSWORD} characters.
-                  </p>
-                </div>
-                <div className="flex items-start gap-2">
-                  <Checkbox
-                    id="consent"
-                    checked={consent}
-                    onCheckedChange={(c) => setConsent(c === true)}
-                    className="mt-0.5"
-                  />
-                  <Label
-                    htmlFor="consent"
-                    className="text-sm font-normal leading-snug text-muted-foreground"
-                  >
-                    I agree to the{" "}
-                    <Link
-                      to="/terms"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="text-primary hover:underline transition-colors"
-                      onClick={(e) => e.stopPropagation()}
-                    >
-                      Terms & Conditions
-                    </Link>
-                  </Label>
-                </div>
-                <Button type="submit" className="w-full" disabled={loading || !consent}>
-                  {loading ? "Loading…" : "Create Account"}
-                </Button>
-              </form>
-            </TabsContent>
-          </Tabs>
+              </div>
+              <Input
+                id="login-password"
+                type="password"
+                autoComplete="current-password"
+                required
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </div>
+            <Button type="submit" className="w-full" disabled={loading}>
+              {loading ? "Loading…" : "Login"}
+            </Button>
+          </form>
         </CardContent>
       </Card>
     </div>
