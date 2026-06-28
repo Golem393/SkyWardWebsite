@@ -2,6 +2,7 @@ import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
+import { useAuth } from "@/hooks/useAuth";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -61,6 +62,7 @@ const MIN_PASSWORD = 8;
 
 function UpdatePasswordPage() {
   const navigate = useNavigate();
+  const { profile } = useAuth();
 
   const [password, setPassword] = useState("");
   const [confirm, setConfirm] = useState("");
@@ -84,8 +86,9 @@ function UpdatePasswordPage() {
     if (error) {
       toast.error(error.message);
     } else {
+      const destination = profile?.imei ? "/setup" : "/onboarding";
       toast.success("Password created! Taking you to setup…");
-      navigate({ to: "/setup" });
+      navigate({ to: destination });
     }
   };
 
