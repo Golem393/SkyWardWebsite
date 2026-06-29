@@ -1,5 +1,5 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState } from "react";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { useState, useEffect } from "react";
 import { BookOpen, RotateCcw, Smartphone, CheckCircle2, Brush, BrushCleaning } from "lucide-react";
 import { usePostHog } from "@posthog/react";
 import { QRCodeSVG } from "qrcode.react";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { requireAuth } from "@/lib/route-guards";
+import { useAuth } from "@/hooks/useAuth";
 
 const QR_VALUE = JSON.stringify({
   "android.app.extra.PROVISIONING_DEVICE_ADMIN_PACKAGE_DOWNLOAD_LOCATION":
@@ -71,10 +72,23 @@ function StepHeader({
 // ─── Main page ────────────────────────────────────────────────────────────────
 
 function SetupPage() {
+  const navigate = useNavigate();
+  const { profile, isLoading } = useAuth();
   const posthog = usePostHog();
+
+  useEffect(() => {
+    if (!isLoading && profile && !profile.imei) {
+      navigate({ to: "/onboarding", replace: true });
+    }
+  }, [isLoading, profile, navigate]);
+
   const [step1Checked, setStep1Checked] = useState(false);
   const [step2Checked, setStep2Checked] = useState(false);
   const [deviceType, setDeviceType] = useState<"Samsung" | "Google" | "Motorola" | null>(null);
+
+  if (isLoading || (profile && !profile.imei)) {
+    return null;
+  }
 
   const DEVICE_STEPS: Record<
     "Samsung" | "Google" | "Motorola",
