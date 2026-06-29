@@ -7,18 +7,12 @@ export function CtaSection() {
   const posthog = usePostHog();
 
   return (
-    <section className="px-6 py-20 md:py-28 relative overflow-hidden bg-background">
-      {/* Aurora glow effect */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10" />
-
-      <div className="max-w-3xl mx-auto text-center">
-        <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground leading-tight">
-          Ready to end your phone addiction?
+    <section className="px-6 py-24 md:py-32">
+      <div className="max-w-2xl mx-auto text-center">
+        <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground">
+          Ready to break free?
         </h2>
-        <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed max-w-xl mx-auto text-balance">
-          Take the first step to get your life back.
-        </p>
-        <div className="mt-8 flex flex-col items-center gap-4">
+        <div className="mt-8">
           <Button
             asChild
             size="lg"
@@ -26,7 +20,7 @@ export function CtaSection() {
             onClick={() => posthog.capture("get_started_clicked", { source: "cta_section" })}
           >
             <Link to="/auth" search={{ mode: "register" }}>
-              Activate Skyward for Android
+              Get started
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

@@ -34,13 +34,14 @@ function Index() {
     <main className="bg-background text-foreground">
       <Navbar />
       <Hero />
+      <HowItWorks />
       {/*<DemoVideo />*/}
       <ComparisonSection />
       <AppPolicySection />
-      <HowItWorks />
-      {/*<CompatibilitySection />*/}
+      <CompatibilitySection />
       <Faq />
-      <CtaSection />
+      <Pricing />
+      {/*<CtaSection />*/}
       <Footer />
     </main>
   );

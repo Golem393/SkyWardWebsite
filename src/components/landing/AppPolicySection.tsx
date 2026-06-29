@@ -236,7 +236,7 @@ export function AppPolicySection() {
                 <span className="text-xs uppercase tracking-widest font-semibold text-red-500">
                   Strictly Restricted
                 </span>
-                <h3 className="text-2xl font-semibold mt-1">Blocked by Skyward</h3>
+                <h3 className="text-2xl font-semibold mt-1">Removed by Skyward</h3>
               </div>
               <div className="h-10 w-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                 <ShieldAlert className="h-5 w-5" />
@@ -313,7 +313,7 @@ export function AppPolicySection() {
           <div className="max-w-xl mx-auto">
             <p className="text-center font-semibold text-lg text-foreground mb-1">Check any app</p>
             <p className="text-center text-sm text-muted-foreground mb-6">
-              Search to instantly see whether an app is allowed or blocked by Skyward.
+              Search to instantly see whether an app is allowed or blocked on Skyward.
             </p>
 
             {/* Input row */}

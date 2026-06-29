@@ -1,4 +1,4 @@
-import { Smartphone, ShieldAlert, ShieldCheck, X, Check, FileText } from "lucide-react";
+import { Smartphone, ShieldAlert, ShieldCheck, X, Check } from "lucide-react";
 
 export function ComparisonSection() {
   return (
@@ -36,11 +36,11 @@ export function ComparisonSection() {
 
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <X className="h-5 w-5 text-red-500 shrink-0" />
+                <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                 <span>Missing many apps that you need</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <X className="h-5 w-5 text-red-500 shrink-0" />
+                <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                 <span>You end up needing a smartphone to access those apps anyway</span>
               </li>
             </ul>
@@ -64,16 +64,12 @@ export function ComparisonSection() {
 
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
-                <Check className="h-5 w-5 text-primary shrink-0" />
+                <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
                 <span>Keeps apps that are tools, not distractions</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
-                <Check className="h-5 w-5 text-primary shrink-0" />
-                <span>Skyward's restrictions cannot be bypassed</span>
-              </li>
-              <li className="flex items-start gap-3 text-sm text-foreground font-medium">
-                <FileText className="h-5 w-5 text-primary shrink-0" />
-                <span>Curated blocklist handled for you</span>
+                <Check className="h-5 w-5 text-primary shrink-0 mt-0.5" />
+                <span>The most addictive apps do not exist on your phone</span>
               </li>
             </ul>
           </div>
@@ -92,11 +88,11 @@ export function ComparisonSection() {
 
             <ul className="space-y-4 flex-1">
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <X className="h-5 w-5 text-red-500 shrink-0" />
-                <span>All the addictive apps are accessible</span>
+                <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
+                <span>All the addictive apps are still on your phone</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-muted-foreground">
-                <X className="h-5 w-5 text-red-500 shrink-0" />
+                <X className="h-5 w-5 text-red-500 shrink-0 mt-0.5" />
                 <span>Easy to disable at any time & heavily relies on willpower</span>
               </li>
             </ul>

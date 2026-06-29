@@ -8,24 +8,8 @@ import { usePostHog } from "@posthog/react";
 
 const faqs = [
   {
-    q: "Will I lose my photos, contacts, or chat history during the reset?",
-    a: "A factory reset wipes all data from the phone, so data will be lost only if you did not back anything up. We have a guide to help you backup your data to ensure nothing gets lost.",
-  },
-  {
-    q: "What if I change my mind? Can I ever remove Skyward?",
-    a: "Yes. We don't trap you. If you choose to cancel your subscription, you can request an unenrollment and your phone will be restored to normal.",
-  },
-  {
-    q: "Can I unblock a specific app or customize the list?",
-    a: "No - and that is why it works. Standard app blockers fail because they allow you to negotiate with yourself. Skyward functions like a true dumbphone: the boundaries are set at the system level. If you feel an app was miscategorized, reach out to our team and we will review it for you.",
-  },
-  {
-    q: "Is Skyward safe? Does it track my data?",
-    a: "Skyward uses enterprise-grade MDM (Mobile Device Management) technology, the same tool global corporations use to secure company phones. We do not track your location, read your messages, or monitor your private data.",
-  },
-  {
     q: "Do you have a refund policy?",
-    a: "Yes, your first month is covered by a 30-day money-back guarantee.",
+    a: "Your first month is covered by a 30-day money-back guarantee. If you cancel, removed apps will stay gone until the subscription end date or you can email us at hello@skywardos.com to restore your device earlier.",
   },
   {
     q: "How do I contact your support team?",
