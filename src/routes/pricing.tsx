@@ -14,8 +14,7 @@ import {
 } from "@/components/ui/accordion";
 
 const TITLE = "Pricing — Skyward";
-const DESCRIPTION =
-  "Simple, transparent pricing. Everything you need to reclaim your focus.";
+const DESCRIPTION = "Simple, transparent pricing. Everything you need to reclaim your focus.";
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -34,7 +33,7 @@ export const Route = createFileRoute("/pricing")({
 const features = [
   "Works on Samsung, Google, or Motorola phones Android 11+",
   "One device per subscription",
-  "30-day money-back guarantee"
+  "30-day money-back guarantee",
 ];
 
 function PricingPage() {
@@ -69,20 +68,22 @@ function PricingPage() {
               <button
                 id="billing-monthly"
                 onClick={() => setIsAnnual(false)}
-                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${!isAnnual
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-                  }`}
+                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${
+                  !isAnnual
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 Monthly
               </button>
               <button
                 id="billing-annual"
                 onClick={() => setIsAnnual(true)}
-                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${isAnnual
-                  ? "bg-primary text-primary-foreground"
-                  : "text-muted-foreground hover:text-foreground"
-                  }`}
+                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${
+                  isAnnual
+                    ? "bg-primary text-primary-foreground"
+                    : "text-muted-foreground hover:text-foreground"
+                }`}
               >
                 Annual
               </button>

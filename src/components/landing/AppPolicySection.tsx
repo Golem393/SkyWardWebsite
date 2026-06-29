@@ -102,7 +102,16 @@ const allowedCategories: Category[] = [
     label: "Travel & Transportation",
     description: "Essential tools for navigation and travel.",
     Icon: Map,
-    apps: ["Google Maps", "Uber", "Lyft", "Waze", "Airbnb", "Booking.com", "Expedia", "Trip.com, & more"],
+    apps: [
+      "Google Maps",
+      "Uber",
+      "Lyft",
+      "Waze",
+      "Airbnb",
+      "Booking.com",
+      "Expedia",
+      "Trip.com, & more",
+    ],
   },
   {
     id: "work",
@@ -227,7 +236,7 @@ export function AppPolicySection() {
                 <span className="text-xs uppercase tracking-widest font-semibold text-red-500">
                   Strictly Restricted
                 </span>
-                <h3 className="text-2xl font-semibold mt-1">Removed by Skyward</h3>
+                <h3 className="text-2xl font-semibold mt-1">Blocked by Skyward</h3>
               </div>
               <div className="h-10 w-10 rounded-full bg-red-500/10 flex items-center justify-center text-red-500 shrink-0">
                 <ShieldAlert className="h-5 w-5" />
@@ -302,11 +311,9 @@ export function AppPolicySection() {
         {/* App Search */}
         <div className="mt-12 rounded-3xl border border-border bg-card/60 backdrop-blur-md px-6 py-8 shadow-[0_10px_40px_-15px_rgba(0,0,0,0.06)]">
           <div className="max-w-xl mx-auto">
-            <p className="text-center font-semibold text-lg text-foreground mb-1">
-              Check any app
-            </p>
+            <p className="text-center font-semibold text-lg text-foreground mb-1">Check any app</p>
             <p className="text-center text-sm text-muted-foreground mb-6">
-              Search to instantly see whether an app is allowed or blocked on Skyward.
+              Search to instantly see whether an app is allowed or blocked by Skyward.
             </p>
 
             {/* Input row */}
@@ -330,11 +337,7 @@ export function AppPolicySection() {
                 disabled={loading || !query.trim()}
                 className="shrink-0 inline-flex items-center gap-2 rounded-full bg-primary text-primary-foreground text-sm font-medium px-5 py-2.5 hover:bg-primary/90 disabled:opacity-50 disabled:cursor-not-allowed transition-all shadow-[0_8px_24px_-8px_rgba(125,167,217,0.5)] hover:shadow-[0_12px_30px_-8px_rgba(125,167,217,0.6)]"
               >
-                {loading ? (
-                  <Loader2 className="h-4 w-4 animate-spin" />
-                ) : (
-                  "Search"
-                )}
+                {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : "Search"}
               </button>
             </div>
 
@@ -346,7 +349,9 @@ export function AppPolicySection() {
                     <div className="h-9 w-9 rounded-full bg-muted flex items-center justify-center shrink-0">
                       <Search className="h-4 w-4 text-muted-foreground" />
                     </div>
-                    <p className="text-sm text-muted-foreground">{error === "App not found" ? "No app found — try a different name." : error}</p>
+                    <p className="text-sm text-muted-foreground">
+                      {error === "App not found" ? "No app found — try a different name." : error}
+                    </p>
                   </div>
                 ) : result?.status === "allowed" ? (
                   <div className="flex items-center gap-4 rounded-2xl border border-emerald-200/60 dark:border-emerald-900/60 bg-emerald-500/5 px-5 py-4 shadow-[0_6px_20px_-8px_rgba(16,185,129,0.2)]">

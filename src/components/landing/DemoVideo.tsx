@@ -1,9 +1,6 @@
 export function DemoVideo() {
   return (
-    <section
-      id="demo"
-      className="px-6 py-20 md:py-28 relative overflow-hidden"
-    >
+    <section id="demo" className="px-6 py-20 md:py-28 relative overflow-hidden">
       {/* Subtle background glow */}
       <div
         className="pointer-events-none absolute inset-0 -z-10"
@@ -15,7 +12,6 @@ export function DemoVideo() {
       />
 
       <div className="max-w-4xl mx-auto text-center">
-
         <h2 className="text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-balance">
           Watch the demo
         </h2>
