@@ -2,7 +2,7 @@ import { RotateCcw, ShoppingBag, Smartphone, HelpCircle, QrCode } from "lucide-r
 
 export function HowItWorks() {
   return (
-    <section className="px-6 py-20 md:py-28 bg-muted/30 dark:bg-muted/10 border-y border-border/50 relative overflow-hidden">
+    <section className="px-6 py-20 md:py-28 bg-slate-100 dark:bg-zinc-900/60 border-y border-slate-300 dark:border-zinc-800 relative overflow-hidden">
       {/* Background blur */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -41,20 +41,22 @@ export function HowItWorks() {
               </div>
             </div>
 
-            <ol className="space-y-3 flex-1">
+            <div className="space-y-3 flex-1">
               {[
                 "Back up your phone's data",
                 "Factory reset the device",
                 "Scan the QR code from Skyward upon reboot",
               ].map((step, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10 text-xs font-bold text-primary">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm text-foreground leading-relaxed">{step}</span>
-                </li>
+                <div key={i} className="flex items-start gap-3">
+                  <div className="flex h-[22px] w-6 shrink-0 items-center justify-center">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div className="text-sm text-foreground leading-relaxed">{step}</div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
 
           {/* Option 2 */}
@@ -75,19 +77,21 @@ export function HowItWorks() {
               </div>
             </div>
 
-            <ol className="space-y-3 flex-1">
+            <div className="space-y-3 flex-1">
               {[
                 "Pick up an Android phone from a local store or online retailer",
                 "Scan the QR code from Skyward — no factory reset needed",
               ].map((step, i) => (
-                <li key={i} className="flex items-center gap-3">
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-emerald-500/10 text-xs font-bold text-emerald-500">
-                    {i + 1}
-                  </span>
-                  <span className="text-sm text-foreground leading-relaxed">{step}</span>
-                </li>
+                <div key={i} className="flex items-start gap-3">
+                  <div className="flex h-[22px] w-6 shrink-0 items-center justify-center">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/10 text-sm font-bold text-emerald-500">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div className="text-sm text-foreground leading-relaxed">{step}</div>
+                </div>
               ))}
-            </ol>
+            </div>
           </div>
         </div>
 
@@ -101,7 +105,7 @@ export function HowItWorks() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground text-base mb-2">
-                  Why is factory resetting required?
+                  Why is factory resetting required for my current Android?
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   You need to give Skyward permission to become a{" "}
@@ -131,6 +135,25 @@ export function HowItWorks() {
                   <span className="text-foreground font-semibold">Android 11 or higher</span> are
                   all supported.
                 </p>
+                <p className="text-sm font-semibold text-foreground mt-4">Some examples include:</p>
+                <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-muted-foreground">
+                  <li className="flex items-center gap-2">
+                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
+                    <span>Samsung Galaxy A15 or newer</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
+                    <span>Samsung Galaxy S21 or newer</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
+                    <span>Google Pixel 5 or newer</span>
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
+                    <span>Motorola Moto G Power (2022) or newer</span>
+                  </li>
+                </ul>
               </div>
             </div>
           </div>

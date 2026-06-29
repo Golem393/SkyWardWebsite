@@ -34,6 +34,21 @@ export function Navbar() {
   // Close mobile menu on navigation
   const closeMobile = () => setMobileOpen(false);
 
+  const handleScrollToPricing = (e: React.MouseEvent) => {
+    if (window.location.pathname === "/") {
+      e.preventDefault();
+      const el = document.getElementById("pricing");
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleMobilePricingClick = (e: React.MouseEvent) => {
+    closeMobile();
+    handleScrollToPricing(e);
+  };
+
   const handleSignOut = async () => {
     closeMobile();
     await signOut();
@@ -53,7 +68,6 @@ export function Navbar() {
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
       >
-        {/* Logo */}
         <Link to={user ? "/setup" : "/"} className="flex items-center gap-2">
           <img src="/logo.png" alt="Skyward" className="h-7 w-7 object-contain" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
@@ -67,7 +81,9 @@ export function Navbar() {
               variant="ghost"
               className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
             >
-              <Link to="/pricing">Pricing</Link>
+              <Link to="/" hash="pricing" onClick={handleScrollToPricing}>
+                Pricing
+              </Link>
             </Button>
           )}
           {user ? (
@@ -136,8 +152,8 @@ export function Navbar() {
               asChild
               className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
             >
-              <Link to="/auth" search={{ mode: "register" }}>
-                Get started
+              <Link to="/" hash="pricing" onClick={handleScrollToPricing}>
+                Get Skyward
               </Link>
             </Button>
           )}
@@ -214,8 +230,9 @@ export function Navbar() {
       {!user && mobileOpen && (
         <div className="pointer-events-auto sm:hidden fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col pl-10 pr-6 pt-20 gap-1">
           <Link
-            to="/pricing"
-            onClick={closeMobile}
+            to="/"
+            hash="pricing"
+            onClick={handleMobilePricingClick}
             className="py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
           >
             Pricing
@@ -229,9 +246,9 @@ export function Navbar() {
           </Link>
           <div className="mt-4">
             <Link
-              to="/auth"
-              search={{ mode: "register" }}
-              onClick={closeMobile}
+              to="/"
+              hash="pricing"
+              onClick={handleMobilePricingClick}
               className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium px-6 py-2.5 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] hover:bg-primary/90 transition-colors"
             >
               Get started

@@ -74,9 +74,11 @@
   * {
     border-color: var(--color-border);
   }
+
   html {
     font-family: var(--font-sans);
   }
+
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);

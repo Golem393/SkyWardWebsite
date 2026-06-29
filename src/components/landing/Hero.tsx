@@ -9,7 +9,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative aurora min-h-screen flex items-center justify-center overflow-hidden px-6"
+      className="relative aurora min-h-[90vh] md:min-h-screen flex items-center justify-center overflow-hidden px-6"
     >
       <div className="relative z-10 max-w-4xl text-center">
         {/*<div
@@ -32,22 +32,6 @@ export function Hero() {
           Skyward blocks all social media, games, porn, & other addictive apps from your Android
           phone - with no way to bypass the restrictions.
         </p>
-        <div
-          className="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
-          style={{ animationDelay: "400ms", animationFillMode: "both" }}
-        >
-          <Button
-            asChild
-            size="lg"
-            className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-8 h-12 text-base font-medium shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)] group"
-            onClick={() => posthog.capture("get_started_clicked", { source: "hero" })}
-          >
-            <Link to="/auth" search={{ mode: "register" }}>
-              Get started
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </Link>
-          </Button>
-        </div>
       </div>
     </section>
   );

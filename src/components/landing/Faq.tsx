@@ -13,11 +13,11 @@ const faqs = [
   },
   {
     q: "What if I change my mind? Can I ever remove Skyward?",
-    a: "Yes. We don't trap you. If you choose to cancel your subscription, you can request an unenrollment and your phone will be restored to normal.",
+    a: "Yes, you can remove Skyward and restore your phone by canceling your subscription. Your phone will be back to normal on the subscription's end date or you can request an immediate unenrollment.",
   },
   {
     q: "Can I unblock a specific app or customize the list?",
-    a: "No - and that is why it works. Standard app blockers fail because they allow you to negotiate with yourself. Skyward functions like a true dumbphone: the boundaries are set at the system level. If you feel an app was miscategorized, reach out to our team and we will review it for you.",
+    a: "No - and that is why it works. Standard app blockers fail because they allow you to negotiate with yourself. Skyward functions like a true dumbphone: the boundaries are set at the system level. If you feel an app was incorrectly blocked, reach out to our team and we will review it for you.",
   },
   {
     q: "Is Skyward safe? Does it track my data?",
