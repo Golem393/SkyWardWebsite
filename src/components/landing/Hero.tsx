@@ -29,7 +29,7 @@ export function Hero() {
           className="mt-6 text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto text-balance animate-fade-in"
           style={{ animationDelay: "260ms", animationFillMode: "both" }}
         >
-          Skyward locks out social media, games, porn, & other addictive apps from your Android
+          Skyward blocks all social media, games, porn, & other addictive apps from your Android
           phone - with no way to bypass the restrictions.
         </p>
         <div
