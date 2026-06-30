@@ -51,7 +51,6 @@ function OnboardingPage() {
     }
     await refreshProfile();
 
-    toast.success("Device linked! Taking you to setup…");
     navigate({ to: "/setup" });
   };
 

@@ -1,10 +1,9 @@
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
-import { Check, ArrowRight } from "lucide-react";
+import { Check, ArrowRight, Loader2 } from "lucide-react";
 import { usePostHog } from "@posthog/react";
-
-const STRIPE_MONTHLY_URL = import.meta.env.VITE_STRIPE_MONTHLY_URL as string;
-const STRIPE_YEARLY_URL = import.meta.env.VITE_STRIPE_YEARLY_URL as string;
+import { toast } from "sonner";
+import { createCheckoutSessionAnon } from "@/lib/backend";
 
 const features = [
   "Works on Samsung, Google, or Motorola phones Android 11+",
@@ -15,11 +14,22 @@ const features = [
 export function Pricing() {
   const posthog = usePostHog();
   const [isAnnual, setIsAnnual] = useState(false);
+  const [loading, setLoading] = useState(false);
 
-  const handleGetSkyward = () => {
+  const handleGetSkyward = async () => {
     const plan = isAnnual ? "yearly" : "monthly";
     posthog.capture("pricing_plan_selected", { plan });
-    window.location.href = isAnnual ? STRIPE_YEARLY_URL : STRIPE_MONTHLY_URL;
+    setLoading(true);
+    try {
+      console.log(plan);
+      const { url } = await createCheckoutSessionAnon(plan);
+      window.location.href = url;
+    } catch (err) {
+      setLoading(false);
+      toast.error(
+        err instanceof Error ? err.message : "Couldn't start checkout. Please try again.",
+      );
+    }
   };
 
   return (
@@ -67,10 +77,20 @@ export function Pricing() {
 
           <Button
             onClick={handleGetSkyward}
+            disabled={loading}
             className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)] group"
           >
-            Buy now via Stripe
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+            {loading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                Redirecting…
+              </>
+            ) : (
+              <>
+                Buy now via Stripe
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </>
+            )}
           </Button>
 
           <ul className="mt-6 space-y-3">

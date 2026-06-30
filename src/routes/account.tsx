@@ -35,7 +35,7 @@ function isValidImei(value: string) {
 
 function AccountPage() {
   const posthog = usePostHog();
-  const { user, profile, refreshProfile, signOut } = useAuth();
+  const { user, profile, subscription, refreshProfile, signOut } = useAuth();
   const navigate = useNavigate();
 
   const [imei, setImei] = useState("");
@@ -47,9 +47,8 @@ function AccountPage() {
     setImei(profile?.imei ?? "");
   }, [profile?.imei]);
 
-  const status = profile?.subscription_status ?? "inactive";
+  const status = subscription?.status ?? "inactive";
   const statusInfo = STATUS_LABELS[status] ?? STATUS_LABELS.inactive;
-  const hasSubscription = status === "active" || status === "past_due";
   const imeiChanged = imei !== (profile?.imei ?? "");
 
   const handleSaveImei = async () => {
@@ -72,7 +71,7 @@ function AccountPage() {
 
   const handleManageSubscription = async () => {
     setOpeningPortal(true);
-    posthog.capture("subscription_management_opened", { plan: profile?.plan ?? null });
+    posthog.capture("subscription_management_opened", { plan: subscription?.plan ?? null });
     try {
       const { url } = await createPortalSession();
       window.location.href = url;
@@ -130,24 +129,31 @@ function AccountPage() {
               <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
             </div>
             <CardDescription>
-              {profile?.plan ? `Skyward ${profile.plan} plan` : "No active plan yet."}
+              {subscription?.plan ? `Skyward ${subscription.plan} plan` : "No active plan yet."}
             </CardDescription>
           </CardHeader>
-          <CardContent>
-            {hasSubscription ? (
-              <Button
-                variant="outline"
-                className="rounded-full"
-                onClick={handleManageSubscription}
-                disabled={openingPortal}
-              >
-                {openingPortal ? "Opening…" : "Manage / cancel subscription"}
-              </Button>
-            ) : (
-              <Button asChild className="rounded-full">
-                <Link to="/onboarding">Start a subscription</Link>
-              </Button>
+          <CardContent className="space-y-4">
+            {subscription?.canceled_at_date && (
+              <p className="text-sm text-destructive font-medium">
+                Canceled. Access ends on{" "}
+                {new Date(
+                  subscription.subscription_end_date || subscription.canceled_at_date,
+                ).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                .
+              </p>
             )}
+            <Button
+              variant="outline"
+              className="rounded-full"
+              onClick={handleManageSubscription}
+              disabled={openingPortal}
+            >
+              {openingPortal ? "Opening…" : "Manage subscription"}
+            </Button>
           </CardContent>
         </Card>
 
