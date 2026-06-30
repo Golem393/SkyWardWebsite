@@ -35,19 +35,19 @@ export type Database = {
     Tables: {
       app_categories: {
         Row: {
-          appname: string | null;
+          appName: string | null;
           category: string;
           created_at: string | null;
           packageName: string;
         };
         Insert: {
-          appname?: string | null;
+          appName?: string | null;
           category: string;
           created_at?: string | null;
           packageName: string;
         };
         Update: {
-          appname?: string | null;
+          appName?: string | null;
           category?: string;
           created_at?: string | null;
           packageName?: string;
@@ -60,11 +60,6 @@ export type Database = {
           email: string | null;
           id: string;
           imei: string | null;
-          plan: string | null;
-          stripe_customer_id: string | null;
-          stripe_subscription_id: string | null;
-          subscription_end_date: string | null;
-          subscription_status: string;
           terms_accepted_at: string | null;
           terms_version: string | null;
         };
@@ -73,11 +68,6 @@ export type Database = {
           email?: string | null;
           id: string;
           imei?: string | null;
-          plan?: string | null;
-          stripe_customer_id?: string | null;
-          stripe_subscription_id?: string | null;
-          subscription_end_date?: string | null;
-          subscription_status?: string;
           terms_accepted_at?: string | null;
           terms_version?: string | null;
         };
@@ -86,11 +76,6 @@ export type Database = {
           email?: string | null;
           id?: string;
           imei?: string | null;
-          plan?: string | null;
-          stripe_customer_id?: string | null;
-          stripe_subscription_id?: string | null;
-          subscription_end_date?: string | null;
-          subscription_status?: string;
           terms_accepted_at?: string | null;
           terms_version?: string | null;
         };
@@ -102,6 +87,7 @@ export type Database = {
           created_at: string;
           id: string;
           plan: string | null;
+          price_usd: number | null;
           status: string | null;
           stripe_customer_id: string | null;
           stripe_subscription_id: string | null;
@@ -111,8 +97,9 @@ export type Database = {
         Insert: {
           canceled_at_date?: string | null;
           created_at?: string;
-          id: string;
+          id?: string;
           plan?: string | null;
+          price_usd?: number | null;
           status?: string | null;
           stripe_customer_id?: string | null;
           stripe_subscription_id?: string | null;
@@ -124,6 +111,7 @@ export type Database = {
           created_at?: string;
           id?: string;
           plan?: string | null;
+          price_usd?: number | null;
           status?: string | null;
           stripe_customer_id?: string | null;
           stripe_subscription_id?: string | null;
