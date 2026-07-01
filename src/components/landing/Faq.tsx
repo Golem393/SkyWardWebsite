@@ -37,7 +37,10 @@ export function Faq() {
   const posthog = usePostHog();
 
   return (
-    <section id="faq" className="px-6 py-24 md:py-32">
+    <section
+      id="faq"
+      className="px-6 py-24 md:py-32 bg-slate-100 dark:bg-zinc-900/60 border-y border-slate-300 dark:border-zinc-800 relative overflow-hidden"
+    >
       <div className="max-w-2xl mx-auto">
         <h2 className="mt-4 text-3xl md:text-4xl font-semibold -tracking-[0.02em] text-foreground text-center">
           Additional info.

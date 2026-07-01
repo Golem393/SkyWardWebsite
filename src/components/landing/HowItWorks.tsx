@@ -2,7 +2,7 @@ import { RotateCcw, ShoppingBag, Smartphone, HelpCircle, QrCode } from "lucide-r
 
 export function HowItWorks() {
   return (
-    <section className="px-6 py-20 md:py-28 bg-slate-100 dark:bg-zinc-900/60 border-y border-slate-300 dark:border-zinc-800 relative overflow-hidden">
+    <section className="px-6 py-20 md:py-28 relative overflow-hidden bg-background">
       {/* Background blur */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />

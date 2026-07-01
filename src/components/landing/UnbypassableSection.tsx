@@ -23,7 +23,7 @@ export function UnbypassableSection() {
   ];
 
   return (
-    <section className="px-6 py-20 md:py-28 relative overflow-hidden bg-background">
+    <section className="px-6 py-20 md:py-28 bg-slate-100 dark:bg-zinc-900/60 border-y border-slate-300 dark:border-zinc-800 relative overflow-hidden">
       {/* Aurora visual decoration */}
       <div className="absolute top-1/2 left-1/3 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[100px] pointer-events-none -z-10" />
 
