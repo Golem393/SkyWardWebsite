@@ -16,6 +16,7 @@ import { Route as SetupRouteImport } from './routes/setup'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as PricingRouteImport } from './routes/pricing'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as CompatibilityRouteImport } from './routes/compatibility'
 import { Route as BackupRouteImport } from './routes/backup'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AccountRouteImport } from './routes/account'
@@ -56,6 +57,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const CompatibilityRoute = CompatibilityRouteImport.update({
+  id: '/compatibility',
+  path: '/compatibility',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BackupRoute = BackupRouteImport.update({
   id: '/backup',
   path: '/backup',
@@ -82,6 +88,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/compatibility': typeof CompatibilityRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -95,6 +102,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/compatibility': typeof CompatibilityRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -109,6 +117,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/compatibility': typeof CompatibilityRoute
   '/onboarding': typeof OnboardingRoute
   '/pricing': typeof PricingRoute
   '/privacy': typeof PrivacyRoute
@@ -124,6 +133,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/compatibility'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -137,6 +147,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/compatibility'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -150,6 +161,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/compatibility'
     | '/onboarding'
     | '/pricing'
     | '/privacy'
@@ -164,6 +176,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   BackupRoute: typeof BackupRoute
+  CompatibilityRoute: typeof CompatibilityRoute
   OnboardingRoute: typeof OnboardingRoute
   PricingRoute: typeof PricingRoute
   PrivacyRoute: typeof PrivacyRoute
@@ -224,6 +237,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/compatibility': {
+      id: '/compatibility'
+      path: '/compatibility'
+      fullPath: '/compatibility'
+      preLoaderRoute: typeof CompatibilityRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/backup': {
       id: '/backup'
       path: '/backup'
@@ -260,6 +280,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   BackupRoute: BackupRoute,
+  CompatibilityRoute: CompatibilityRoute,
   OnboardingRoute: OnboardingRoute,
   PricingRoute: PricingRoute,
   PrivacyRoute: PrivacyRoute,
