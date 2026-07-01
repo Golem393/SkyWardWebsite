@@ -141,6 +141,7 @@ function RootShell({ children }: { children: ReactNode }) {
 
 import { AuthProvider } from "../hooks/useAuth";
 import { Toaster } from "../components/ui/sonner";
+import { WhatsAppButton } from "../components/landing/WhatsAppButton";
 
 interface RedditWindow extends Window {
   rdt?: (action: string, event: string) => void;
@@ -166,6 +167,7 @@ function RootComponent() {
         {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
         <Outlet />
         <Toaster />
+        <WhatsAppButton />
       </QueryClientProvider>
     </AuthProvider>
   );
