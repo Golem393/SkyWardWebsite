@@ -105,21 +105,23 @@ export function Navbar() {
                 <DropdownMenuItem asChild>
                   <Link to="/account">Account</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onSelect={async (e) => {
-                    e.preventDefault();
-                    try {
-                      const { url } = await createPortalSession();
-                      window.location.href = url;
-                    } catch (err) {
-                      toast.error(
-                        err instanceof Error ? err.message : "Couldn't open the billing portal.",
-                      );
-                    }
-                  }}
-                >
-                  Manage subscription
-                </DropdownMenuItem>
+                {subscription && (
+                  <DropdownMenuItem
+                    onSelect={async (e) => {
+                      e.preventDefault();
+                      try {
+                        const { url } = await createPortalSession();
+                        window.location.href = url;
+                      } catch (err) {
+                        toast.error(
+                          err instanceof Error ? err.message : "Couldn't open the billing portal.",
+                        );
+                      }
+                    }}
+                  >
+                    Manage subscription
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
                   <Link to="/setup">Setup guide</Link>
                 </DropdownMenuItem>
@@ -174,21 +176,23 @@ export function Navbar() {
                 <DropdownMenuItem asChild>
                   <Link to="/account">Account</Link>
                 </DropdownMenuItem>
-                <DropdownMenuItem
-                  onSelect={async (e) => {
-                    e.preventDefault();
-                    try {
-                      const { url } = await createPortalSession();
-                      window.location.href = url;
-                    } catch (err) {
-                      toast.error(
-                        err instanceof Error ? err.message : "Couldn't open the billing portal.",
-                      );
-                    }
-                  }}
-                >
-                  Manage subscription
-                </DropdownMenuItem>
+                {subscription && (
+                  <DropdownMenuItem
+                    onSelect={async (e) => {
+                      e.preventDefault();
+                      try {
+                        const { url } = await createPortalSession();
+                        window.location.href = url;
+                      } catch (err) {
+                        toast.error(
+                          err instanceof Error ? err.message : "Couldn't open the billing portal.",
+                        );
+                      }
+                    }}
+                  >
+                    Manage subscription
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild>
                   <Link to="/setup">Setup guide</Link>
                 </DropdownMenuItem>

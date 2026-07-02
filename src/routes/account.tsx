@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
-import { createPortalSession } from "@/lib/backend";
+import { createCheckoutSession, createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
 import { usePostHog } from "@posthog/react";
 import { Navbar } from "@/components/landing/Navbar";
@@ -12,6 +12,15 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@/components/ui/dialog";
+import { Minus, Plus, Check } from "lucide-react";
 
 export const Route = createFileRoute("/account")({
   ssr: false,
@@ -43,6 +52,10 @@ function AccountPage() {
   const [openingPortal, setOpeningPortal] = useState(false);
   const [resettingPassword, setResettingPassword] = useState(false);
 
+  const [resubscribePlan, setResubscribePlan] = useState<"monthly" | "yearly">("monthly");
+  const [resubscribeSeats, setResubscribeSeats] = useState(1);
+  const [resubscribing, setResubscribing] = useState(false);
+
   useEffect(() => {
     setImei(profile?.imei ?? "");
   }, [profile?.imei]);
@@ -50,6 +63,12 @@ function AccountPage() {
   const status = subscription?.status ?? "inactive";
   const statusInfo = STATUS_LABELS[status] ?? STATUS_LABELS.inactive;
   const imeiChanged = imei !== (profile?.imei ?? "");
+
+  const showResubscribe =
+    !subscription?.status ||
+    subscription.status === "canceled" ||
+    subscription.status === "inactive" ||
+    !!subscription.canceled_at_date;
 
   const handleSaveImei = async () => {
     if (!isValidImei(imei)) {
@@ -78,6 +97,18 @@ function AccountPage() {
     } catch (err) {
       setOpeningPortal(false);
       toast.error(err instanceof Error ? err.message : "Couldn't open the billing portal.");
+    }
+  };
+
+  const handleResubscribe = async () => {
+    setResubscribing(true);
+    posthog.capture("resubscribe_started", { plan: resubscribePlan, seats: resubscribeSeats });
+    try {
+      const { url } = await createCheckoutSession(resubscribePlan, resubscribeSeats);
+      window.location.href = url;
+    } catch (err) {
+      setResubscribing(false);
+      toast.error(err instanceof Error ? err.message : "Couldn't start checkout.");
     }
   };
 
@@ -146,14 +177,121 @@ function AccountPage() {
                 .
               </p>
             )}
-            <Button
-              variant="outline"
-              className="rounded-full"
-              onClick={handleManageSubscription}
-              disabled={openingPortal}
-            >
-              {openingPortal ? "Opening…" : "Manage subscription"}
-            </Button>
+            <div className="flex gap-3">
+              {subscription?.stripe_customer_id && !showResubscribe && (
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={handleManageSubscription}
+                  disabled={openingPortal}
+                >
+                  {openingPortal ? "Opening…" : "Manage subscription"}
+                </Button>
+              )}
+              {showResubscribe && (
+                <Dialog>
+                  <DialogTrigger asChild>
+                    <Button variant="default" className="rounded-full">
+                      {!subscription?.status ? "Subscribe" : "Resubscribe"}
+                    </Button>
+                  </DialogTrigger>
+                  <DialogContent className="w-[calc(100%-2rem)] sm:w-full sm:max-w-md max-h-[calc(100vh-2rem)] overflow-y-auto rounded-lg">
+                    <DialogHeader>
+                      <DialogTitle>Choose your plan</DialogTitle>
+                      <DialogDescription>
+                        Select a plan and the number of devices you want to manage.
+                      </DialogDescription>
+                    </DialogHeader>
+                    <div className="grid gap-6 py-4">
+                      {/* Plan Toggle */}
+                      <div className="flex flex-col gap-2">
+                        <Label>Billing cycle</Label>
+                        <div className="flex rounded-md shadow-sm border p-1 bg-muted/50 w-full">
+                          <button
+                            type="button"
+                            onClick={() => setResubscribePlan("monthly")}
+                            className={`flex flex-col items-center justify-center flex-1 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-sm transition-colors ${
+                              resubscribePlan === "monthly"
+                                ? "bg-background text-foreground shadow-sm"
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <span>Monthly</span>
+                            <span className="text-xs font-normal opacity-80">($7.99/mo)</span>
+                          </button>
+                          <button
+                            type="button"
+                            onClick={() => setResubscribePlan("yearly")}
+                            className={`flex flex-col items-center justify-center flex-1 px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium rounded-sm transition-colors ${
+                              resubscribePlan === "yearly"
+                                ? "bg-background text-foreground shadow-sm"
+                                : "text-muted-foreground hover:text-foreground"
+                            }`}
+                          >
+                            <span>Yearly</span>
+                            <span className="text-xs font-normal opacity-80">($59/yr)</span>
+                          </button>
+                        </div>
+                      </div>
+
+                      {/* Seats Selector */}
+                      <div className="flex flex-col gap-2">
+                        <Label>Number of devices</Label>
+                        <div className="flex items-center gap-4">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => setResubscribeSeats(Math.max(1, resubscribeSeats - 1))}
+                            disabled={resubscribeSeats <= 1}
+                          >
+                            <Minus className="h-4 w-4" />
+                          </Button>
+                          <span className="text-xl font-medium w-8 text-center">
+                            {resubscribeSeats}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            onClick={() => setResubscribeSeats(resubscribeSeats + 1)}
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      </div>
+
+                      <ul className="space-y-2 mt-2 text-sm text-muted-foreground">
+                        <li className="flex items-start gap-2">
+                          <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <span>Works on Samsung, Google, or Motorola phones Android 11+</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <span>One device per subscription</span>
+                        </li>
+                        <li className="flex items-start gap-2">
+                          <Check className="h-4 w-4 text-primary shrink-0 mt-0.5" />
+                          <span>30-day money-back guarantee</span>
+                        </li>
+                      </ul>
+                    </div>
+
+                    <div className="flex items-center justify-between pt-4 pb-2 border-t mt-2">
+                      <span className="font-medium text-foreground">Total</span>
+                      <span className="font-semibold text-foreground text-lg">
+                        ${(resubscribePlan === "monthly" ? 7.99 * resubscribeSeats : 59 * resubscribeSeats).toFixed(2).replace(/\.00$/, "")}
+                        <span className="text-sm font-normal text-muted-foreground">
+                          {resubscribePlan === "monthly" ? "/mo" : "/yr"}
+                        </span>
+                      </span>
+                    </div>
+
+                    <Button onClick={handleResubscribe} disabled={resubscribing} className="w-full mt-2">
+                      {resubscribing ? "Loading…" : "Checkout"}
+                    </Button>
+                  </DialogContent>
+                </Dialog>
+              )}
+            </div>
           </CardContent>
         </Card>
 

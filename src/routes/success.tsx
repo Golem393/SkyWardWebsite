@@ -6,6 +6,11 @@ import { usePostHog } from "@posthog/react";
 export const Route = createFileRoute("/success")({
   ssr: false,
   component: SuccessPage,
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      auth: search.auth === "true" || search.auth === true,
+    };
+  },
 });
 
 interface RedditWindow extends Window {
@@ -14,6 +19,7 @@ interface RedditWindow extends Window {
 
 function SuccessPage() {
   const posthog = usePostHog();
+  const { auth } = Route.useSearch();
 
   useEffect(() => {
     // Fire the Purchase event to the Reddit Pixel when the success page mounts
@@ -113,90 +119,107 @@ function SuccessPage() {
         {/* Divider */}
         <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "0 0 24px" }} />
 
-        {/* Next step: Check email */}
-        <div
-          style={{ display: "flex", alignItems: "flex-start", gap: "14px", marginBottom: "16px" }}
-        >
-          {/* Email icon */}
-          <div
-            style={{
-              flexShrink: 0,
-              width: "40px",
-              height: "40px",
-              backgroundColor: "#eff6ff",
-              borderRadius: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#3b82f6"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
+        {!auth && (
+          <>
+            {/* Next step: Check email */}
+            <div
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "14px",
+                marginBottom: "16px",
+              }}
             >
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <polyline points="2,4 12,13 22,4" />
-            </svg>
-          </div>
-          <div>
-            <p style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", margin: "0 0 4px" }}>
-              Next step: Check your email
-            </p>
-            <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.5" }}>
-              We've sent you an email with instructions to create your Skyward account and begin
-              setup.
-            </p>
-          </div>
-        </div>
+              {/* Email icon */}
+              <div
+                style={{
+                  flexShrink: 0,
+                  width: "40px",
+                  height: "40px",
+                  backgroundColor: "#eff6ff",
+                  borderRadius: "10px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="#3b82f6"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <polyline points="2,4 12,13 22,4" />
+                </svg>
+              </div>
+              <div>
+                <p
+                  style={{
+                    fontSize: "15px",
+                    fontWeight: "600",
+                    color: "#0f172a",
+                    margin: "0 0 4px",
+                  }}
+                >
+                  Next step: Check your email
+                </p>
+                <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.5" }}>
+                  We've sent you an email with instructions to create your Skyward account and begin
+                  setup.
+                </p>
+              </div>
+            </div>
 
-        {/* Info box */}
-        <div
-          style={{
-            backgroundColor: "#f8fafc",
-            borderRadius: "10px",
-            padding: "14px 16px",
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "12px",
-            marginBottom: "24px",
-          }}
-        >
-          <svg
-            style={{ flexShrink: 0, marginTop: "1px" }}
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#3b82f6"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="8" strokeWidth="2.5" strokeLinecap="round" />
-            <line x1="12" y1="12" x2="12" y2="16" />
-          </svg>
-          <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.6" }}>
-            The email should arrive within a few minutes.
-            <br />
-            Please check your spam or promotions folder.
-          </p>
-        </div>
+            {/* Info box */}
+            <div
+              style={{
+                backgroundColor: "#f8fafc",
+                borderRadius: "10px",
+                padding: "14px 16px",
+                display: "flex",
+                alignItems: "flex-start",
+                gap: "12px",
+                marginBottom: "24px",
+              }}
+            >
+              <svg
+                style={{ flexShrink: 0, marginTop: "1px" }}
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="#3b82f6"
+                strokeWidth="1.8"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <line x1="12" y1="8" x2="12" y2="8" strokeWidth="2.5" strokeLinecap="round" />
+                <line x1="12" y1="12" x2="12" y2="16" />
+              </svg>
+              <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.6" }}>
+                The email should arrive within a few minutes.
+                <br />
+                Please check your spam or promotions folder.
+              </p>
+            </div>
 
-        {/* Divider */}
-        <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "0 0 20px" }} />
+            {/* Divider */}
+            <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "0 0 20px" }} />
+          </>
+        )}
 
         {/* Support */}
         <div
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
+          style={{ display: "flex", alignItems: "flex-start", justifyContent: "center", gap: "8px" }}
         >
           <svg
+            style={{ flexShrink: 0, marginTop: "2px" }}
             width="16"
             height="16"
             viewBox="0 0 24 24"

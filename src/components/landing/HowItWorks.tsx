@@ -143,7 +143,9 @@ export function HowItWorks() {
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                     </span>
                     <span>
-                      <strong className="text-foreground font-semibold">Samsung Galaxy:</strong> All S Series (S10 or newer), A Series (A10 or newer), Z series foldables (Z Flip/Fold 2 or newer), and Note Series (Note 10 or newer)
+                      <strong className="text-foreground font-semibold">Samsung Galaxy:</strong> All
+                      S Series (S10 or newer), A Series (A10 or newer), Z series foldables (Z
+                      Flip/Fold 2 or newer), and Note Series (Note 10 or newer)
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
@@ -151,7 +153,8 @@ export function HowItWorks() {
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                     </span>
                     <span>
-                      <strong className="text-foreground font-semibold">Google Pixel:</strong> All Pixel Series (Pixel 2 or newer)
+                      <strong className="text-foreground font-semibold">Google Pixel:</strong> All
+                      Pixel Series (Pixel 2 or newer)
                     </span>
                   </li>
                   <li className="flex items-start gap-2.5">
@@ -159,7 +162,9 @@ export function HowItWorks() {
                       <span className="h-1.5 w-1.5 rounded-full bg-primary" />
                     </span>
                     <span>
-                      <strong className="text-foreground font-semibold">Motorola:</strong> All Razr Series (2019 or newer), Edge Series (2020 or newer), Moto G Series (G8 or newer)
+                      <strong className="text-foreground font-semibold">Motorola:</strong> All Razr
+                      Series (2019 or newer), Edge Series (2020 or newer), Moto G Series (G8 or
+                      newer)
                     </span>
                   </li>
                 </ul>

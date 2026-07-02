@@ -57,13 +57,13 @@ async function anonPost<T>(path: string, body: unknown): Promise<T> {
 }
 
 /** Start a Stripe Checkout session for the given plan (no account required); returns the hosted URL. */
-export function createCheckoutSessionAnon(plan: "monthly" | "yearly") {
-  return anonPost<{ url: string }>("/api/stripe/checkout", { plan });
+export function createCheckoutSessionAnon(plan: "monthly" | "yearly", seats: number = 1) {
+  return anonPost<{ url: string }>("/api/stripe/checkout", { plan, seats });
 }
 
 /** Start a Stripe Checkout session for a logged-in user; returns the hosted URL. */
-export function createCheckoutSession(plan: "monthly" | "yearly") {
-  return authedPost<{ url: string }>("/api/stripe/checkout/authenticated", { plan });
+export function createCheckoutSession(plan: "monthly" | "yearly", seats: number = 1) {
+  return authedPost<{ url: string }>("/api/stripe/checkout/authenticated", { plan, seats });
 }
 
 /** Open the Stripe billing portal (manage / cancel subscription); returns the hosted URL. */

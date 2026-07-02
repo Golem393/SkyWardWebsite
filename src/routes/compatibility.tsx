@@ -8,7 +8,8 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 const TITLE = "Compatible Devices — Skyward";
-const DESCRIPTION = "Check if your Android phone is compatible with Skyward. We support Samsung, Google Pixel, and Motorola devices running Android 11+.";
+const DESCRIPTION =
+  "Check if your Android phone is compatible with Skyward. We support Samsung, Google Pixel, and Motorola devices running Android 11+.";
 
 export const Route = createFileRoute("/compatibility")({
   head: () => ({
@@ -103,7 +104,9 @@ const DEVICES_LIST: Device[] = [
 function CompatibilityPage() {
   const posthog = usePostHog();
   const [searchQuery, setSearchQuery] = useState("");
-  const [selectedBrand, setSelectedBrand] = useState<"All" | "Samsung" | "Google" | "Motorola">("All");
+  const [selectedBrand, setSelectedBrand] = useState<"All" | "Samsung" | "Google" | "Motorola">(
+    "All",
+  );
 
   const handleBrandChange = (brand: "All" | "Samsung" | "Google" | "Motorola") => {
     setSelectedBrand(brand);
@@ -169,7 +172,8 @@ function CompatibilityPage() {
               Compatible Devices
             </h1>
             <p className="mt-4 text-base md:text-lg text-muted-foreground leading-relaxed text-balance">
-              Skyward works by taking device owner privileges via Mobile Device Management (MDM). We support Samsung, Google Pixel, and Motorola devices running Android 11 or higher.
+              Skyward works by taking device owner privileges via Mobile Device Management (MDM). We
+              support Samsung, Google Pixel, and Motorola devices running Android 11 or higher.
             </p>
           </div>
 
@@ -177,9 +181,13 @@ function CompatibilityPage() {
           <div className="mb-10 rounded-2xl border border-blue-500/20 bg-blue-500/5 p-5 flex items-start gap-4">
             <ShieldCheck className="h-6 w-6 text-primary shrink-0 mt-0.5" />
             <div>
-              <h3 className="font-semibold text-foreground text-sm mb-1">Android 11+ Requirement</h3>
+              <h3 className="font-semibold text-foreground text-sm mb-1">
+                Android 11+ Requirement
+              </h3>
               <p className="text-xs md:text-sm text-muted-foreground leading-relaxed">
-                Regardless of the model, your device must be updated to at least **Android 11** to support Skyward's MDM configuration. Older operating system versions do not support modern system-level lockdown features.
+                Regardless of the model, your device must be updated to at least **Android 11** to
+                support Skyward's MDM configuration. Older operating system versions do not support
+                modern system-level lockdown features.
               </p>
             </div>
           </div>
@@ -212,10 +220,11 @@ function CompatibilityPage() {
                 <button
                   key={brand}
                   onClick={() => handleBrandChange(brand)}
-                  className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${selectedBrand === brand
-                    ? "bg-primary text-primary-foreground shadow-sm"
-                    : "bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
-                    }`}
+                  className={`rounded-full px-5 py-1.5 text-sm font-medium transition-all ${
+                    selectedBrand === brand
+                      ? "bg-primary text-primary-foreground shadow-sm"
+                      : "bg-card border border-border text-muted-foreground hover:text-foreground hover:bg-muted/50"
+                  }`}
                 >
                   {brand === "Google" ? "Google Pixel" : brand === "All" ? "All Brands" : brand}
                 </button>
@@ -227,7 +236,10 @@ function CompatibilityPage() {
           {Object.keys(groupedDevices).length > 0 ? (
             <div className="space-y-10">
               {Object.entries(groupedDevices).map(([brand, seriesMap]) => (
-                <div key={brand} className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-sm">
+                <div
+                  key={brand}
+                  className="rounded-3xl border border-border bg-card p-6 md:p-8 shadow-sm"
+                >
                   <div className="flex items-center gap-3 mb-6 pb-4 border-b border-border">
                     <Smartphone className="h-6 w-6 text-primary" />
                     <h2 className="text-xl font-bold text-foreground">
@@ -272,9 +284,12 @@ function CompatibilityPage() {
           ) : (
             <div className="text-center rounded-3xl border border-border bg-card py-16 px-6">
               <AlertCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-              <h3 className="text-lg font-semibold text-foreground mb-2">No matching devices found</h3>
+              <h3 className="text-lg font-semibold text-foreground mb-2">
+                No matching devices found
+              </h3>
               <p className="text-sm text-muted-foreground max-w-md mx-auto mb-6">
-                We couldn't find any results for "{searchQuery}". Skyward generally supports almost all Samsung, Google Pixel, and Motorola devices running Android 11 or higher.
+                We couldn't find any results for "{searchQuery}". Skyward generally supports almost
+                all Samsung, Google Pixel, and Motorola devices running Android 11 or higher.
               </p>
               <Button asChild className="rounded-full">
                 <a href="mailto:support@skywardos.com?subject=Device compatibility request">
@@ -290,7 +305,8 @@ function CompatibilityPage() {
               Ready to reclaim your focus with Skyward?
             </h3>
             <p className="text-sm text-muted-foreground max-w-xl mx-auto mb-6">
-              Get started with Skyward today. All subscriptions come with a 30-day money-back guarantee.
+              Get started with Skyward today. All subscriptions come with a 30-day money-back
+              guarantee.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Button asChild size="lg" className="rounded-full shadow-md">
@@ -299,9 +315,7 @@ function CompatibilityPage() {
                 </Link>
               </Button>
               <Button asChild variant="outline" size="lg" className="rounded-full">
-                <Link to="/pricing">
-                  View Pricing
-                </Link>
+                <Link to="/pricing">View Pricing</Link>
               </Button>
             </div>
           </div>
