@@ -33,7 +33,6 @@ export const Route = createFileRoute("/pricing")({
 const features = [
   "Works on Samsung, Google, or Motorola phones Android 11+",
   "One device per subscription",
-  "30-day money-back guarantee",
 ];
 
 function PricingPage() {
@@ -68,22 +67,20 @@ function PricingPage() {
               <button
                 id="billing-monthly"
                 onClick={() => setIsAnnual(false)}
-                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${
-                  !isAnnual
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${!isAnnual
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 Monthly
               </button>
               <button
                 id="billing-annual"
                 onClick={() => setIsAnnual(true)}
-                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${
-                  isAnnual
-                    ? "bg-primary text-primary-foreground"
-                    : "text-muted-foreground hover:text-foreground"
-                }`}
+                className={`rounded-full px-5 py-1.5 font-medium transition-colors ${isAnnual
+                  ? "bg-primary text-primary-foreground"
+                  : "text-muted-foreground hover:text-foreground"
+                  }`}
               >
                 Annual
               </button>
@@ -111,7 +108,7 @@ function PricingPage() {
               onClick={handleGetSkyward}
               className="mt-6 w-full rounded-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 shadow-[0_12px_32px_-10px_rgba(125,167,217,0.7)]"
             >
-              {"Get started"}
+              {"Start free trial"}
             </Button>
 
             <ul className="mt-6 space-y-3">

@@ -28,13 +28,29 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [profile, setProfile] = useState<Profile | null>(null);
   const [isLoading, setIsLoading] = useState(true);
 
-  const loadProfile = useCallback(async (userId: string | undefined) => {
-    if (!userId) {
+  const loadProfile = useCallback(async (user: User | null) => {
+    if (!user) {
       setProfile(null);
       return;
     }
-    const profileRes = await supabase.from("profiles").select("*").eq("id", userId).maybeSingle();
-    setProfile((profileRes.data as Profile | null) ?? null);
+    const profileRes = await supabase.from("profiles").select("*").eq("id", user.id).maybeSingle();
+    let p = (profileRes.data as Profile | null) ?? null;
+
+    if (p && !p.terms_accepted_at && user.user_metadata?.terms_accepted_at) {
+      const terms_accepted_at = user.user_metadata.terms_accepted_at;
+      const terms_version = user.user_metadata.terms_version;
+      const { data } = await supabase
+        .from("profiles")
+        .update({ terms_accepted_at, terms_version })
+        .eq("id", user.id)
+        .select()
+        .maybeSingle();
+      if (data) {
+        p = data as Profile;
+      }
+    }
+
+    setProfile(p);
   }, []);
 
   useEffect(() => {
@@ -44,7 +60,12 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     } = supabase.auth.onAuthStateChange((event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
-      loadProfile(session?.user?.id).finally(() => setIsLoading(false));
+      
+      if (event === "SIGNED_IN") {
+        setIsLoading(true);
+      }
+      
+      loadProfile(session?.user ?? null).finally(() => setIsLoading(false));
 
       if (event === "SIGNED_IN" && session?.user) {
         posthog.identify(session.user.id, { email: session.user.email });
@@ -62,7 +83,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     setProfile(null);
   };
 
-  const refreshProfile = useCallback(() => loadProfile(user?.id), [loadProfile, user?.id]);
+  const refreshProfile = useCallback(() => loadProfile(user), [loadProfile, user]);
 
   return (
     <AuthContext.Provider value={{ session, user, profile, isLoading, signOut, refreshProfile }}>

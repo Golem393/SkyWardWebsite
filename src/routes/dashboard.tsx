@@ -15,6 +15,7 @@ function DashboardLayout() {
   const { user, profile, isLoading, signOut } = useAuth();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isSigningOut, setIsSigningOut] = useState(false);
 
   const navigation = [
     { name: "Home", href: "/dashboard", icon: Home },
@@ -23,6 +24,7 @@ function DashboardLayout() {
   ];
 
   const handleSignOut = async () => {
+    setIsSigningOut(true);
     await signOut();
     window.location.href = "/";
   };
@@ -47,7 +49,7 @@ function DashboardLayout() {
                 <Link
                   to={item.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`group flex gap-x-3 rounded-lg p-2.5 text-sm font-medium leading-6 transition-all duration-200 ${
+                  className={`group flex items-center gap-x-3 rounded-lg p-2.5 text-sm font-medium leading-6 transition-all duration-200 ${
                     isActive
                       ? "bg-primary/10 text-primary"
                       : "text-muted-foreground hover:bg-muted hover:text-foreground"
@@ -68,7 +70,7 @@ function DashboardLayout() {
           <li className="mt-auto pb-4">
             <button
               onClick={handleSignOut}
-              className="group flex w-full gap-x-3 rounded-lg p-2.5 text-sm font-medium leading-6 text-muted-foreground transition-all duration-200 hover:bg-destructive/10 hover:text-destructive"
+              className="group flex items-center w-full gap-x-3 rounded-lg p-2.5 text-sm font-medium leading-6 text-muted-foreground transition-all duration-200 hover:bg-destructive/10 hover:text-destructive"
             >
               <LogOut className="h-5 w-5 shrink-0 text-muted-foreground group-hover:text-destructive" />
               Sign out
@@ -125,7 +127,7 @@ function DashboardLayout() {
       {/* Main content area */}
       <main className="lg:pl-64">
         <div className="min-h-screen relative aurora">
-          {isLoading ? null : (!profile?.subscription_status ||
+          {isLoading || isSigningOut ? null : (!profile?.subscription_status ||
             profile.subscription_status === "canceled" ||
             profile.subscription_status === "inactive") && 
             location.pathname !== "/dashboard/contact" &&

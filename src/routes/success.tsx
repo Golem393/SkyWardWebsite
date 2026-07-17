@@ -75,7 +75,7 @@ function SuccessPage() {
 
           <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">You're all set!</h1>
           <p className="text-slate-500 mb-8 max-w-[280px]">
-            Your 30-day free trial is now active. Welcome to Skyward.
+            Your 14-day free trial is now active. Welcome to Skyward.
           </p>
 
           <div className="w-full border-t border-slate-100 mb-8" />

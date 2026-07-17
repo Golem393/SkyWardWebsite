@@ -91,6 +91,10 @@ function AuthPage() {
       password,
       options: {
         emailRedirectTo: `${window.location.origin}/dashboard`,
+        data: {
+          terms_accepted_at: new Date().toISOString(),
+          terms_version: "2026-06-29",
+        },
       },
     });
 
@@ -100,15 +104,7 @@ function AuthPage() {
       return;
     }
 
-    if (data.user) {
-      await supabase
-        .from("profiles")
-        .update({
-          terms_accepted_at: new Date().toISOString(),
-          terms_version: "2026-06-29",
-        })
-        .eq("id", data.user.id);
-    }
+
 
     if (data.session) {
       posthog.capture("user_signed_up", { plan: plan ?? null });

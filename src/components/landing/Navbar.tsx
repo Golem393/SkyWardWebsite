@@ -33,20 +33,6 @@ export function Navbar() {
   // Close mobile menu on navigation
   const closeMobile = () => setMobileOpen(false);
 
-  const handleScrollToPricing = (e: React.MouseEvent) => {
-    if (window.location.pathname === "/") {
-      e.preventDefault();
-      const el = document.getElementById("pricing");
-      if (el) {
-        el.scrollIntoView({ behavior: "smooth" });
-      }
-    }
-  };
-
-  const handleMobilePricingClick = (e: React.MouseEvent) => {
-    closeMobile();
-    handleScrollToPricing(e);
-  };
 
   const handleSignOut = async () => {
     closeMobile();
@@ -123,13 +109,22 @@ export function Navbar() {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <Button
-              asChild
-              variant="ghost"
-              className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
-            >
-              <Link to="/auth">Login</Link>
-            </Button>
+            <>
+              <Button
+                asChild
+                variant="ghost"
+                className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
+              >
+                <Link to="/pricing">Pricing</Link>
+              </Button>
+              <Button
+                asChild
+                variant="ghost"
+                className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
+              >
+                <Link to="/auth">Login</Link>
+              </Button>
+            </>
           )}
           {(!user || isIndexPage) && (
             <Button
@@ -209,6 +204,13 @@ export function Navbar() {
       {/* Mobile full-viewport overlay — logged-out or index page only, sits behind the pill (z-10) */}
       {(!user || isIndexPage) && mobileOpen && (
         <div className="pointer-events-auto sm:hidden fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col pl-10 pr-6 pt-20 gap-1">
+          <Link
+            to="/pricing"
+            onClick={closeMobile}
+            className="py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
+          >
+            Pricing
+          </Link>
           <Link
             to="/auth"
             onClick={closeMobile}

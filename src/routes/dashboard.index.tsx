@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/hooks/useAuth";
@@ -113,6 +113,7 @@ function DashboardHome() {
   const posthog = usePostHog();
   const { user, profile, refreshProfile } = useAuth();
 
+  const stepsRef = useRef<HTMLDivElement>(null);
   const [deviceState, setDeviceState] = useState<"new" | "existing" | null>(null);
   const [imei, setImei] = useState("");
   const [savingImei, setSavingImei] = useState(false);
@@ -136,6 +137,12 @@ function DashboardHome() {
 
   const handleSetDeviceState = async (state: "new" | "existing") => {
     setDeviceState(state);
+    
+    // Scroll to the next step, primarily helpful for mobile users
+    setTimeout(() => {
+      stepsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }, 100);
+
     if (!user) return;
     const { error } = await supabase.from("profiles").update({ new_existing_device: state }).eq("id", user.id);
     if (error) {
@@ -167,7 +174,7 @@ function DashboardHome() {
       <DialogTrigger asChild>
         <Button
           variant="outline"
-          className="w-full sm:w-auto gap-2 rounded-full border-amber-200/50 hover:bg-amber-50/50 dark:border-amber-900/50 dark:hover:bg-amber-900/20 text-amber-700 dark:text-amber-400"
+          className="w-full sm:w-auto gap-2 rounded-full border-amber-500 text-amber-700 hover:text-amber-700 hover:bg-amber-500/10 dark:border-amber-500 dark:text-amber-400 dark:hover:text-amber-400 dark:hover:bg-amber-500/20 shadow-sm"
         >
           <ShieldAlert className="h-4 w-4" />
           View Backup Guide
@@ -234,9 +241,8 @@ function DashboardHome() {
         <div className="grid sm:grid-cols-2 gap-4">
           <button
             onClick={() => handleSetDeviceState("new")}
-            className={`group text-left relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50 ${
-              deviceState === "new" ? "border-primary ring-1 ring-primary" : ""
-            }`}
+            className={`group text-left relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50 ${deviceState === "new" ? "border-primary ring-1 ring-primary" : ""
+              }`}
           >
             <div className="flex items-center justify-between">
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -252,9 +258,8 @@ function DashboardHome() {
 
           <button
             onClick={() => handleSetDeviceState("existing")}
-            className={`group text-left relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50 ${
-              deviceState === "existing" ? "border-primary ring-1 ring-primary" : ""
-            }`}
+            className={`group text-left relative overflow-hidden rounded-2xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary/50 ${deviceState === "existing" ? "border-primary ring-1 ring-primary" : ""
+              }`}
           >
             <div className="flex items-center justify-between">
               <div className="h-10 w-10 rounded-full bg-primary/10 flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -270,6 +275,7 @@ function DashboardHome() {
         </div>
       </div>
 
+      <div ref={stepsRef} className="scroll-mt-28" />
       {(deviceState || imeiSaved) && (
         <div className="space-y-8 animate-in fade-in duration-500">
           {/* Step 1: Link Device (IMEI) */}
@@ -319,36 +325,50 @@ function DashboardHome() {
           {imeiSaved && (
             <div className="space-y-6 animate-in slide-in-from-top-4 fade-in duration-500">
               {deviceState === "existing" && (
-                <Card className="border-amber-200/50 bg-gradient-to-br from-amber-500/5 to-transparent dark:from-amber-500/10 dark:border-amber-900/50">
-                  <CardHeader>
-                    <CardTitle className="text-lg flex items-center gap-2">
-                      <AlertTriangle className="h-5 w-5 text-amber-500" />
-                      Step 2: Factory Reset Required
-                    </CardTitle>
-                    <CardDescription className="text-amber-900/70 dark:text-amber-200/70">
-                      Before installing Skyward, you must factory reset your phone. This permanently
-                      erases all unbacked-up data.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+                <>
+                  <Card className="border-amber-200/50 bg-gradient-to-br from-amber-500/5 to-transparent dark:from-amber-500/10 dark:border-amber-900/50">
+                    <CardHeader>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        Step 2: Backing up data
+                      </CardTitle>
+                      <CardDescription className="text-amber-900/70 dark:text-amber-200/70">
+                        Before installing Skyward, you must factory reset your phone. This permanently
+                        erases all unbacked-up data. Please back up your data now.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent>
                       {renderBackupModal()}
-                    </div>
+                    </CardContent>
+                  </Card>
 
-                    <div className="pt-4 border-t border-amber-200/30 dark:border-amber-900/30">
-                      <Label className="text-sm font-medium">Select your device brand for reset instructions:</Label>
-                      <div className="flex flex-wrap gap-2 mt-3">
+                  <Card className="border-red-200/50 bg-gradient-to-br from-red-500/5 to-transparent dark:from-red-500/10 dark:border-red-900/50">
+                    <CardHeader>
+                      <CardTitle className="text-lg flex items-center gap-2">
+                        <AlertTriangle className="h-5 w-5 text-red-500" />
+                        Step 3: Factory Reset
+                      </CardTitle>
+                      <CardDescription className="text-red-900/70 dark:text-red-200/70">
+                        Select your device brand for reset instructions.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
                         {(["Samsung", "Google", "Motorola"] as const).map((d) => (
                           <button
                             key={d}
                             onClick={() => setDeviceType(d)}
                             className={[
-                              "rounded-full border px-4 py-1.5 text-sm font-medium transition-all",
+                              "flex items-center justify-center gap-2 rounded-xl border-2 p-3 text-sm font-semibold transition-all duration-200 hover:shadow-sm",
                               deviceType === d
-                                ? "border-primary bg-primary text-primary-foreground shadow-sm"
-                                : "border-slate-200 bg-background hover:bg-slate-50 dark:border-slate-800 dark:hover:bg-slate-900",
+                                ? "border-primary bg-primary/5 text-primary"
+                                : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:bg-muted/50 hover:text-foreground",
                             ].join(" ")}
                           >
+                            <Smartphone
+                              className={`h-4 w-4 transition-colors ${deviceType === d ? "text-primary" : "text-muted-foreground"
+                                }`}
+                            />
                             {d}
                           </button>
                         ))}
@@ -387,18 +407,19 @@ function DashboardHome() {
                         disabled={!deviceType}
                       />
                       <span className="text-sm text-foreground leading-snug">
-                        I have backed up my data and successfully factory reset my phone.
+                        I have successfully factory reset my phone.
                       </span>
                     </label>
                   </CardContent>
                 </Card>
+                </>
               )}
 
               {(deviceState === "new" || resetConfirmed || (!deviceState && imeiSaved)) && (
                 <Card className="border-primary/20 shadow-md">
                   <CardHeader>
                     <CardTitle className="text-lg">
-                      {deviceState === "existing" ? "Step 3: Install Skyward" : "Step 2: Install Skyward"}
+                      {deviceState === "existing" ? "Step 4: Install Skyward" : "Step 2: Install Skyward"}
                     </CardTitle>
                     <CardDescription>
                       Scan the QR code. You must be connected to Wi-Fi.

@@ -73,7 +73,7 @@ export function DashboardPricing() {
                 Loading…
               </>
             ) : (
-              "Start Free 30-Day Trial"
+              "Start Free 14-Day Trial"
             )}
           </Button>
         </div>
