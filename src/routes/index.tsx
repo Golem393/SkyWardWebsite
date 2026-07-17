@@ -42,8 +42,8 @@ function Index() {
       <HowItWorks />
       {/*<CompatibilitySection />*/}
       <Faq />
-      {/*<CtaSection />*/}
-      <Pricing />
+      <CtaSection />
+      {/*<Pricing />*/}
       <Footer />
     </main>
   );

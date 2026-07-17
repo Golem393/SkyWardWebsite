@@ -70,3 +70,8 @@ export function createCheckoutSession(plan: "monthly" | "yearly", seats: number 
 export function createPortalSession() {
   return authedPost<{ url: string }>("/api/stripe/portal", {});
 }
+
+/** Send a support message via email. */
+export function sendContactMessage(subject: string, message: string) {
+  return authedPost<{ success: boolean }>("/api/support/contact", { subject, message });
+}

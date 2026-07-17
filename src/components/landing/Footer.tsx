@@ -17,9 +17,6 @@ export function Footer() {
       <div className="max-w-5xl mx-auto mt-10 flex flex-col md:flex-row items-center justify-between gap-3 text-xs text-muted-foreground">
         <p>© 2026 Skyward. All rights reserved.</p>
         <div className="flex items-center gap-5">
-          <Link to="/pricing" className="hover:text-foreground transition-colors">
-            Pricing
-          </Link>
           <Link to="/privacy" className="hover:text-foreground transition-colors">
             Privacy
           </Link>

@@ -19,17 +19,11 @@ export interface Profile {
   terms_accepted_at: string | null;
   terms_version: string | null;
   created_at: string;
-}
-
-// Shape of a row in the `subscription` table.
-export interface Subscription {
-  id: string;
-  user_id: string | null;
   plan: "monthly" | "yearly" | null;
-  status: "inactive" | "active" | "canceled" | "past_due" | null;
+  subscription_status: "inactive" | "active" | "canceled" | "past_due" | "trialing" | null;
   stripe_customer_id: string | null;
   stripe_subscription_id: string | null;
-  subscription_end_date: string | null;
-  canceled_at_date: string | null;
-  created_at: string;
+  current_period_end: string | null;
+  cancel_at_period_end: boolean | null;
+  new_existing_device: "new" | "existing" | null;
 }

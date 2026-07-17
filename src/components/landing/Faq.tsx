@@ -21,15 +21,11 @@ const faqs = [
   },
   {
     q: "Can Skyward see or read my private data?",
-    a: "No. We have zero access to your personal life. We cannot read your text messages, view your photos, track your location, or see what you type. Your data stays completely private on your device.",
+    a: "No. We have zero access to your personal life. We cannot read your text messages, view your photos, track your location, or see what you type.",
   },
   {
     q: "What if I change my mind? Can I ever remove Skyward?",
     a: "Yes, you can remove Skyward and restore your phone by canceling your subscription. Your phone will be back to normal on the subscription's end date or you can request an immediate unenrollment.",
-  },
-  {
-    q: "Do you have a refund policy?",
-    a: "Yes, your first month is covered by a 30-day money-back guarantee.",
   },
   {
     q: "How do I contact your support team?",

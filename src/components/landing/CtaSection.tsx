@@ -26,7 +26,7 @@ export function CtaSection() {
             onClick={() => posthog.capture("get_started_clicked", { source: "cta_section" })}
           >
             <Link to="/auth" search={{ mode: "register" }}>
-              Activate Skyward for Android
+              Start a free trial
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </Button>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, useNavigate } from "@tanstack/react-router";
+import { Link, useNavigate, useLocation } from "@tanstack/react-router";
 import { User, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarFallback } from "@/components/ui/avatar";
@@ -18,8 +18,10 @@ import { toast } from "sonner";
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
-  const { user, profile, subscription, signOut } = useAuth();
+  const { user, profile, signOut } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
+  const isIndexPage = location.pathname === "/";
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 24);
@@ -65,25 +67,14 @@ export function Navbar() {
             : "mx-auto w-[min(1200px,calc(100%-2rem))] rounded-full px-6 py-3 bg-transparent",
         ].join(" ")}
       >
-        <Link to={user ? "/setup" : "/"} className="flex items-center gap-2">
+        <Link to={user ? "/dashboard" : "/"} className="flex items-center gap-2">
           <img src="/logo.png" alt="Skyward" className="h-7 w-7 object-contain" />
           <span className="font-semibold text-foreground -tracking-[0.02em]">Skyward</span>
         </Link>
 
         {/* Desktop nav */}
         <div className="hidden sm:flex gap-2 items-center">
-          {!user && (
-            <Button
-              asChild
-              variant="ghost"
-              className="rounded-full px-4 text-sm font-medium hover:bg-transparent hover:text-primary"
-            >
-              <Link to="/" hash="pricing" onClick={handleScrollToPricing}>
-                Pricing
-              </Link>
-            </Button>
-          )}
-          {user ? (
+          {user && !isIndexPage ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -103,9 +94,9 @@ export function Navbar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/account">Account</Link>
+                  <Link to="/dashboard/account">Account</Link>
                 </DropdownMenuItem>
-                {subscription && (
+                {profile?.stripe_customer_id && (
                   <DropdownMenuItem
                     onSelect={async (e) => {
                       e.preventDefault();
@@ -123,7 +114,7 @@ export function Navbar() {
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem asChild>
-                  <Link to="/setup">Setup guide</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
@@ -140,13 +131,13 @@ export function Navbar() {
               <Link to="/auth">Login</Link>
             </Button>
           )}
-          {!user && (
+          {(!user || isIndexPage) && (
             <Button
               asChild
               className="rounded-full bg-primary text-primary-foreground hover:bg-primary/90 px-5 h-9 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)]"
             >
-              <Link to="/" hash="pricing" onClick={handleScrollToPricing}>
-                Get Skyward
+              <Link to="/auth" search={{ mode: "register" }}>
+                Start a free trial
               </Link>
             </Button>
           )}
@@ -154,7 +145,7 @@ export function Navbar() {
 
         {/* Mobile: logged-in user shows avatar, logged-out shows hamburger */}
         <div className="flex sm:hidden items-center gap-2">
-          {user ? (
+          {user && !isIndexPage ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -174,9 +165,9 @@ export function Navbar() {
                 </DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem asChild>
-                  <Link to="/account">Account</Link>
+                  <Link to="/dashboard/account">Account</Link>
                 </DropdownMenuItem>
-                {subscription && (
+                {profile?.stripe_customer_id && (
                   <DropdownMenuItem
                     onSelect={async (e) => {
                       e.preventDefault();
@@ -194,7 +185,7 @@ export function Navbar() {
                   </DropdownMenuItem>
                 )}
                 <DropdownMenuItem asChild>
-                  <Link to="/setup">Setup guide</Link>
+                  <Link to="/dashboard">Dashboard</Link>
                 </DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem onSelect={handleSignOut} className="text-destructive">
@@ -215,17 +206,9 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Mobile full-viewport overlay — logged-out only, sits behind the pill (z-10) */}
-      {!user && mobileOpen && (
+      {/* Mobile full-viewport overlay — logged-out or index page only, sits behind the pill (z-10) */}
+      {(!user || isIndexPage) && mobileOpen && (
         <div className="pointer-events-auto sm:hidden fixed inset-0 bg-background/95 backdrop-blur-md flex flex-col pl-10 pr-6 pt-20 gap-1">
-          <Link
-            to="/"
-            hash="pricing"
-            onClick={handleMobilePricingClick}
-            className="py-3 text-lg font-medium text-foreground hover:text-primary transition-colors"
-          >
-            Pricing
-          </Link>
           <Link
             to="/auth"
             onClick={closeMobile}
@@ -235,12 +218,12 @@ export function Navbar() {
           </Link>
           <div className="mt-4">
             <Link
-              to="/"
-              hash="pricing"
-              onClick={handleMobilePricingClick}
+              to="/auth"
+              search={{ mode: "register" }}
+              onClick={closeMobile}
               className="inline-flex items-center justify-center rounded-full bg-primary text-primary-foreground text-sm font-medium px-6 py-2.5 shadow-[0_8px_24px_-8px_rgba(125,167,217,0.6)] hover:bg-primary/90 transition-colors"
             >
-              Get started
+              Start a free trial
             </Link>
           </div>
         </div>
