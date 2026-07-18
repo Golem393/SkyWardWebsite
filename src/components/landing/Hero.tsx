@@ -13,7 +13,7 @@ export function Hero() {
     >
       <div className="mx-auto max-w-7xl px-6 lg:px-8 w-full">
         <div className="lg:grid lg:grid-cols-12 lg:gap-16 items-center">
-          
+
           {/* Text Content */}
           <div className="max-w-2xl mx-auto lg:mx-0 lg:col-span-7 lg:text-left text-center">
             <h1
@@ -26,7 +26,7 @@ export function Hero() {
               className="mt-6 text-lg sm:text-xl leading-8 text-muted-foreground text-balance animate-fade-in lg:pr-8 mx-auto lg:mx-0 max-w-xl"
               style={{ animationDelay: "260ms", animationFillMode: "both" }}
             >
-              Skyward blocks all social media, games, porn, & other addictive apps from your Android
+              Skyward blocks social media, games, porn, & other addictive apps from your Android
               phone - with no way to bypass the restrictions.
             </p>
             <div
@@ -46,13 +46,13 @@ export function Hero() {
               </Button>
             </div>
           </div>
-          
+
           {/* Image Content */}
           <div className="mt-16 sm:mt-24 lg:mt-0 lg:col-span-5 flex justify-center lg:justify-center relative">
             <div className="relative w-full max-w-[320px] sm:max-w-[400px] lg:max-w-[480px] xl:max-w-[560px] flex justify-center">
-              <img 
-                src="/phone-mockup.png" 
-                alt="Skyward Phone Mockup" 
+              <img
+                src="/phone-mockup.png"
+                alt="Skyward Phone Mockup"
                 className="w-full h-auto object-contain animate-fade-in -my-12 lg:-my-32"
                 style={{ animationDelay: "500ms", animationFillMode: "both" }}
               />
