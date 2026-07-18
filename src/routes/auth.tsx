@@ -70,10 +70,10 @@ function AuthPage() {
       toast.error(error.message);
       return;
     }
-    
+
     setEmail("");
     setPassword("");
-    
+
     posthog.capture("user_logged_in", { plan: plan ?? null });
     goNext();
   };
@@ -206,7 +206,7 @@ function AuthPage() {
             {activeMode === "login" ? "Welcome to Skyward" : "Create an account"}
           </CardTitle>
           <CardDescription>
-            {activeMode === "login" ? "Log in to continue." : "Start your free trial."}
+            {activeMode === "login" ? "Log in to continue." : "Take the first step."}
           </CardDescription>
         </CardHeader>
         <CardContent>
@@ -270,7 +270,7 @@ function AuthPage() {
               </div>
             )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Loading…" : activeMode === "login" ? "Login" : "Start free trial"}
+              {loading ? "Loading…" : activeMode === "login" ? "Login" : "Sign up"}
             </Button>
           </form>
 
