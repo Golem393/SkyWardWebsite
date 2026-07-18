@@ -27,7 +27,7 @@ export function Hero() {
               style={{ animationDelay: "260ms", animationFillMode: "both" }}
             >
               Skyward blocks social media, games, porn, & other addictive apps from your Android
-              phone - with no easy way to bypass the restrictions.
+              phone - with restrictions designed to not be bypassed.
             </p>
             <div
               className="mt-10 flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 animate-fade-in"
