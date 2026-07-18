@@ -15,6 +15,7 @@ import {
   ShieldAlert,
   KeyRound,
   Wifi,
+  MessageCircle,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
@@ -137,7 +138,7 @@ function DashboardHome() {
 
   const handleSetDeviceState = async (state: "new" | "existing") => {
     setDeviceState(state);
-    
+
     // Scroll to the next step, primarily helpful for mobile users
     setTimeout(() => {
       stepsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -191,6 +192,27 @@ function DashboardHome() {
           </DialogDescription>
         </DialogHeader>
         <div className="space-y-6 py-4">
+          <div className="space-y-2 rounded-xl bg-red-50/80 dark:bg-red-950/30 border border-red-200 dark:border-red-900/50 p-4">
+            <h4 className="font-semibold text-sm text-red-800 dark:text-red-300 flex items-center gap-2">
+              <AlertTriangle className="h-4 w-4" /> What you will lose
+            </h4>
+            <p className="text-xs text-red-700/90 dark:text-red-400/90 mb-2">
+              A factory reset will permanently erase all data. Make sure you have backed up:
+            </p>
+            <ul className="text-xs text-red-700/90 dark:text-red-400/90 list-disc list-inside space-y-1 ml-1">
+              <li>Photos and videos</li>
+              <li>Contacts and call history</li>
+              <li>Text messages (SMS/MMS) and chat apps</li>
+              <li>Authenticator app codes (2FA)</li>
+              <li>Crypto wallets and private keys</li>
+              <li>Notes and voice memos</li>
+              <li>Local game saves</li>
+              <li>eSIM profiles</li>
+              <li>Downloaded files and documents</li>
+              <li>Passwords and app logins</li>
+            </ul>
+          </div>
+
           <div className="space-y-3">
             <h4 className="font-medium text-sm text-foreground flex items-center gap-2">
               <Smartphone className="h-4 w-4 text-primary" /> Device Backup
@@ -214,6 +236,14 @@ function DashboardHome() {
             <p className="text-xs text-muted-foreground leading-relaxed">
               If you use Google Authenticator, Authy, or Duo Mobile, make sure your accounts are
               exported or backed up. You will lose access to 2FA codes if you skip this!
+            </p>
+          </div>
+          <div className="space-y-2">
+            <h4 className="font-medium text-sm text-foreground flex items-center gap-2">
+              <MessageCircle className="h-4 w-4 text-primary" /> WhatsApp
+            </h4>
+            <p className="text-xs text-muted-foreground leading-relaxed">
+              If you use WhatsApp, make sure to manually back up your chat history to Google Drive in the app settings before resetting.
             </p>
           </div>
           <div className="space-y-2">
@@ -354,80 +384,148 @@ function DashboardHome() {
                     <CardContent className="space-y-6">
                       <div>
                         <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
-                        {(["Samsung", "Google", "Motorola"] as const).map((d) => (
-                          <button
-                            key={d}
-                            onClick={() => setDeviceType(d)}
-                            className={[
-                              "flex items-center justify-center gap-2 rounded-xl border-2 p-3 text-sm font-semibold transition-all duration-200 hover:shadow-sm",
-                              deviceType === d
-                                ? "border-primary bg-primary/5 text-primary"
-                                : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:bg-muted/50 hover:text-foreground",
-                            ].join(" ")}
-                          >
-                            <Smartphone
-                              className={`h-4 w-4 transition-colors ${deviceType === d ? "text-primary" : "text-muted-foreground"
-                                }`}
-                            />
-                            {d}
-                          </button>
-                        ))}
-                      </div>
-                    </div>
-
-                    {deviceType && (
-                      <div className="rounded-xl bg-background/50 p-4 border border-border/50 space-y-3 animate-in fade-in duration-300">
-                        <p className="text-sm font-medium">{DEVICE_STEPS[deviceType].title}</p>
-                        <ol className="space-y-2">
-                          {DEVICE_STEPS[deviceType].steps.map((step, i) => (
-                            <li key={i} className="flex gap-3">
-                              <span className="flex h-5 items-center shrink-0">
-                                <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-[10px] font-semibold text-primary">
-                                  {i + 1}
-                                </span>
-                              </span>
-                              <span className="text-sm leading-5 text-foreground">{step}</span>
-                            </li>
+                          {(["Samsung", "Google", "Motorola"] as const).map((d) => (
+                            <button
+                              key={d}
+                              onClick={() => setDeviceType(d)}
+                              className={[
+                                "flex items-center justify-center gap-2 rounded-xl border-2 p-3 text-sm font-semibold transition-all duration-200 hover:shadow-sm",
+                                deviceType === d
+                                  ? "border-primary bg-primary/5 text-primary"
+                                  : "border-border bg-card text-muted-foreground hover:border-primary/40 hover:bg-muted/50 hover:text-foreground",
+                              ].join(" ")}
+                            >
+                              <Smartphone
+                                className={`h-4 w-4 transition-colors ${deviceType === d ? "text-primary" : "text-muted-foreground"
+                                  }`}
+                              />
+                              {d}
+                            </button>
                           ))}
-                        </ol>
+                        </div>
                       </div>
-                    )}
 
-                    <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-background/50 px-4 py-3 transition-colors hover:bg-muted/50">
-                      <Checkbox
-                        checked={resetConfirmed}
-                        onCheckedChange={(v) => {
-                          setResetConfirmed(Boolean(v));
-                          if (v)
-                            posthog.capture("setup_factory_reset_confirmed", {
-                              device: deviceType,
-                            });
-                        }}
-                        className="mt-0.5 shrink-0"
-                        disabled={!deviceType}
-                      />
-                      <span className="text-sm text-foreground leading-snug">
-                        I have successfully factory reset my phone.
-                      </span>
-                    </label>
-                  </CardContent>
-                </Card>
+                      {deviceType && (
+                        <div className="rounded-xl bg-background/50 p-4 border border-border/50 space-y-3 animate-in fade-in duration-300">
+                          <p className="text-sm font-medium">{DEVICE_STEPS[deviceType].title}</p>
+                          <ol className="space-y-2">
+                            {DEVICE_STEPS[deviceType].steps.map((step, i) => (
+                              <li key={i} className="flex gap-3">
+                                <span className="flex h-5 items-center shrink-0">
+                                  <span className="flex h-5 w-5 items-center justify-center rounded-full bg-primary/10 text-[10px] font-semibold text-primary">
+                                    {i + 1}
+                                  </span>
+                                </span>
+                                <span className="text-sm leading-5 text-foreground">{step}</span>
+                              </li>
+                            ))}
+                          </ol>
+                        </div>
+                      )}
+
+                      <label className="flex cursor-pointer items-start gap-3 rounded-xl border border-border bg-background/50 px-4 py-3 transition-colors hover:bg-muted/50">
+                        <Checkbox
+                          checked={resetConfirmed}
+                          onCheckedChange={(v) => {
+                            setResetConfirmed(Boolean(v));
+                            if (v)
+                              posthog.capture("setup_factory_reset_confirmed", {
+                                device: deviceType,
+                              });
+                          }}
+                          className="mt-0.5 shrink-0"
+                          disabled={!deviceType}
+                        />
+                        <span className="text-sm text-foreground leading-snug">
+                          I have successfully factory reset my phone.
+                        </span>
+                      </label>
+                    </CardContent>
+                  </Card>
                 </>
               )}
 
               {(deviceState === "new" || resetConfirmed || (!deviceState && imeiSaved)) && (
-                <Card className="border-primary/20 shadow-md">
-                  <CardHeader>
-                    <CardTitle className="text-lg">
-                      {deviceState === "existing" ? "Step 4: Install Skyward" : "Step 2: Install Skyward"}
-                    </CardTitle>
-                    <CardDescription>
-                      Scan the QR code. You must be connected to Wi-Fi.
-                    </CardDescription>
-                  </CardHeader>
-                  <CardContent className="space-y-6">
-                    <div className="flex flex-col md:flex-row items-center gap-8">
-                      <div className="flex-1 space-y-4">
+                <>
+                  <Card className="border-primary/20 shadow-md">
+                    <CardHeader>
+                      <CardTitle className="text-lg">
+                        {deviceState === "existing" ? "Step 4: Install Skyward" : "Step 2: Install Skyward"}
+                      </CardTitle>
+                      <CardDescription>
+                        Scan the QR code. You must be connected to Wi-Fi.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex flex-col md:flex-row items-center gap-8">
+                        <div className="flex-1 space-y-4">
+                          <div className="flex gap-3">
+                            <div className="flex h-6 items-center shrink-0">
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                                1
+                              </div>
+                            </div>
+                            <p className="text-sm leading-6 text-foreground">
+                              Turn on your device so it shows the "Welcome" or "Let's Go" screen.
+                            </p>
+                          </div>
+                          <div className="flex gap-3">
+                            <div className="flex h-6 items-center shrink-0">
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                                2
+                              </div>
+                            </div>
+                            <p className="text-sm leading-6 text-foreground">
+                              Tap an empty space on the screen{" "}
+                              <span className="font-semibold text-primary">6 times in a row</span>.
+                            </p>
+                          </div>
+                          <div className="flex gap-3">
+                            <div className="flex h-6 items-center shrink-0">
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                                3
+                              </div>
+                            </div>
+                            <p className="text-sm leading-6 text-foreground">
+                              A QR scanner will open. Scan the QR code shown here.
+                            </p>
+                          </div>
+                          <div className="flex gap-3">
+                            <div className="flex h-6 items-center shrink-0">
+                              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
+                                4
+                              </div>
+                            </div>
+                            <p className="text-sm leading-6 text-foreground">
+                              Follow the on-screen prompts to connect to Wi-Fi and complete the
+                              installation.
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="flex flex-col items-center gap-3 rounded-2xl border bg-muted/30 p-6">
+                          <div className="rounded-xl bg-white p-3 shadow-sm ring-1 ring-black/5">
+                            <QRCodeSVG value={QR_VALUE} size={180} level="M" />
+                          </div>
+                          <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
+                            Provisioning QR
+                          </span>
+                        </div>
+                      </div>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-primary/20 shadow-md">
+                    <CardHeader>
+                      <CardTitle className="text-lg">
+                        {deviceState === "existing" ? "Step 5: Onboarding" : "Step 3: Onboarding"}
+                      </CardTitle>
+                      <CardDescription>
+                        Complete the final setup steps on your device.
+                      </CardDescription>
+                    </CardHeader>
+                    <CardContent className="space-y-6">
+                      <div className="flex flex-col space-y-4">
                         <div className="flex gap-3">
                           <div className="flex h-6 items-center shrink-0">
                             <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-xs font-semibold text-primary">
@@ -435,7 +533,7 @@ function DashboardHome() {
                             </div>
                           </div>
                           <p className="text-sm leading-6 text-foreground">
-                            Turn on your device so it shows the "Welcome" or "Let's Go" screen.
+                            Once the Skyward app is open, log in with your account.
                           </p>
                         </div>
                         <div className="flex gap-3">
@@ -445,8 +543,7 @@ function DashboardHome() {
                             </div>
                           </div>
                           <p className="text-sm leading-6 text-foreground">
-                            Tap an empty space on the screen{" "}
-                            <span className="font-semibold text-primary">6 times in a row</span>.
+                            Enable accessibility settings for Skyward when prompted.
                           </p>
                         </div>
                         <div className="flex gap-3">
@@ -456,7 +553,7 @@ function DashboardHome() {
                             </div>
                           </div>
                           <p className="text-sm leading-6 text-foreground">
-                            A QR scanner will open. Scan the QR code shown here.
+                            Configure the private DNS provider hostname. Use the value 1w2whn92y8e.dns.controld.com
                           </p>
                         </div>
                         <div className="flex gap-3">
@@ -466,23 +563,13 @@ function DashboardHome() {
                             </div>
                           </div>
                           <p className="text-sm leading-6 text-foreground">
-                            Follow the on-screen prompts to connect to Wi-Fi and complete the
-                            installation.
+                            Skyward will now be ready to use!
                           </p>
                         </div>
                       </div>
-
-                      <div className="flex flex-col items-center gap-3 rounded-2xl border bg-muted/30 p-6">
-                        <div className="rounded-xl bg-white p-3 shadow-sm ring-1 ring-black/5">
-                          <QRCodeSVG value={QR_VALUE} size={180} level="M" />
-                        </div>
-                        <span className="text-xs font-medium text-muted-foreground uppercase tracking-wider">
-                          Provisioning QR
-                        </span>
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
+                    </CardContent>
+                  </Card>
+                </>
               )}
             </div>
           )}
