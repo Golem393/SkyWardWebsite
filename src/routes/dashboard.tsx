@@ -1,6 +1,6 @@
 import { createFileRoute, Outlet, Link, useLocation } from "@tanstack/react-router";
 import { requireAuth } from "@/lib/route-guards";
-import { Home, User, Settings, ShieldCheck, Database, Menu, X, LogOut, Mail } from "lucide-react";
+import { Home, User, Settings, ShieldCheck, Database, Menu, X, LogOut } from "lucide-react";
 import { useAuth } from "@/hooks/useAuth";
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
@@ -20,7 +20,6 @@ function DashboardLayout() {
   const navigation = [
     { name: "Home", href: "/dashboard", icon: Home },
     { name: "Account", href: "/dashboard/account", icon: User },
-    { name: "Contact Support", href: "/dashboard/contact", icon: Mail },
   ];
 
   const handleSignOut = async () => {
@@ -130,7 +129,6 @@ function DashboardLayout() {
           {isLoading || isSigningOut ? null : (!profile?.subscription_status ||
             profile.subscription_status === "canceled" ||
             profile.subscription_status === "inactive") && 
-            location.pathname !== "/dashboard/contact" &&
             location.pathname !== "/dashboard/account" ? (
             <DashboardPricing />
           ) : (

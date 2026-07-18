@@ -20,7 +20,6 @@ import { Route as CompatibilityRouteImport } from './routes/compatibility'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as DashboardIndexRouteImport } from './routes/dashboard.index'
-import { Route as DashboardContactRouteImport } from './routes/dashboard.contact'
 import { Route as DashboardAccountRouteImport } from './routes/dashboard.account'
 
 const UpdatePasswordRoute = UpdatePasswordRouteImport.update({
@@ -78,11 +77,6 @@ const DashboardIndexRoute = DashboardIndexRouteImport.update({
   path: '/',
   getParentRoute: () => DashboardRoute,
 } as any)
-const DashboardContactRoute = DashboardContactRouteImport.update({
-  id: '/contact',
-  path: '/contact',
-  getParentRoute: () => DashboardRoute,
-} as any)
 const DashboardAccountRoute = DashboardAccountRouteImport.update({
   id: '/account',
   path: '/account',
@@ -101,7 +95,6 @@ export interface FileRoutesByFullPath {
   '/terms': typeof TermsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/dashboard/account': typeof DashboardAccountRoute
-  '/dashboard/contact': typeof DashboardContactRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRoutesByTo {
@@ -115,7 +108,6 @@ export interface FileRoutesByTo {
   '/terms': typeof TermsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/dashboard/account': typeof DashboardAccountRoute
-  '/dashboard/contact': typeof DashboardContactRoute
   '/dashboard': typeof DashboardIndexRoute
 }
 export interface FileRoutesById {
@@ -131,7 +123,6 @@ export interface FileRoutesById {
   '/terms': typeof TermsRoute
   '/update-password': typeof UpdatePasswordRoute
   '/dashboard/account': typeof DashboardAccountRoute
-  '/dashboard/contact': typeof DashboardContactRoute
   '/dashboard/': typeof DashboardIndexRoute
 }
 export interface FileRouteTypes {
@@ -148,7 +139,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/update-password'
     | '/dashboard/account'
-    | '/dashboard/contact'
     | '/dashboard/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -162,7 +152,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/update-password'
     | '/dashboard/account'
-    | '/dashboard/contact'
     | '/dashboard'
   id:
     | '__root__'
@@ -177,7 +166,6 @@ export interface FileRouteTypes {
     | '/terms'
     | '/update-password'
     | '/dashboard/account'
-    | '/dashboard/contact'
     | '/dashboard/'
   fileRoutesById: FileRoutesById
 }
@@ -273,13 +261,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof DashboardIndexRouteImport
       parentRoute: typeof DashboardRoute
     }
-    '/dashboard/contact': {
-      id: '/dashboard/contact'
-      path: '/contact'
-      fullPath: '/dashboard/contact'
-      preLoaderRoute: typeof DashboardContactRouteImport
-      parentRoute: typeof DashboardRoute
-    }
     '/dashboard/account': {
       id: '/dashboard/account'
       path: '/account'
@@ -292,13 +273,11 @@ declare module '@tanstack/react-router' {
 
 interface DashboardRouteChildren {
   DashboardAccountRoute: typeof DashboardAccountRoute
-  DashboardContactRoute: typeof DashboardContactRoute
   DashboardIndexRoute: typeof DashboardIndexRoute
 }
 
 const DashboardRouteChildren: DashboardRouteChildren = {
   DashboardAccountRoute: DashboardAccountRoute,
-  DashboardContactRoute: DashboardContactRoute,
   DashboardIndexRoute: DashboardIndexRoute,
 }
 
