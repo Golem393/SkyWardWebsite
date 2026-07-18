@@ -69,7 +69,7 @@ export function ComparisonSection() {
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <Check className="h-5 w-5 text-primary shrink-0" />
-                <span>Skyward's restrictions cannot be bypassed</span>
+                <span>Skyward's restrictions are designed to not be bypassed</span>
               </li>
               <li className="flex items-start gap-3 text-sm text-foreground font-medium">
                 <FileText className="h-5 w-5 text-primary shrink-0" />
