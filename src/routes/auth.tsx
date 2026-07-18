@@ -70,6 +70,10 @@ function AuthPage() {
       toast.error(error.message);
       return;
     }
+    
+    setEmail("");
+    setPassword("");
+    
     posthog.capture("user_logged_in", { plan: plan ?? null });
     goNext();
   };
@@ -107,11 +111,17 @@ function AuthPage() {
 
 
     if (data.session) {
+      setEmail("");
+      setPassword("");
+      setConsent(false);
       posthog.capture("user_signed_up", { plan: plan ?? null });
       goNext();
     } else {
       posthog.capture("user_signed_up", { plan: plan ?? null, email_verification_required: true });
       setRegisteredEmail(email);
+      setEmail("");
+      setPassword("");
+      setConsent(false);
       toast.success("Verification email sent! Please check your inbox.");
     }
   };
@@ -145,6 +155,7 @@ function AuthPage() {
       toast.error(error.message);
     } else {
       posthog.capture("password_reset_requested");
+      setEmail("");
       toast.success("Password reset email sent! Check your inbox.");
     }
   };
