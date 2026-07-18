@@ -2,6 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Navbar } from "@/components/landing/Navbar";
 import { Hero } from "@/components/landing/Hero";
 import { ComparisonSection } from "@/components/landing/ComparisonSection";
+import { UnbypassableSection } from "@/components/landing/UnbypassableSection";
 import { AppPolicySection } from "@/components/landing/AppPolicySection";
 import { HowItWorks } from "@/components/landing/HowItWorks";
 import { DemoVideo } from "@/components/landing/DemoVideo";
@@ -37,11 +38,12 @@ function Index() {
       {/*<DemoVideo />*/}
       <ComparisonSection />
       <AppPolicySection />
+      <UnbypassableSection />
       <HowItWorks />
       {/*<CompatibilitySection />*/}
       <Faq />
-      {/*<CtaSection />*/}
-      <Pricing />
+      <CtaSection />
+      {/*<Pricing />*/}
       <Footer />
     </main>
   );

@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { z } from "zod";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
@@ -8,7 +8,7 @@ import { usePostHog } from "@posthog/react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-// import { Checkbox } from "@/components/ui/checkbox";
+import { Checkbox } from "@/components/ui/checkbox";
 // import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Mail } from "lucide-react";
@@ -26,29 +26,35 @@ export const Route = createFileRoute("/auth")({
   component: AuthPage,
 });
 
-// const MIN_PASSWORD = 8;
+const MIN_PASSWORD = 8;
 
 function AuthPage() {
   const posthog = usePostHog();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [consent, setConsent] = useState(false);
+  const [consent, setConsent] = useState(false);
   const [loading, setLoading] = useState(false);
   const [registeredEmail, setRegisteredEmail] = useState<string | null>(null);
   const [resending, setResending] = useState(false);
 
-  const { redirect, plan } = Route.useSearch();
+  const { redirect, plan, mode } = Route.useSearch();
   const navigate = useNavigate();
 
-  // const [activeTab, setActiveTab] = useState<"login" | "register">(
-  //   mode === "register" ? "register" : "login",
-  // );
+  const [activeMode, setActiveMode] = useState<"login" | "register">(
+    mode === "register" ? "register" : "login",
+  );
+
+  useEffect(() => {
+    if (mode === "register" || mode === "login") {
+      setActiveMode(mode);
+    }
+  }, [mode]);
 
   // After auth: continue where the user was headed (default the account area),
   // carrying the chosen plan through the funnel.
   const goNext = () => {
     navigate({
-      to: redirect ?? "/account",
+      to: redirect ?? "/dashboard",
       search: plan ? { plan } : {},
     } as never);
   };
@@ -68,7 +74,6 @@ function AuthPage() {
     goNext();
   };
 
-  /*
   const handleRegister = async (e: React.FormEvent) => {
     e.preventDefault();
     if (password.length < MIN_PASSWORD) {
@@ -81,13 +86,25 @@ function AuthPage() {
     }
     setLoading(true);
 
-    const { data, error } = await supabase.auth.signUp({ email, password });
+    const { data, error } = await supabase.auth.signUp({
+      email,
+      password,
+      options: {
+        emailRedirectTo: `${window.location.origin}/dashboard`,
+        data: {
+          terms_accepted_at: new Date().toISOString(),
+          terms_version: "2026-06-29",
+        },
+      },
+    });
 
     setLoading(false);
     if (error) {
       toast.error(error.message);
       return;
     }
+
+
 
     if (data.session) {
       posthog.capture("user_signed_up", { plan: plan ?? null });
@@ -98,7 +115,6 @@ function AuthPage() {
       toast.success("Verification email sent! Please check your inbox.");
     }
   };
-  */
 
   const handleResend = async () => {
     if (!registeredEmail) return;
@@ -175,15 +191,22 @@ function AuthPage() {
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-md">
         <CardHeader>
-          <CardTitle>Welcome to Skyward</CardTitle>
-          <CardDescription>Log in to continue.</CardDescription>
+          <CardTitle>
+            {activeMode === "login" ? "Welcome to Skyward" : "Create an account"}
+          </CardTitle>
+          <CardDescription>
+            {activeMode === "login" ? "Log in to continue." : "Start your free trial."}
+          </CardDescription>
         </CardHeader>
         <CardContent>
-          <form onSubmit={handleLogin} className="space-y-4">
+          <form
+            onSubmit={activeMode === "login" ? handleLogin : handleRegister}
+            className="space-y-4"
+          >
             <div className="space-y-2">
-              <Label htmlFor="login-email">Email</Label>
+              <Label htmlFor="email">Email</Label>
               <Input
-                id="login-email"
+                id="email"
                 type="email"
                 autoComplete="email"
                 required
@@ -193,30 +216,78 @@ function AuthPage() {
             </div>
             <div className="space-y-2">
               <div className="flex items-center justify-between">
-                <Label htmlFor="login-password">Password</Label>
-                <Button
-                  variant="link"
-                  type="button"
-                  className="px-0 font-normal text-xs text-muted-foreground h-auto"
-                  onClick={handleResetPassword}
-                  disabled={loading}
-                >
-                  Forgot password?
-                </Button>
+                <Label htmlFor="password">Password</Label>
+                {activeMode === "login" && (
+                  <Button
+                    variant="link"
+                    type="button"
+                    className="px-0 font-normal text-xs text-muted-foreground h-auto"
+                    onClick={handleResetPassword}
+                    disabled={loading}
+                  >
+                    Forgot password?
+                  </Button>
+                )}
               </div>
               <Input
-                id="login-password"
+                id="password"
                 type="password"
-                autoComplete="current-password"
+                autoComplete={activeMode === "login" ? "current-password" : "new-password"}
                 required
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
+            {activeMode === "register" && (
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="consent"
+                  checked={consent}
+                  onCheckedChange={(c) => setConsent(c === true)}
+                />
+                <Label htmlFor="consent" className="text-sm font-normal">
+                  I agree to the{" "}
+                  <a href="/terms" className="underline hover:text-primary">
+                    Terms of Service
+                  </a>{" "}
+                  and{" "}
+                  <a href="/privacy" className="underline hover:text-primary">
+                    Privacy Policy
+                  </a>
+                  .
+                </Label>
+              </div>
+            )}
             <Button type="submit" className="w-full" disabled={loading}>
-              {loading ? "Loading…" : "Login"}
+              {loading ? "Loading…" : activeMode === "login" ? "Login" : "Start free trial"}
             </Button>
           </form>
+
+          <div className="mt-4 text-center text-sm text-muted-foreground">
+            {activeMode === "login" ? (
+              <>
+                Don't have an account?{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveMode("register")}
+                  className="font-medium text-primary hover:underline"
+                >
+                  Sign up
+                </button>
+              </>
+            ) : (
+              <>
+                Already have an account?{" "}
+                <button
+                  type="button"
+                  onClick={() => setActiveMode("login")}
+                  className="font-medium text-primary hover:underline"
+                >
+                  Log in
+                </button>
+              </>
+            )}
+          </div>
         </CardContent>
       </Card>
     </div>

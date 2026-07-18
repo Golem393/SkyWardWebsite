@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabase";
@@ -6,14 +6,14 @@ import { useAuth } from "@/hooks/useAuth";
 import { createPortalSession } from "@/lib/backend";
 import { requireAuth } from "@/lib/route-guards";
 import { usePostHog } from "@posthog/react";
-import { Navbar } from "@/components/landing/Navbar";
+
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Minus, Plus, Check } from "lucide-react";
 
-export const Route = createFileRoute("/account")({
+export const Route = createFileRoute("/dashboard/account")({
   ssr: false,
   beforeLoad: ({ location }) => requireAuth({ href: location.pathname }),
   component: AccountPage,
@@ -24,54 +24,24 @@ const STATUS_LABELS: Record<
   { label: string; variant: "default" | "secondary" | "destructive" }
 > = {
   active: { label: "Active", variant: "default" },
+  trialing: { label: "Free Trial", variant: "default" },
   inactive: { label: "Inactive", variant: "secondary" },
   canceled: { label: "Canceled", variant: "destructive" },
   past_due: { label: "Past due", variant: "destructive" },
 };
 
-function isValidImei(value: string) {
-  return /^\d{15}$/.test(value);
-}
-
 function AccountPage() {
   const posthog = usePostHog();
-  const { user, profile, subscription, refreshProfile, signOut } = useAuth();
-  const navigate = useNavigate();
+  const { user, profile, refreshProfile } = useAuth();
 
-  const [imei, setImei] = useState("");
-  const [savingImei, setSavingImei] = useState(false);
   const [openingPortal, setOpeningPortal] = useState(false);
   const [resettingPassword, setResettingPassword] = useState(false);
 
-  useEffect(() => {
-    setImei(profile?.imei ?? "");
-  }, [profile?.imei]);
-
-  const status = subscription?.status ?? "inactive";
+  const status = profile?.subscription_status ?? "inactive";
   const statusInfo = STATUS_LABELS[status] ?? STATUS_LABELS.inactive;
-  const imeiChanged = imei !== (profile?.imei ?? "");
-
-  const handleSaveImei = async () => {
-    if (!isValidImei(imei)) {
-      toast.error("Enter a valid 15-digit IMEI.");
-      return;
-    }
-    if (!user) return;
-    setSavingImei(true);
-    const { error } = await supabase.from("profiles").update({ imei }).eq("id", user.id);
-    setSavingImei(false);
-    if (error) {
-      toast.error(`Couldn't save: ${error.message}`);
-      return;
-    }
-    await refreshProfile();
-    posthog.capture("device_imei_saved", { user_id: user.id });
-    toast.success("Device IMEI updated.");
-  };
-
   const handleManageSubscription = async () => {
     setOpeningPortal(true);
-    posthog.capture("subscription_management_opened", { plan: subscription?.plan ?? null });
+    posthog.capture("subscription_management_opened", { plan: profile?.plan ?? null });
     try {
       const { url } = await createPortalSession();
       window.location.href = url;
@@ -81,11 +51,7 @@ function AccountPage() {
     }
   };
 
-  const handleSignOut = async () => {
-    posthog.capture("user_signed_out");
-    await signOut();
-    navigate({ to: "/" });
-  };
+
 
   const handleSendResetEmail = async () => {
     const email = profile?.email ?? user?.email;
@@ -103,22 +69,13 @@ function AccountPage() {
   };
 
   return (
-    <div className="min-h-screen bg-background">
-      <Navbar />
-      <main className="mx-auto w-full max-w-2xl px-4 pb-24 pt-32 space-y-6">
-        <div className="-ml-4">
-          <Button variant="ghost" asChild className="text-muted-foreground rounded-full">
-            <Link to="/">← Back</Link>
-          </Button>
-        </div>
+    <div className="py-8">
+      <main className="mx-auto w-full max-w-2xl px-4 space-y-6">
         <div className="flex items-center justify-between">
           <div>
             <h1 className="text-2xl font-semibold text-foreground">Your account</h1>
             <p className="text-sm text-muted-foreground">{profile?.email ?? user?.email}</p>
           </div>
-          <Button variant="ghost" onClick={handleSignOut} className="rounded-full">
-            Sign out
-          </Button>
         </div>
 
         {/* Subscription */}
@@ -129,16 +86,14 @@ function AccountPage() {
               <Badge variant={statusInfo.variant}>{statusInfo.label}</Badge>
             </div>
             <CardDescription>
-              {subscription?.plan ? `Skyward ${subscription.plan} plan` : "No active plan yet."}
+              {profile?.plan ? `Skyward ${profile.plan} plan` : "No active plan yet."}
             </CardDescription>
           </CardHeader>
           <CardContent className="space-y-4">
-            {subscription?.canceled_at_date && (
+            {(profile?.subscription_status === "canceled" || profile?.cancel_at_period_end) && profile?.current_period_end && (
               <p className="text-sm text-destructive font-medium">
                 Canceled. Access ends on{" "}
-                {new Date(
-                  subscription.subscription_end_date || subscription.canceled_at_date,
-                ).toLocaleDateString(undefined, {
+                {new Date(profile.current_period_end).toLocaleDateString(undefined, {
                   year: "numeric",
                   month: "long",
                   day: "numeric",
@@ -146,42 +101,32 @@ function AccountPage() {
                 .
               </p>
             )}
-            <Button
-              variant="outline"
-              className="rounded-full"
-              onClick={handleManageSubscription}
-              disabled={openingPortal}
-            >
-              {openingPortal ? "Opening…" : "Manage subscription"}
-            </Button>
-          </CardContent>
-        </Card>
-
-        {/* Device */}
-        <Card>
-          <CardHeader>
-            <CardTitle>Device</CardTitle>
-            <CardDescription>The IMEI of the device linked to your account.</CardDescription>
-          </CardHeader>
-          <CardContent className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="imei">IMEI number</Label>
-              <div className="flex gap-2">
-                <Input
-                  id="imei"
-                  inputMode="numeric"
-                  placeholder="15-digit IMEI"
-                  value={imei}
-                  onChange={(e) => setImei(e.target.value.replace(/\D/g, "").slice(0, 15))}
-                  maxLength={15}
-                />
-                <Button onClick={handleSaveImei} disabled={savingImei || !imeiChanged}>
-                  {savingImei ? "Saving…" : "Save"}
+            {profile?.subscription_status === "trialing" && !profile?.cancel_at_period_end && profile?.current_period_end && (
+              <p className="text-sm text-muted-foreground font-medium">
+                Free trial ends on{" "}
+                {new Date(profile.current_period_end).toLocaleDateString(undefined, {
+                  year: "numeric",
+                  month: "long",
+                  day: "numeric",
+                })}
+                .
+              </p>
+            )}
+            <div className="flex gap-3">
+              {profile?.stripe_customer_id && (
+                <Button
+                  variant="outline"
+                  className="rounded-full"
+                  onClick={handleManageSubscription}
+                  disabled={openingPortal}
+                >
+                  {openingPortal ? "Opening…" : "Manage subscription"}
                 </Button>
-              </div>
+              )}
             </div>
           </CardContent>
         </Card>
+
         {/* Security */}
         <Card>
           <CardHeader>

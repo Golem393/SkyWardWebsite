@@ -33,10 +33,10 @@ export async function redirectIfAuth(opts: { search?: Record<string, unknown> })
 
   if (session) {
     // We could read `opts.search.redirect` here if we want to honor it,
-    // but defaulting to `/account` is usually fine for a logged-in user hitting `/auth`.
+    // but defaulting to `/dashboard` is usually fine for a logged-in user hitting `/auth`.
     const searchObj = opts.search as { redirect?: string };
     throw redirect({
-      to: searchObj?.redirect ?? "/account",
+      to: searchObj?.redirect ?? "/dashboard",
     });
   }
 }

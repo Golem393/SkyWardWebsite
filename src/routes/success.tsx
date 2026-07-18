@@ -1,11 +1,19 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect } from "react";
 import { Navbar } from "@/components/landing/Navbar";
 import { usePostHog } from "@posthog/react";
+import { useAuth } from "@/hooks/useAuth";
+import { CheckCircle2, Mail, ArrowRight, HelpCircle, Loader2 } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/success")({
   ssr: false,
   component: SuccessPage,
+  validateSearch: (search: Record<string, unknown>) => {
+    return {
+      auth: search.auth === "true" || search.auth === true,
+    };
+  },
 });
 
 interface RedditWindow extends Window {
@@ -14,6 +22,8 @@ interface RedditWindow extends Window {
 
 function SuccessPage() {
   const posthog = usePostHog();
+  const { auth } = Route.useSearch();
+  const { profile, refreshProfile } = useAuth();
 
   useEffect(() => {
     // Fire the Purchase event to the Reddit Pixel when the success page mounts
@@ -31,190 +41,97 @@ function SuccessPage() {
     }
   }, [posthog]);
 
+  // Poll for webhook completion if authenticated and still inactive
+  useEffect(() => {
+    if (!auth || !profile || profile.subscription_status !== "inactive") return;
+
+    const intervalId = setInterval(() => {
+      refreshProfile();
+    }, 1500);
+
+    // Stop polling after 15 seconds to avoid infinite loops
+    const timeoutId = setTimeout(() => {
+      clearInterval(intervalId);
+    }, 15000);
+
+    return () => {
+      clearInterval(intervalId);
+      clearTimeout(timeoutId);
+    };
+  }, [auth, profile?.subscription_status, refreshProfile]);
+
   return (
-    <div
-      style={{
-        minHeight: "100vh",
-        backgroundColor: "#f0f4f8",
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: "100px 16px 40px",
-        fontFamily: "'Inter', system-ui, sans-serif",
-      }}
-    >
+    <div className="min-h-screen bg-slate-50 flex flex-col items-center justify-center py-24 px-4 font-sans">
       <Navbar />
 
-      {/* Card */}
-      <div
-        style={{
-          backgroundColor: "#ffffff",
-          borderRadius: "16px",
-          padding: "40px 36px 32px",
-          width: "100%",
-          maxWidth: "520px",
-          boxShadow: "0 2px 16px rgba(0,0,0,0.07)",
-        }}
-      >
-        {/* Green checkmark icon */}
-        <div style={{ display: "flex", justifyContent: "center", marginBottom: "20px" }}>
-          <div
-            style={{
-              width: "56px",
-              height: "56px",
-              borderRadius: "50%",
-              border: "2.5px solid #22c55e",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg
-              width="26"
-              height="26"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#22c55e"
-              strokeWidth="2.5"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="20 6 9 17 4 12" />
-            </svg>
+      <div className="bg-white rounded-2xl p-8 sm:p-10 w-full max-w-lg shadow-[0_8px_30px_rgb(0,0,0,0.04)] border border-slate-100 relative overflow-hidden">
+        {/* Subtle background decoration */}
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-32 h-32 rounded-full bg-green-50 blur-3xl pointer-events-none" />
+
+        <div className="relative z-10 flex flex-col items-center text-center">
+          <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mb-6 border-4 border-white shadow-sm ring-1 ring-green-50">
+            <CheckCircle2 className="w-8 h-8 text-green-600" />
           </div>
-        </div>
 
-        {/* Heading */}
-        <h1
-          style={{
-            textAlign: "center",
-            fontSize: "22px",
-            fontWeight: "700",
-            color: "#0f172a",
-            margin: "0 0 8px",
-          }}
-        >
-          Thank you for your purchase!
-        </h1>
-
-        {/* Subtitle */}
-        <p
-          style={{
-            textAlign: "center",
-            fontSize: "14px",
-            color: "#64748b",
-            margin: "0 0 28px",
-          }}
-        >
-          Your subscription is now active.
-        </p>
-
-        {/* Divider */}
-        <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "0 0 24px" }} />
-
-        {/* Next step: Check email */}
-        <div
-          style={{ display: "flex", alignItems: "flex-start", gap: "14px", marginBottom: "16px" }}
-        >
-          {/* Email icon */}
-          <div
-            style={{
-              flexShrink: 0,
-              width: "40px",
-              height: "40px",
-              backgroundColor: "#eff6ff",
-              borderRadius: "10px",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <svg
-              width="20"
-              height="20"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="#3b82f6"
-              strokeWidth="1.8"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="2" y="4" width="20" height="16" rx="2" />
-              <polyline points="2,4 12,13 22,4" />
-            </svg>
-          </div>
-          <div>
-            <p style={{ fontSize: "15px", fontWeight: "600", color: "#0f172a", margin: "0 0 4px" }}>
-              Next step: Check your email
-            </p>
-            <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.5" }}>
-              We've sent you an email with instructions to create your Skyward account and begin
-              setup.
-            </p>
-          </div>
-        </div>
-
-        {/* Info box */}
-        <div
-          style={{
-            backgroundColor: "#f8fafc",
-            borderRadius: "10px",
-            padding: "14px 16px",
-            display: "flex",
-            alignItems: "flex-start",
-            gap: "12px",
-            marginBottom: "24px",
-          }}
-        >
-          <svg
-            style={{ flexShrink: 0, marginTop: "1px" }}
-            width="18"
-            height="18"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#3b82f6"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <line x1="12" y1="8" x2="12" y2="8" strokeWidth="2.5" strokeLinecap="round" />
-            <line x1="12" y1="12" x2="12" y2="16" />
-          </svg>
-          <p style={{ fontSize: "13.5px", color: "#475569", margin: 0, lineHeight: "1.6" }}>
-            The email should arrive within a few minutes.
-            <br />
-            Please check your spam or promotions folder.
+          <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">You're all set!</h1>
+          <p className="text-slate-500 mb-8 max-w-[280px]">
+            Your 14-day free trial is now active. Welcome to Skyward.
           </p>
-        </div>
 
-        {/* Divider */}
-        <hr style={{ border: "none", borderTop: "1px solid #e2e8f0", margin: "0 0 20px" }} />
+          <div className="w-full border-t border-slate-100 mb-8" />
 
-        {/* Support */}
-        <div
-          style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: "8px" }}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="#94a3b8"
-            strokeWidth="1.8"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-          >
-            <circle cx="12" cy="12" r="10" />
-            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3" />
-            <line x1="12" y1="17" x2="12.01" y2="17" strokeWidth="2.5" />
-          </svg>
-          <p style={{ fontSize: "13.5px", color: "#64748b", margin: 0 }}>
-            Need help? Contact us at{" "}
+          {auth ? (
+            <div className="w-full flex flex-col items-center gap-4">
+              <Button
+                asChild
+                className="w-full h-12 rounded-xl text-base shadow-sm group transition-all"
+                disabled={profile?.subscription_status === "inactive"}
+              >
+                <Link to="/dashboard" className="flex items-center justify-center w-full h-full">
+                  {profile?.subscription_status === "inactive" ? (
+                    <>
+                      <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                      Setting up your account...
+                    </>
+                  ) : (
+                    <>
+                      Go to Dashboard
+                      <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </>
+                  )}
+                </Link>
+              </Button>
+            </div>
+          ) : (
+            <div className="w-full text-left">
+              <div className="flex items-start gap-4 mb-6">
+                <div className="shrink-0 w-12 h-12 bg-blue-50 text-blue-600 rounded-xl flex items-center justify-center border border-blue-100">
+                  <Mail className="w-6 h-6" />
+                </div>
+                <div>
+                  <h3 className="font-semibold text-slate-900 mb-1">Next step: Check your email</h3>
+                  <p className="text-sm text-slate-600 leading-relaxed">
+                    We've sent you a magic link to securely sign in and set up your first device.
+                  </p>
+                </div>
+              </div>
+
+              <div className="bg-slate-50 rounded-xl p-4 flex items-start gap-3 border border-slate-100">
+                <HelpCircle className="w-5 h-5 text-slate-400 shrink-0 mt-0.5" />
+                <p className="text-sm text-slate-500 leading-relaxed">
+                  The email should arrive within a minute. Don't forget to check your spam folder!
+                </p>
+              </div>
+            </div>
+          )}
+
+          <div className="w-full border-t border-slate-100 mt-8 mb-6" />
+
+          <p className="text-sm text-slate-500 flex items-center justify-center gap-1.5">
+            Need help? Reach us at{" "}
             <a
               href="mailto:hello@skywardos.com"
-              style={{ color: "#3b82f6", textDecoration: "none" }}
+              className="text-blue-600 hover:text-blue-700 font-medium transition-colors"
             >
               hello@skywardos.com
             </a>

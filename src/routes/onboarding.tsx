@@ -51,7 +51,7 @@ function OnboardingPage() {
     }
     await refreshProfile();
 
-    navigate({ to: "/setup" });
+    navigate({ to: "/dashboard" });
   };
 
   return (

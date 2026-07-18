@@ -86,7 +86,7 @@ function UpdatePasswordPage() {
     if (error) {
       toast.error(error.message);
     } else {
-      const destination = profile?.imei ? "/setup" : "/onboarding";
+      const destination = profile?.imei ? "/dashboard" : "/onboarding";
       toast.success("Password created! Taking you to setup…");
       navigate({ to: destination });
     }

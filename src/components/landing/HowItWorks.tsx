@@ -1,8 +1,9 @@
 import { RotateCcw, ShoppingBag, Smartphone, HelpCircle, QrCode } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 
 export function HowItWorks() {
   return (
-    <section className="px-6 py-20 md:py-28 bg-slate-100 dark:bg-zinc-900/60 border-y border-slate-300 dark:border-zinc-800 relative overflow-hidden">
+    <section className="px-6 py-20 md:py-28 relative overflow-hidden bg-background">
       {/* Background blur */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <div className="absolute top-1/2 left-1/4 -translate-y-1/2 w-[600px] h-[600px] bg-primary/5 rounded-full blur-[120px]" />
@@ -29,11 +30,46 @@ export function HowItWorks() {
 
             <div className="flex items-center gap-4 mb-6">
               <div className="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                <RotateCcw className="h-6 w-6" />
+                <ShoppingBag className="h-6 w-6" />
               </div>
               <div>
                 <span className="text-xs uppercase tracking-widest font-semibold text-primary">
                   Option 1
+                </span>
+                <h3 className="text-lg font-semibold text-foreground leading-tight mt-0.5">
+                  Buy a new or used device
+                </h3>
+              </div>
+            </div>
+
+            <div className="space-y-3 flex-1">
+              {[
+                "Pick up an Android phone from a local store or online retailer",
+                "Scan the QR code from Skyward — no factory reset needed",
+              ].map((step, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <div className="flex h-[22px] w-6 shrink-0 items-center justify-center">
+                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-primary/10 text-sm font-bold text-primary">
+                      {i + 1}
+                    </div>
+                  </div>
+                  <div className="text-sm text-foreground leading-relaxed">{step}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Option 2 */}
+          <div className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-[0_4px_24px_-8px_rgba(30,41,59,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(30,41,59,0.12)] transition-shadow duration-300 relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-40 h-40 bg-primary/3 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
+
+            <div className="flex items-center gap-4 mb-6">
+              <div className="h-12 w-12 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
+                <RotateCcw className="h-6 w-6" />
+              </div>
+              <div>
+                <span className="text-xs uppercase tracking-widest font-semibold text-primary">
+                  Option 2
                 </span>
                 <h3 className="text-lg font-semibold text-foreground leading-tight mt-0.5">
                   Convert your current Android
@@ -58,41 +94,6 @@ export function HowItWorks() {
               ))}
             </div>
           </div>
-
-          {/* Option 2 */}
-          <div className="flex flex-col rounded-3xl border border-border bg-card p-7 shadow-[0_4px_24px_-8px_rgba(30,41,59,0.08)] hover:shadow-[0_8px_32px_-8px_rgba(30,41,59,0.12)] transition-shadow duration-300 relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-40 h-40 bg-emerald-500/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl pointer-events-none" />
-
-            <div className="flex items-center gap-4 mb-6">
-              <div className="h-12 w-12 rounded-2xl bg-emerald-500/10 text-emerald-500 flex items-center justify-center shrink-0 group-hover:scale-105 transition-transform duration-300">
-                <ShoppingBag className="h-6 w-6" />
-              </div>
-              <div>
-                <span className="text-xs uppercase tracking-widest font-semibold text-emerald-500">
-                  Option 2
-                </span>
-                <h3 className="text-lg font-semibold text-foreground leading-tight mt-0.5">
-                  Buy a new or used device
-                </h3>
-              </div>
-            </div>
-
-            <div className="space-y-3 flex-1">
-              {[
-                "Pick up an Android phone from a local store or online retailer",
-                "Scan the QR code from Skyward — no factory reset needed",
-              ].map((step, i) => (
-                <div key={i} className="flex items-start gap-3">
-                  <div className="flex h-[22px] w-6 shrink-0 items-center justify-center">
-                    <div className="flex h-6 w-6 items-center justify-center rounded-full bg-emerald-500/10 text-sm font-bold text-emerald-500">
-                      {i + 1}
-                    </div>
-                  </div>
-                  <div className="text-sm text-foreground leading-relaxed">{step}</div>
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
 
         {/* FAQ cards */}
@@ -105,7 +106,7 @@ export function HowItWorks() {
               </div>
               <div>
                 <h3 className="font-semibold text-foreground text-base mb-2">
-                  Why is factory resetting required for my current Android?
+                  Why is factory resetting required for option #2?
                 </h3>
                 <p className="text-sm text-muted-foreground leading-relaxed">
                   You need to give Skyward permission to become a{" "}
@@ -135,23 +136,36 @@ export function HowItWorks() {
                   <span className="text-foreground font-semibold">Android 11 or higher</span> are
                   all supported.
                 </p>
-                <p className="text-sm font-semibold text-foreground mt-4">Some examples include:</p>
-                <ul className="mt-2 grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-2 text-sm text-muted-foreground">
-                  <li className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
-                    <span>Samsung Galaxy A15 or newer</span>
+                <p className="text-sm font-semibold text-foreground mt-4">Phones that work:</p>
+                <ul className="mt-3 space-y-3 text-sm text-muted-foreground">
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 items-center shrink-0">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    </span>
+                    <span>
+                      <strong className="text-foreground font-semibold">Samsung Galaxy:</strong> All
+                      S Series (S10 or newer), A Series (A10 or newer), Z series foldables (Z
+                      Flip/Fold 2 or newer), and Note Series (Note 10 or newer)
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
-                    <span>Samsung Galaxy S21 or newer</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 items-center shrink-0">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    </span>
+                    <span>
+                      <strong className="text-foreground font-semibold">Google Pixel:</strong> All
+                      Pixel Series (Pixel 2 or newer)
+                    </span>
                   </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
-                    <span>Google Pixel 5 or newer</span>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <span className="h-1 w-1 rounded-full bg-primary shrink-0" />
-                    <span>Motorola Moto G Power (2022) or newer</span>
+                  <li className="flex items-start gap-2.5">
+                    <span className="flex h-5 items-center shrink-0">
+                      <span className="h-1.5 w-1.5 rounded-full bg-primary" />
+                    </span>
+                    <span>
+                      <strong className="text-foreground font-semibold">Motorola:</strong> All Razr
+                      Series (2019 or newer), Edge Series (2020 or newer), Moto G Series (G8 or
+                      newer)
+                    </span>
                   </li>
                 </ul>
               </div>
