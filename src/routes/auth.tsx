@@ -204,7 +204,7 @@ function AuthPage() {
             className="space-y-4"
           >
             <div className="space-y-2">
-              <Label htmlFor="email">Email</Label>
+              <Label htmlFor="email" className="block">Email</Label>
               <Input
                 id="email"
                 type="email"
@@ -215,13 +215,13 @@ function AuthPage() {
               />
             </div>
             <div className="space-y-2">
-              <div className="flex items-center justify-between">
+              <div className="flex items-baseline justify-between">
                 <Label htmlFor="password">Password</Label>
                 {activeMode === "login" && (
                   <Button
                     variant="link"
                     type="button"
-                    className="px-0 font-normal text-xs text-muted-foreground h-auto"
+                    className="p-0 font-normal text-xs text-muted-foreground h-auto"
                     onClick={handleResetPassword}
                     disabled={loading}
                   >
