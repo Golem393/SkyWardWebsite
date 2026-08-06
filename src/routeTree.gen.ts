@@ -15,6 +15,7 @@ import { Route as SuccessRouteImport } from './routes/success'
 import { Route as SetupRouteImport } from './routes/setup'
 import { Route as PrivacyRouteImport } from './routes/privacy'
 import { Route as OnboardingRouteImport } from './routes/onboarding'
+import { Route as DownloadRouteImport } from './routes/download'
 import { Route as BackupRouteImport } from './routes/backup'
 import { Route as AuthRouteImport } from './routes/auth'
 import { Route as AccountRouteImport } from './routes/account'
@@ -50,6 +51,11 @@ const OnboardingRoute = OnboardingRouteImport.update({
   path: '/onboarding',
   getParentRoute: () => rootRouteImport,
 } as any)
+const DownloadRoute = DownloadRouteImport.update({
+  id: '/download',
+  path: '/download',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const BackupRoute = BackupRouteImport.update({
   id: '/backup',
   path: '/backup',
@@ -76,6 +82,7 @@ export interface FileRoutesByFullPath {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/download': typeof DownloadRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
@@ -88,6 +95,7 @@ export interface FileRoutesByTo {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/download': typeof DownloadRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
@@ -101,6 +109,7 @@ export interface FileRoutesById {
   '/account': typeof AccountRoute
   '/auth': typeof AuthRoute
   '/backup': typeof BackupRoute
+  '/download': typeof DownloadRoute
   '/onboarding': typeof OnboardingRoute
   '/privacy': typeof PrivacyRoute
   '/setup': typeof SetupRoute
@@ -115,6 +124,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/download'
     | '/onboarding'
     | '/privacy'
     | '/setup'
@@ -127,6 +137,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/download'
     | '/onboarding'
     | '/privacy'
     | '/setup'
@@ -139,6 +150,7 @@ export interface FileRouteTypes {
     | '/account'
     | '/auth'
     | '/backup'
+    | '/download'
     | '/onboarding'
     | '/privacy'
     | '/setup'
@@ -152,6 +164,7 @@ export interface RootRouteChildren {
   AccountRoute: typeof AccountRoute
   AuthRoute: typeof AuthRoute
   BackupRoute: typeof BackupRoute
+  DownloadRoute: typeof DownloadRoute
   OnboardingRoute: typeof OnboardingRoute
   PrivacyRoute: typeof PrivacyRoute
   SetupRoute: typeof SetupRoute
@@ -204,6 +217,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof OnboardingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/download': {
+      id: '/download'
+      path: '/download'
+      fullPath: '/download'
+      preLoaderRoute: typeof DownloadRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/backup': {
       id: '/backup'
       path: '/backup'
@@ -240,6 +260,7 @@ const rootRouteChildren: RootRouteChildren = {
   AccountRoute: AccountRoute,
   AuthRoute: AuthRoute,
   BackupRoute: BackupRoute,
+  DownloadRoute: DownloadRoute,
   OnboardingRoute: OnboardingRoute,
   PrivacyRoute: PrivacyRoute,
   SetupRoute: SetupRoute,
