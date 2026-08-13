@@ -18,438 +18,285 @@ function TermsPage() {
               Legal Documents
             </p>
             <h1 className="text-3xl font-semibold -tracking-[0.02em] text-foreground">
-              Terms & Conditions
+              Terms &amp; Conditions
             </h1>
-            <p className="text-sm text-muted-foreground">Last Updated: June 18, 2026</p>
+            <p className="text-sm text-muted-foreground">Last updated: August 13, 2026</p>
           </div>
 
           <div className="prose prose-sm dark:prose-invert max-w-none space-y-6 text-foreground/90 leading-relaxed">
-            <p className="text-sm text-muted-foreground">Welcome to Skyward.</p>
             <p className="text-sm text-muted-foreground">
-              These Terms and Conditions ("Terms") govern your access to and use of the Skyward
-              website, software, services, and related products (collectively, the "Service")
-              operated by Skyward OS LLC, a Wyoming limited liability company ("Skyward," "we,"
-              "us," or "our").
+              These Terms and Conditions ("Terms") govern your use of Skyward, provided by{" "}
+              <span className="font-medium text-foreground/80">Skyward OS LLC</span> ("Skyward,"
+              "we," "us," or "our").
             </p>
             <p className="text-sm text-muted-foreground">
-              By creating an account, purchasing a subscription, installing Skyward, or using the
-              Service, you agree to be bound by these Terms. If you do not agree, do not use the
-              Service.
+              By creating an account, purchasing a subscription, or using Skyward, you agree to
+              these Terms. If you do not agree, please do not use the Services.
             </p>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">1. Eligibility</h2>
+              <h2 className="text-lg font-semibold text-foreground">1. Skyward</h2>
               <p className="text-sm text-muted-foreground">
-                You must be at least 18 years old or the age of majority in your jurisdiction to use
-                the Service.
+                Skyward provides desktop and mobile applications designed to help users reduce
+                screen time and build healthier digital habits.
               </p>
-              <p className="text-sm text-muted-foreground">You represent and warrant that:</p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>
-                  You own the device being enrolled in Skyward or have authorization to manage it.
-                </li>
-                <li>The information you provide is accurate and current.</li>
-                <li>Your use of the Service complies with applicable laws.</li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">2. Description of Service</h2>
               <p className="text-sm text-muted-foreground">
-                Skyward is a smartphone transformation service designed to reduce distractions by
-                restricting access to selected applications, websites, and categories of content.
-              </p>
-              <p className="text-sm text-muted-foreground">The Service may include:</p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Application restrictions</li>
-                <li>Website filtering</li>
-                <li>DNS filtering</li>
-                <li>Device management tools</li>
-                <li>Content blocking</li>
-                <li>Security controls</li>
-                <li>Account management services</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1 font-medium text-foreground">
-                Features may change at any time.
+                You must be at least 13 years old to use Skyward. If you are a minor where you
+                live, your parent or legal guardian must approve your use of Skyward and agree to
+                these Terms.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">3. Supported Devices</h2>
-              <p className="text-sm text-muted-foreground">
-                Skyward currently supports selected Android devices.
-              </p>
-              <p className="text-sm text-muted-foreground">Compatibility may vary by:</p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Device manufacturer</li>
-                <li>Device model</li>
-                <li>Android version</li>
-                <li>Carrier modifications</li>
-                <li>Software updates</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1 font-medium text-foreground">
-                We do not guarantee compatibility with all devices.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">
-                4. Factory Reset Requirement
-              </h2>
-              <p className="text-sm text-muted-foreground">
-                Certain Skyward installations require a factory reset of the device.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                A factory reset permanently removes applications, accounts, messages, photos, files,
-                settings, and other data stored on the device.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                You acknowledge that the decision to factory reset your device is made by you and
-                not by Skyward.
-              </p>
-              <p className="text-sm text-muted-foreground">You acknowledge and agree that:</p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>
-                  You are solely responsible for backing up your device before beginning setup.
-                </li>
-                <li>Skyward is not responsible for lost data.</li>
-                <li>Skyward cannot recover deleted data.</li>
-              </ul>
-              <p className="text-sm text-muted-foreground font-semibold pt-1">
-                Failure to properly back up your device may result in permanent data loss.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">5. Account Registration</h2>
-              <p className="text-sm text-muted-foreground">
-                To use certain features, you may be required to create an account.
-              </p>
+              <h2 className="text-lg font-semibold text-foreground">2. Your Account</h2>
               <p className="text-sm text-muted-foreground">You are responsible for:</p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Maintaining the confidentiality of your login credentials</li>
-                <li>All activity occurring under your account</li>
-                <li>Promptly notifying us of unauthorized access</li>
+                <li>Providing accurate account information;</li>
+                <li>Keeping your login credentials secure; and</li>
+                <li>Activities that occur through your account.</li>
               </ul>
               <p className="text-sm text-muted-foreground pt-1">
-                We reserve the right to suspend or terminate accounts that contain inaccurate
-                information or violate these Terms.
+                You may not use Skyward for unlawful or unauthorized purposes.
               </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">6. Subscription and Billing</h2>
-              <p className="text-sm text-muted-foreground">
-                Access to the Service may require a paid subscription.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Subscriptions may be offered on a monthly or annual basis.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                By purchasing a subscription, you authorize us and our payment processors to charge
-                your selected payment method for:
-              </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Subscription fees</li>
-                <li>Applicable taxes</li>
-                <li>Renewal charges</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1">
-                Subscription fees are billed in advance.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">7. Automatic Renewal</h2>
-              <p className="text-sm text-muted-foreground">
-                Unless canceled before renewal, subscriptions automatically renew at the end of each
-                billing period.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                You authorize us to charge the payment method associated with your account for
-                renewal fees.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                You may cancel at any time through your account or by contacting us.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Cancellation prevents future renewals but does not automatically generate refunds
-                for prior charges except as provided in our refund policy.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">8. Refund Policy</h2>
-              <p className="text-sm text-muted-foreground">
-                First-time customers may request a refund within thirty (30) days of their initial
-                purchase, subject to these Terms.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Refund requests submitted after the applicable refund period may be denied.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                We reserve the right to refuse refunds where abuse, fraud, repeated refund requests,
-                or misuse of the Service is suspected.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">9. Restrictions on Use</h2>
-              <p className="text-sm text-muted-foreground">You agree not to:</p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Reverse engineer the Service</li>
-                <li>Modify or attempt to bypass Skyward protections</li>
-                <li>Circumvent filtering or management controls</li>
-                <li>Resell or sublicense the Service</li>
-                <li>Interfere with Service operations</li>
-                <li>Use the Service for unlawful purposes</li>
-                <li>Attempt unauthorized access to our systems</li>
-              </ul>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                10. Content Filtering Disclaimer
+                3. Subscriptions and Payments
               </h2>
               <p className="text-sm text-muted-foreground">
-                Skyward uses curated blocklists, filtering systems, device controls, and third-party
-                technologies to restrict access to certain applications, websites, and content.
+                Some Skyward features require a paid subscription.
               </p>
-              <p className="text-sm text-muted-foreground font-semibold">
-                No filtering technology is perfect.
+              <p className="text-sm text-muted-foreground">
+                Subscriptions automatically renew at the end of each billing period unless you
+                cancel before the next renewal.
               </p>
-              <p className="text-sm text-muted-foreground">Accordingly:</p>
+              <p className="text-sm text-muted-foreground">
+                If your subscription includes a{" "}
+                <span className="font-medium text-foreground/80">14-day free trial</span>, you
+                will not be charged during the trial. Unless you cancel before the trial ends, your
+                payment method will be charged according to the subscription plan you selected.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                You may cancel your subscription through your account. Cancellation takes effect at
+                the end of your current paid billing period.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Prices and subscription plans may change. If a change affects an existing
+                subscription, we will provide any notice required by applicable law before the
+                change takes effect.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Applicable taxes may be added to your purchase.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground">
+                4. License to Use Skyward
+              </h2>
+              <p className="text-sm text-muted-foreground">
+                Skyward and its software, designs, trademarks, content, and technology belong to us
+                or our licensors and are protected by applicable intellectual property laws.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                While you comply with these Terms, we give you a limited, personal, non-exclusive,
+                non-transferable, and revocable license to use Skyward for its intended purpose.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                You may not, except where permitted by law:
+              </p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Not all restricted content may be blocked at all times.</li>
-                <li>New applications or websites may become available before being categorized.</li>
+                <li>Copy, sell, sublicense, or redistribute Skyward;</li>
+                <li>Reverse engineer, decompile, or attempt to obtain its source code;</li>
+                <li>Circumvent or interfere with security or access controls;</li>
+                <li>Use automated systems to scrape or interfere with the Services; or</li>
                 <li>
-                  Filtering results may vary by device, network, operating system, or other factors.
+                  Use Skyward or our intellectual property to create or operate a competing service.
                 </li>
               </ul>
               <p className="text-sm text-muted-foreground pt-1">
-                Skyward does not guarantee complete blocking of any category of content.
+                All rights not expressly granted to you remain with Skyward.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">11. Third-Party Services</h2>
-              <p className="text-sm text-muted-foreground">
-                The Service may rely on third-party providers, including payment processors, DNS
-                providers, device management providers, hosting providers, and other service
-                providers.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                We are not responsible for interruptions, outages, errors, or failures caused by
-                third-party services.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">12. Device Functionality</h2>
-              <p className="text-sm text-muted-foreground">
-                The Service intentionally restricts access to certain applications, websites,
-                features, or services.
-              </p>
-              <p className="text-sm text-muted-foreground">You acknowledge that:</p>
+              <h2 className="text-lg font-semibold text-foreground">5. Acceptable Use</h2>
+              <p className="text-sm text-muted-foreground">You agree not to:</p>
               <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Some applications may become unavailable.</li>
-                <li>Some websites may be inaccessible.</li>
-                <li>Certain device functions may operate differently while Skyward is active.</li>
+                <li>Use Skyward unlawfully;</li>
+                <li>
+                  Attempt to gain unauthorized access to Skyward, another account, or our systems;
+                </li>
+                <li>Introduce malware or other harmful code;</li>
+                <li>Interfere with the operation or security of the Services;</li>
+                <li>Attempt to bypass security measures protecting the Services; or</li>
+                <li>Use Skyward in a way that infringes another person's rights.</li>
               </ul>
-              <p className="text-sm text-muted-foreground pt-1 font-medium text-foreground">
-                These restrictions are part of the intended functionality of the Service.
+              <p className="text-sm text-muted-foreground pt-1">
+                We may suspend or terminate accounts that violate these Terms or applicable law.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">13. No Emergency Use</h2>
+              <h2 className="text-lg font-semibold text-foreground">6. Privacy</h2>
               <p className="text-sm text-muted-foreground">
-                The Service is not designed, intended, or certified for emergency communications,
-                emergency response, medical monitoring, safety-critical functions, or life-support
-                purposes.
+                Our collection and use of personal information is described in our{" "}
+                <span className="font-medium text-foreground/80">
+                  Privacy Policy at skywardos.com/privacy
+                </span>
+                .
               </p>
               <p className="text-sm text-muted-foreground">
-                You are responsible for ensuring that your use of the Service does not interfere
-                with your ability to access emergency services, emergency contacts, healthcare
-                providers, or other critical communications.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Skyward shall not be responsible for any loss, damage, injury, or harm arising from
-                the use of the Service in connection with emergency, medical, safety-critical, or
-                life-support situations.{" "}
+                By using Skyward, you acknowledge that your information may be processed as
+                described in that policy.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">14. Service Availability</h2>
+              <h2 className="text-lg font-semibold text-foreground">7. Third-Party Services</h2>
               <p className="text-sm text-muted-foreground">
-                We strive to maintain reliable operation but do not guarantee uninterrupted
-                availability.
+                Skyward may rely on or interact with third-party services, websites, software, or
+                payment providers.
               </p>
               <p className="text-sm text-muted-foreground">
-                The Service may occasionally be unavailable due to:
-              </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Maintenance</li>
-                <li>Security updates</li>
-                <li>Technical failures</li>
-                <li>Third-party outages</li>
-                <li>Circumstances beyond our control</li>
-              </ul>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">15. Force Majeure</h2>
-              <p className="text-sm text-muted-foreground">
-                Skyward shall not be liable for delays, interruptions, or failures resulting from
-                causes beyond its reasonable control, including internet outages, telecommunications
-                failures, cyberattacks, governmental actions, labor disputes, natural disasters,
-                acts of war, or failures of third-party service providers.
+                Those third parties may have their own terms and privacy policies. We are not
+                responsible for third-party services that we do not control.
               </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                16. Disclaimer of Warranties
+                8. Changes and Availability
               </h2>
-              <p className="text-sm text-muted-foreground font-semibold uppercase">
-                THE SERVICE IS PROVIDED "AS IS" AND "AS AVAILABLE."
-              </p>
-              <p className="text-sm text-muted-foreground font-semibold uppercase">
-                TO THE MAXIMUM EXTENT PERMITTED BY LAW, SKYWARD DISCLAIMS ALL WARRANTIES, WHETHER
-                EXPRESS, IMPLIED, OR STATUTORY, INCLUDING WARRANTIES OF:
-              </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground uppercase">
-                <li>MERCHANTABILITY</li>
-                <li>FITNESS FOR A PARTICULAR PURPOSE</li>
-                <li>NON-INFRINGEMENT</li>
-                <li>ACCURACY</li>
-                <li>RELIABILITY</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1">
-                WE DO NOT WARRANT THAT THE SERVICE WILL BE ERROR-FREE, UNINTERRUPTED, OR COMPLETELY
-                EFFECTIVE IN ACHIEVING ANY PARTICULAR RESULT.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">17. Limitation of Liability</h2>
-              <p className="text-sm text-muted-foreground font-semibold uppercase">
-                TO THE MAXIMUM EXTENT PERMITTED BY LAW, SKYWARD OS LLC, ITS MEMBERS, MANAGERS,
-                EMPLOYEES, CONTRACTORS, AFFILIATES, AND SUPPLIERS SHALL NOT BE LIABLE FOR:
-              </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground uppercase">
-                <li>INDIRECT DAMAGES</li>
-                <li>INCIDENTAL DAMAGES</li>
-                <li>SPECIAL DAMAGES</li>
-                <li>CONSEQUENTIAL DAMAGES</li>
-                <li>LOSS OF DATA</li>
-                <li>LOSS OF PROFITS</li>
-                <li>LOSS OF BUSINESS</li>
-                <li>LOSS OF DEVICE FUNCTIONALITY</li>
-                <li>SERVICE INTERRUPTION</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1">
-                IN NO EVENT SHALL SKYWARD'S TOTAL LIABILITY EXCEED THE GREATER OF:
-              </p>
-              <p className="text-sm text-muted-foreground font-semibold">
-                (A) THE AMOUNT YOU PAID TO SKYWARD DURING THE TWELVE (12) MONTHS PRECEDING THE
-                CLAIM; OR
-              </p>
-              <p className="text-sm text-muted-foreground font-semibold">
-                (B) ONE HUNDRED U.S. DOLLARS ($100).
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">18. Indemnification</h2>
               <p className="text-sm text-muted-foreground">
-                You agree to defend, indemnify, and hold harmless Skyward OS LLC and its affiliates
-                from any claims, damages, liabilities, losses, and expenses arising from:
+                We may update, modify, suspend, or discontinue parts of Skyward from time to time.
               </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>Your use of the Service</li>
-                <li>Your violation of these Terms</li>
-                <li>Your violation of applicable laws</li>
-                <li>Your misuse of the Service</li>
-              </ul>
+              <p className="text-sm text-muted-foreground">
+                We do not guarantee that Skyward will always be available, uninterrupted, or
+                error-free. Maintenance, technical problems, third-party services, or other
+                circumstances may occasionally affect availability.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                We may also update these Terms. If we make material changes, we will provide notice
+                where required by law. The updated Terms will apply from their stated effective
+                date.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground">9. Termination</h2>
+              <p className="text-sm text-muted-foreground">
+                You may stop using Skyward or cancel your subscription at any time.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                We may suspend or terminate your access if you materially violate these Terms,
+                misuse the Services, fail to pay amounts due, or use Skyward unlawfully.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Termination does not affect obligations or rights that arose before termination.
+              </p>
+            </section>
+
+            <section className="space-y-3">
+              <h2 className="text-lg font-semibold text-foreground">10. Disclaimers</h2>
+              <p className="text-sm text-muted-foreground">
+                To the maximum extent permitted by law, Skyward is provided{" "}
+                <span className="font-medium text-foreground/80">
+                  "as is" and "as available."
+                </span>
+              </p>
+              <p className="text-sm text-muted-foreground">
+                We do not guarantee that the Services will always meet your requirements, operate
+                without interruption, or be completely free of errors.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Nothing in these Terms excludes warranties or consumer rights that cannot legally
+                be excluded.
+              </p>
             </section>
 
             <section className="space-y-3">
               <h2 className="text-lg font-semibold text-foreground">
-                19. Suspension and Termination
+                11. Limitation of Liability
               </h2>
               <p className="text-sm text-muted-foreground">
-                We may suspend or terminate your access to the Service at any time if:
+                To the maximum extent permitted by law, Skyward OS LLC and its officers, employees,
+                and agents will not be liable for indirect, incidental, special, exemplary,
+                punitive, or consequential damages arising from your use of the Services.
               </p>
-              <ul className="list-disc pl-5 space-y-1 text-sm text-muted-foreground">
-                <li>You violate these Terms</li>
-                <li>We suspect fraud or abuse</li>
-                <li>Continued access creates legal, security, or operational risk</li>
-              </ul>
-              <p className="text-sm text-muted-foreground pt-1">
-                Termination does not relieve you of payment obligations already incurred.
+              <p className="text-sm text-muted-foreground">
+                To the maximum extent permitted by law, our total liability arising out of or
+                relating to the Services will not exceed the amount you paid to Skyward during the{" "}
+                <span className="font-medium text-foreground/80">
+                  six months immediately preceding the event giving rise to the claim
+                </span>
+                .
+              </p>
+              <p className="text-sm text-muted-foreground">
+                These limitations do not apply where liability cannot legally be excluded or
+                limited.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">20. Intellectual Property</h2>
+              <h2 className="text-lg font-semibold text-foreground">
+                12. Governing Law and Disputes
+              </h2>
               <p className="text-sm text-muted-foreground">
-                All content, software, trademarks, logos, designs, and materials associated with
-                Skyward are owned by Skyward OS LLC or its licensors.
+                These Terms are governed by the laws of the{" "}
+                <span className="font-medium text-foreground/80">State of Wyoming</span>, without
+                regard to conflict-of-law principles.
               </p>
               <p className="text-sm text-muted-foreground">
-                No rights are granted except as expressly provided in these Terms.
+                To the extent permitted by applicable law, legal proceedings relating to these
+                Terms or the Services will be brought in the applicable state or federal courts
+                serving{" "}
+                <span className="font-medium text-foreground/80">
+                  Sheridan County, Wyoming
+                </span>
+                .
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Nothing in this section limits any mandatory consumer rights or protections that
+                apply to you under the laws of your jurisdiction.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">21. Changes to the Service</h2>
+              <h2 className="text-lg font-semibold text-foreground">13. General Terms</h2>
               <p className="text-sm text-muted-foreground">
-                We reserve the right to modify, suspend, discontinue, or replace any portion of the
-                Service at any time.
+                These Terms, together with any policies incorporated into them, form the agreement
+                between you and Skyward regarding the Services.
               </p>
               <p className="text-sm text-muted-foreground">
-                We are not liable for modifications or discontinuation of any feature.
+                If any provision of these Terms is found unenforceable, the remaining provisions
+                will continue to apply.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                Our failure to enforce a provision does not waive our right to enforce it later.
+              </p>
+              <p className="text-sm text-muted-foreground">
+                We may assign our rights or obligations in connection with a merger, acquisition,
+                restructuring, sale of assets, or similar business transaction.
               </p>
             </section>
 
             <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">22. Changes to These Terms</h2>
+              <h2 className="text-lg font-semibold text-foreground">14. Contact Us</h2>
               <p className="text-sm text-muted-foreground">
-                We may update these Terms from time to time.
+                Questions about these Terms can be sent to:{" "}
+                <a
+                  href="mailto:hello@skywardos.com"
+                  className="font-medium text-foreground underline underline-offset-2"
+                >
+                  hello@skywardos.com
+                </a>
               </p>
-              <p className="text-sm text-muted-foreground">
-                Updated Terms become effective when posted on our website.
-              </p>
-              <p className="text-sm text-muted-foreground font-medium">
-                Continued use of the Service after updates constitutes acceptance of the revised
-                Terms.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">23. Governing Law</h2>
-              <p className="text-sm text-muted-foreground">
-                These Terms shall be governed by and construed in accordance with the laws of the
-                State of Wyoming, United States, without regard to conflict of law principles.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">24. Dispute Resolution</h2>
-              <p className="text-sm text-muted-foreground">
-                Any dispute arising from or relating to these Terms or the Service shall be resolved
-                exclusively in the state or federal courts located in Wyoming, and you consent to
-                the jurisdiction of those courts.
-              </p>
-            </section>
-
-            <section className="space-y-3">
-              <h2 className="text-lg font-semibold text-foreground">25. Contact Information</h2>
-              <p className="text-sm text-muted-foreground font-medium">Skyward OS LLC</p>
-              <p className="text-sm text-muted-foreground">Email: hello@skywardos.com</p>
-              <p className="text-sm text-muted-foreground">Website: skywardos.com</p>
+              <div className="pt-2">
+                <p className="text-sm text-muted-foreground font-medium">Skyward OS LLC</p>
+                <p className="text-sm text-muted-foreground">Wyoming, United States</p>
+              </div>
             </section>
           </div>
         </main>
